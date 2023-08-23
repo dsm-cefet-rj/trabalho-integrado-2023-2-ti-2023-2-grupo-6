@@ -15,10 +15,10 @@
 
 Este é um projeto para facilitar os estudantes a ter um ambiente de aprendizado facilitado, que tem como objetivo facilitar o processo de marcação de aulas e gerenciamento de agendas para os monitores.
 
-Sendo assim, como principais caracteristicas, temos um projeto que foi desenvolvido com o intuito de proporcionar um ambiente digital para que os estudantes possam agendar suas aulas de forma simples e rápida, além de ajudar os monitores das disciplinas a gerenciar suas agendas e atender seus alunos de forma mais ágil e eficiente.
+Sendo assim, como principais características, temos um projeto que foi desenvolvido com o intuito de proporcionar um ambiente digital para que os estudantes possam agendar suas aulas de forma simples e rápida, além de ajudar os monitores das disciplinas a gerenciar suas agendas e atender seus alunos de forma mais ágil e eficiente.
 
 <div align="center">
-<img alt="Tela Principal" title="Tela Principal" src="https://user-images.githubusercontent.com/62712246/233226840-98c7c917-40a4-4274-80ce-2eff7a02ace9.png" height="350px" />
+<img alt="Tela Inicial" title="Tela Inicial" src="https://github.com/dsm-cefet-rj/trabalho-integrado-2023-2-ti-2023-2-grupo-6/assets/62712246/55f9c807-c2ce-4bbe-a696-188ce4173b36" height="350px" />
 </div>
 
 ## 🚀 Tecnologias
