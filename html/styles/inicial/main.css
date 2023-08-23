@@ -1,12 +1,15 @@
 :root {
   --title-color: #322153;
   --primary-color: #3e7c17;
+  font-size: 62.5%; /* 10px */
 } /* root é referenciando a raiz do documento html, sendo possivel colocar algumas propriedades que vão ser repetidas e replicadas utilizando em formato de variaveis*/
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -16,6 +19,7 @@ html {
 body {
   background: #f0f0f5;
   -webkit-font-smoothing: antialiased;
+  font-size: 1.6rem;
 }
 
 a {
