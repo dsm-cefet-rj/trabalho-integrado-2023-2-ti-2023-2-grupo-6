@@ -1,45 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../styles/login/style.css" />
   </head>
   <body>
-    <div id="page">
-      <div></div>
-      <header>logo</header>
-      <main>
-        <div class="headline">
-          <h1>Acesse a plataforma</h1>
-          <p>
-            Faça login ou registre-se para começar a construir seus projetos
-            ainda hoje.
-          </p>
-        </div>
-        <form action="">
-          <div class="input-wrapper">
-            <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" required />
+    <div id="page" class="flex">
+      <div>
+        <header>
+          <a href="../inicial"><img src="../../assets/logo.svg" alt="" /></a>
+        </header>
+        <main>
+          <div class="headline">
+            <h1>Acesse a plataforma</h1>
+            <p>Faça login ou registre-se para começar a estudar ainda hoje.</p>
           </div>
-          <div class="input-wrapper">
-            <div class="label-wrapper">
-              <label for="senha"> Senha </label>
-              <a href="#"> Esqueceu a senha? </a>
+          <form action="">
+            <div class="input-wrapper">
+              <label for="email">E-mail</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="Digite seu e-mail"
+              />
             </div>
-            <input id="senha" name="senha" type="password" />
-            <img class="show-password" src="" alt="" />
-            <img class="hide-password" src="" alt="" />
-          </div>
+            <div class="input-wrapper">
+              <div class="label-wrapper flex">
+                <label for="senha"> Senha </label>
+                <a href="#"> Esqueceu a senha? </a>
+              </div>
+              <input
+                id="senha"
+                name="senha"
+                type="password"
+                placeholder="Digite sua senha"
+              />
+              <img
+                onclick="tooglePassword()"
+                class="eye"
+                src="../../assets/login/eye-off.svg"
+                alt=""
+              />
+              <img
+                onclick="tooglePassword()"
+                class="eye hide"
+                src="../../assets/login/eye.svg"
+                alt=""
+              />
+            </div>
 
-          <button type="submit">Entrar</button>
+            <button type="submit">Entrar</button>
 
-          <div class="create-account">
-            Ainda não tem uma conta? <a href="#">Inscreva-se</a>
-          </div>
-        </form>
-      </main>
+            <div class="create-account">
+              Ainda não tem uma conta? <a href="#">Inscreva-se</a>
+            </div>
+          </form>
+        </main>
+      </div>
+      <img src="../../assets/login/bg.svg" alt="" />
     </div>
+    <script>
+      function tooglePassword() {
+        document
+          .querySelectorAll(".eye")
+          .forEach((eye) => eye.classList.toggle("hide"));
+
+        // Utilizando um Ternário
+        const type =
+          senha.getAttribute("type") == "password" ? "text" : "password";
+
+        senha.setAttribute("type", type);
+      }
+    </script>
   </body>
 </html>
