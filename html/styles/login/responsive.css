@@ -1,0 +1,23 @@
+@media (max-width: 1150px) {
+  #page > * {
+    width: 100%;
+  }
+
+  #page > img {
+    display: none;
+  }
+
+  #page > div {
+    padding: 11rem;
+  }
+
+  main {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  #page > div {
+    padding: 4rem;
+  }
+}

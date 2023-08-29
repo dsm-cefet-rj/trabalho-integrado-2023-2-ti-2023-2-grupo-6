@@ -1,28 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-:root {
-  font-size: 62.5%; /* 10px */
-  font-family: "Titillium Web", sans-serif;
-}
-
-body {
-  font-size: 1.6rem;
-}
-
-button {
-  all: unset; /* Reseta todas as propriedades do Botão */
-  box-sizing: border-box;
-}
-
 a {
-  text-decoration: none;
-  color: #3e7c17;
+  color: var(--primary-color);
   font-weight: 700;
 }
 
@@ -130,7 +107,7 @@ input {
 
 input:focus,
 input:hover {
-  border: 0.1rem solid #3e7c17;
+  border: 0.1rem solid var(--primary-color);
   outline: 0;
 }
 
@@ -162,7 +139,7 @@ form button {
   align-items: center;
   padding: 1.6rem 2.4rem;
 
-  background: #3e7c17;
+  background: var(--primary-color);
   border-radius: 0.4rem;
 
   width: 100%;
@@ -185,28 +162,4 @@ form button:hover {
 
 .create-account {
   color: #475569;
-}
-
-@media (max-width: 1100px) {
-  #page > * {
-    width: 100%;
-  }
-
-  #page > img {
-    display: none;
-  }
-
-  #page > div {
-    padding: 11rem;
-  }
-
-  main {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
-  #page > div {
-    padding: 4rem;
-  }
 }
