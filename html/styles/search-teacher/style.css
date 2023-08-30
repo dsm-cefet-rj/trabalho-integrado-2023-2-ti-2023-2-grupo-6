@@ -1,0 +1,55 @@
+/* Inicio das propriedades do Header */
+header {
+  background-color: var(--primary-color);
+  padding: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 30px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+.navigation a:hover {
+  border-bottom: 3px solid orange;
+}
+
+.create-account-button,
+.login-button {
+  font-weight: 600;
+  line-height: 48px;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  color: #244b0b;
+}
+
+.create-account-button {
+  background-color: rgb(193, 225, 173);
+}
+
+.create-account-button:hover,
+.login-button:hover {
+  background-color: #244b0b;
+  color: var(--background-color);
+}
+
+.login-button {
+  background-color: var(--background-color);
+}
+
+/* Fim das propriedades do Header */
