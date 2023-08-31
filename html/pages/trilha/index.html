@@ -1,9 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trilhas</title>
+    <meta name="viewport" content="width= , initial-scale=1.0" />
+    <title>Trilhas de Conhecimento</title>
+    <link rel="stylesheet" href="../../styles/trilha/style.css" />
+    <link rel="stylesheet" href="../../styles/main.css" />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <div class="header">
+        <a href="../inicial"
+          ><img src="../../assets/logo-branca.svg" alt=""
+        /></a>
+        <div class="container">
+          <nav class="navigation">
+            <a href="../inicial/index.html">Home</a>
+            <a href="#">Monitores</a>
+            <a href="../trilha/index.html">Trilhas de Conhecimento</a>
+            <a href="../sobre/index.html">Sobre nós</a>
+            <a href="../contato/index.html">Contatos</a>
+          </nav>
+
+          <div class="photo">
+            <img
+              class="photo"
+              src="https://generation-sessions.s3.amazonaws.com/774de11c4dc2ef4ef1e229960966e36e/img/mask-group@2x.png"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="main-container">
+        <div class="orange-section">
+          <h1>
+            Estas são as trilhas disponíveis<br />com base nos seus interesses.
+          </h1>
+          <div class="filtros">
+            <div>
+              <label for="professorBusca">Digite o nome do Professor</label>
+              <input
+                id="professorBusca"
+                name="buscaProfessor"
+                type="text"
+                placeholder="Buscar..."
+              />
+            </div>
+            <div>
+              <label for="trilhaBusca">Digite o nome da Trilha</label>
+              <input
+                id="trilhaBusca"
+                name="buscaTrilha"
+                type="text"
+                placeholder="Buscar..."
+              />
+            </div>
+            <div>
+              <label>Disciplinas Pré-Selecionados?</label>
+              <select name="disciplinas">
+                <option value="">Escolha uma Disciplina</option>
+                <option value="p1">Programação 1</option>
+                <option value="psw">PSW</option>
+                <option value="csharp">C#</option>
+                <option value="php">PHP</option>
+                <option value="java">Java</option>
+                <option value="javascript">JavaScript</option>
+                <option value="cpp">C++</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="listagem-trilhas" class="cards">
+          <div class="card1">
+            <h2>Por que buscar um sonho e seguir essa direção?</h2>
+            <p>Natan Balthazar</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident.
+            </p>
+            <div class="button">
+              <a href="../professor/index.html"
+                ><strong>Entrar na trilha</strong><span></span>
+              </a>
+            </div>
+          </div>
+          <div class="card1">
+            <h2>Por que buscar um sonho e seguir essa direção?</h2>
+            <p>Natan Balthazar</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident.
+            </p>
+            <div class="button">
+              <a href="../professor/index.html"
+                ><strong>Entrar na trilha</strong><span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
