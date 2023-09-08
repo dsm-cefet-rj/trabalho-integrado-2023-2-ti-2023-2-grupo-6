@@ -1,0 +1,72 @@
+:root {
+  --title-color: #322153;
+  --primary-color: #3e7c17;
+  --background-color: #f0f0f5;
+  --laranja: #f4a442;
+  --branco: #ffffff;
+  --fundo: #f0f0f7;
+  --cinza: #9c98a6;
+  --preto: #32264d;
+  --placeholder: #c1bccc;
+  --letra_branca: #eeeeee;
+
+  font-size: 62.5%;
+  /* 10px */
+  background: var(--background-color);
+}
+
+/* root é referenciando a raiz do documento html, sendo possivel colocar algumas propriedades que vão ser repetidas e replicadas utilizando em formato de variaveis*/
+
+hr {
+  border-color: #f0f0f7;
+}
+
+textarea {
+  resize: none;
+}
+
+::placeholder {
+  color: var(--placeholder);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: Roboto, sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--title-color);
+  font-family: "Titillium Web", sans-serif;
+}
+
+button {
+  all: unset;
+  /* Reseta todas as propriedades do Botão */
+  box-sizing: border-box;
+}

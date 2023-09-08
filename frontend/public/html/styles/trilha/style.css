@@ -175,7 +175,7 @@ header {
 
 .card1 a span::after {
   content: "";
-  background-image: url("../../assets/inicial/study.svg");
+  background-image: url("../../../assets/inicial/study.svg");
 
   width: 40px;
   height: 40px;
