@@ -4,7 +4,7 @@ import "./styles.css";
 import "./responsive.css";
 
 import { Link } from "react-router-dom";
-import logo from "../../../public/assets/logo.svg";
+import logo from "../../assets/images/logo.svg";
 
 function Home() {
   return (
