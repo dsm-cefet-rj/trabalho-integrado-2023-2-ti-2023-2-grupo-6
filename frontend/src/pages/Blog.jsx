@@ -1,9 +1,8 @@
-import SearchBar from "../../components/SearchBar";
-import BlogList from "../../components/BlogList";
-import EmptyList from "../../components/BlogList/EmptyList";
-import { blogList } from "../../assets/data/blog";
+import SearchBar from "../components/SearchBar";
+import BlogList from "../components/BlogList";
+import EmptyList from "../components/BlogList/EmptyList";
+import { blogList } from "../assets/data/blog";
 import { useState } from "react";
-import "./styles.css";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState(blogList);
@@ -31,7 +30,7 @@ const Blog = () => {
   };
 
   return (
-    <div className="blogItem">
+    <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4;">
       {/* Search Bar */}
       <SearchBar
         value={searchKey}

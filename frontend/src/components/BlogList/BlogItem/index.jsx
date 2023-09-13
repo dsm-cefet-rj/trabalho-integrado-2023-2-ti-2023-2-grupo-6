@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "./styles.css";
-import Tag from "../../BlogList/Tag";
+import Tag from "../Tag";
 
 const BlogItem = ({
   blog: {

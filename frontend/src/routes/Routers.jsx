@@ -2,7 +2,7 @@ import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import Blog from "../pages/Blog/index";
+import Blog from "../pages/Blog";
 import BlogId from "../pages/BlogId";
 
 import { Route, Routes } from "react-router-dom";
