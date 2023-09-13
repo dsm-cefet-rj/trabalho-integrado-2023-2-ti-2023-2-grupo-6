@@ -5,10 +5,10 @@ import { NavLink, Link } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 
 const navLinks = [
-  { path: "/home", diplay: "Home" },
-  { path: "/professores", diplay: "Ache um professor!" },
-  { path: "/blog", diplay: "Trilhas de Conhecimento" },
-  { path: "/contact", diplay: "Contatos" },
+  { path: "/home", display: "Home" },
+  { path: "/professores", display: "Ache um professor!" },
+  { path: "/blog", display: "Trilhas de Conhecimento" },
+  { path: "/contact", display: "Contatos" },
 ];
 
 const Header = () => {
@@ -60,7 +60,7 @@ const Header = () => {
                         : "text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor "
                     }
                   >
-                    {link.diplay}
+                    {link.display}
                   </NavLink>
                 </li>
               ))}
@@ -83,7 +83,7 @@ const Header = () => {
               </button>
             </Link>
 
-            <span className="md:hidden" onClick={toggleMenu}>
+            <span className="lg:hidden" onClick={toggleMenu}>
               <BiMenu className="w-6 h-6 cursor-pointer" />
             </span>
           </div>
