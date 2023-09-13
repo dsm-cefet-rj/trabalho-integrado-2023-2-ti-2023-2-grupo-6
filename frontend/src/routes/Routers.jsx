@@ -1,5 +1,5 @@
 import Contact from "../pages/Contact";
-import Home from "../pages/Home/Home";
+import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 

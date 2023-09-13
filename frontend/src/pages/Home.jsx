@@ -1,4 +1,4 @@
-import HomeBg from "../../assets/images/inicial/HomeBg.svg";
+import HomeBg from "../assets/images/inicial/HomeBg.svg";
 import { BiBookAlt } from "react-icons/bi";
 
 import { Link } from "react-router-dom";
