@@ -1,8 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primaryColor: "#3e7c17",
+        orangeColor: "#f4a442",
+        headingColor: "#322153",
+        textColor: "#4E545F",
+        backgroundColor: "#f0f0f5",
+      },
+
+      boxShadow: {
+        panelShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;",
+      },
+    },
   },
   plugins: [],
-};
+}
+
