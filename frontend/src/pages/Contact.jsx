@@ -2,7 +2,7 @@ const Contact = () => {
   return <section>
     <div className="px-4 mx-auto max-w-screen-md mt-[50px] mb-[70px] h-[100%]">
       <h2 className="heading text-center">Entre em contato conosco!</h2>
-        <p className="mb-8 lg:mb-16 text-center font-light text__para">Tá com dificuldade em algum assunto e quer sanar
+        <p className="mb-8 lg:mb-16 text-center font-light text__para">Está com dificuldade em algum assunto e quer sanar
         todas as suas dúvidas?
         </p>
         <form action="#" className="space-y-8">
@@ -29,13 +29,13 @@ const Contact = () => {
             />
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="message" className="form__label">
+            <label htmlFor="mensagem" className="form__label">
               Sua mensagem
             </label>
             <textarea 
             rows="6"
             type="text" 
-            id="assunto"
+            id="mensagem"
             placeholder="Como podemos ajudar?"
             className="form-input mt-1"
             />
