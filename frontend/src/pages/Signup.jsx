@@ -41,7 +41,7 @@ const Signup = () => {
         </div>
 
         <div className="rouded-l-lg lg:l-16 py-10">
-          <h3 className="text-headingColor text-[22px] leading-9 font-bold mb-10">
+          <h3 className="text-headingColor text-[26px] leading-9 font-bold mb-10 text-center">
             Crie sua <span className="text-primaryColor">conta!</span>
           </h3>
           
