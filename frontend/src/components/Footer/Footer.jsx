@@ -12,27 +12,27 @@ const socialLinks = [
   },
 ];
 
-// const quickLinks01 = [
-//   {
-//     path: "/home",
-//     display: "Página Inicial",
-//   },
-//   {
-//     path: "/contact",
-//     display: "ntre em Contato",
-//   },
-// ];
+const quickLinks01 = [
+  {
+    path: "/home",
+    display: "Página Inicial",
+  },
+  {
+    path: "/contact",
+    display: "Entre em Contato",
+  },
+];
 
-// const quickLinks02 = [
-//   {
-//     path: "/professores",
-//     display: "Encontre seu Professor",
-//   },
-//   {
-//     path: "/blog",
-//     display: "Blog",
-//   },
-// ];
+const quickLinks02 = [
+  {
+    path: "/professores",
+    display: "Encontre seu Professor",
+  },
+  {
+    path: "/blog",
+    display: "Blog",
+  },
+];
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -63,6 +63,44 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
+          </div>
+
+          <div>
+            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-white">
+              Quick Links
+            </h2>
+
+            <ul>
+              {quickLinks01.map((item, index) => (
+                <li key={index} className="mb-4">
+                  <Link
+                    to={item.path}
+                    className="text-[16px] leading-7 font-[400] text-textColor"
+                  >
+                    {item.display}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-white">
+              I want to:
+            </h2>
+
+            <ul>
+              {quickLinks02.map((item, index) => (
+                <li key={index} className="mb-4">
+                  <Link
+                    to={item.path}
+                    className="text-[16px] leading-7 font-[400] text-textColor"
+                  >
+                    {item.display}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
