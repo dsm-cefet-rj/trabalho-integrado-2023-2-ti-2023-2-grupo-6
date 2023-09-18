@@ -7,7 +7,7 @@ const socialLinks = [
   {
     path: "https://github.com/dsm-cefet-rj/trabalho-integrado-2023-2-ti-2023-2-grupo-6",
     icon: (
-      <AiFillGithub className="group-hover:text-black w-4 h-5 decoration-black" />
+      <AiFillGithub className="group-hover:text-black w-4 h-5 " color="white" />
     ),
   },
 ];
@@ -56,7 +56,7 @@ const Footer = () => {
                 <Link
                   to={link.path}
                   key={index}
-                  className="w-9 h-9 border border-solid border-[#181A1E] rounded-full flex items-center 
+                  className="w-9 h-9 border border-solid border-white rounded-full flex items-center 
             justify-center group hover:bg-primaryColor hover:border-none"
                 >
                   {link.icon}

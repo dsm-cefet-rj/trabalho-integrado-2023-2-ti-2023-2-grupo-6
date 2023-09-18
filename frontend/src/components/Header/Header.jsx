@@ -38,8 +38,8 @@ const Header = () => {
 
   return (
     <header className="header flex items-center" ref={headerRef}>
-      <div className="container mt-3">
-        <div className="flex items-center justify-between">
+      <div className="container">
+        <div className="flex items-center justify-between max-lg:my-3">
           {/*Logo*/}
           <Link to="/">
             <div>

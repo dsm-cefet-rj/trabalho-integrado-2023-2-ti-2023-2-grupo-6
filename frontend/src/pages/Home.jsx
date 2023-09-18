@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <section className="pt-[60px] 2xl:h-[100%]">
+    <section className="pt-[200px] 2xl:h-[100%]">
       <div className="container ">
         <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
           <div className="lg:w-[75%]">
@@ -18,7 +18,7 @@ function Home() {
               para você.
             </p>
 
-            <Link to="/Login">
+            <Link to="/blog">
               <button
                 type="button"
                 className="btn hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"

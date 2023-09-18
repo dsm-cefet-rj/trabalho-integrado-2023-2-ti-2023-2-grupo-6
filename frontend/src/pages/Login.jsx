@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import bgRegister from "../assets/images/login/Ilustra.svg";
+import bgRegister from "../assets/images/login/bg.svg";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,11 +13,11 @@ const Login = () => {
   };
 
   return (
-    <section className="px-5 py-3 xl:px-0">
+    <section className="px-5 py-20 xl:px-0 ">
       <div className="max-w-[1150px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Login */}
-          <div className="w-full max-w-[570px] mx-auto my-[80px] rounded-lg border shadow-xl md:p-10">
+          <div className="w-full max-w-[570px] mx-auto p-10 rounded-lg border shadow-xl md:p-10 md:my-[140px] ">
             <h3 className="text-headingColor text-[26px] leading-9 font-bold mb-10 text-center">
               Olá! <span className="text-primaryColor">Bem vindo</span> de Volta
               🎉
@@ -72,9 +72,9 @@ const Login = () => {
           </div>
 
           {/* Photo */}
-          <div className="hidden lg:block rounded-lg mr-[80px] mt-[80px]">
-            <figure className="rounded-l-lg">
-              <img src={bgRegister} alt="" className="w-full rounded-l-lg" />
+          <div className="hidden lg:block rounded-lg ml-[80px] mt-[80px]">
+            <figure className="rounded-lg">
+              <img src={bgRegister} alt="" className="w-full rounded-lg" />
             </figure>
           </div>
         </div>
