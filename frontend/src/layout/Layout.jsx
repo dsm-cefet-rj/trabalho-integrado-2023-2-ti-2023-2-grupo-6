@@ -5,8 +5,10 @@ import Footer from "../components/Footer/Footer";
 
 const Layout = () => {
   const location = useLocation();
-  const isHomeScreen =
-    location.pathname === "/" || location.pathname === "/home";
+  const isHomeScreenOrLogin =
+    location.pathname === "/" ||
+    location.pathname === "/home" ||
+    location.pathname === "/login";
 
   return (
     <>
@@ -14,7 +16,7 @@ const Layout = () => {
       <main>
         <Routers />
       </main>
-      {!isHomeScreen && <Footer />}
+      {!isHomeScreenOrLogin && <Footer />}
     </>
   );
 };

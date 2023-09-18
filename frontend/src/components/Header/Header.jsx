@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <header className="header flex items-center" ref={headerRef}>
-      <div className="container">
+      <div className="container mt-3">
         <div className="flex items-center justify-between">
           {/*Logo*/}
           <Link to="/">
