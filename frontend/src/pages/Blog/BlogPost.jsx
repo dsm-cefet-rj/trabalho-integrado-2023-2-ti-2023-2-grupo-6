@@ -3,10 +3,9 @@ import { useParams } from "react-router";
 import { blogList } from "../../assets/data/blog";
 import Tag from "../../components/BlogList/Tag";
 import EmptyList from "../../components/BlogList/EmptyList";
-import "./styles.css";
 import { Link } from "react-router-dom";
 
-const BlogId = () => {
+const BlogPost = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
 
@@ -19,24 +18,29 @@ const BlogId = () => {
 
   return (
     <>
-      <Link className="blog-goBack" to="/blog">
+      <Link
+        className="no-underline text-[0.8rem] text-[#a9a9a9] font-medium block ml-2.5 mt-2.5 mb-8"
+        to="/blog"
+      >
         <span> &#8592;</span> <span>Voltar</span>
       </Link>
       {blog ? (
-        <div className="blog-wrap">
-          <header>
-            <p className="blog-date">Publicado em: {blog.createdAt}</p>
-            <h1>{blog.title}</h1>
-            <div className="blog-subCategory">
+        <div className="max-w-[700px] mx-auto my-0">
+          <header className="text-center">
+            <p className="text-[0.8rem] text-[#a9a9a9] font-medium">
+              Publicado em: {blog.createdAt}
+            </p>
+            <h1 className="heading text-[32px]">{blog.title}</h1>
+            <div className="flex justify-center">
               {blog.subCategory.map((category, i) => (
-                <div key={i}>
+                <div key={i} className="m-4">
                   <Tag label={category} />
                 </div>
               ))}
             </div>
           </header>
-          <img src={blog.cover} alt="cover" />
-          <p className="blog-desc">{blog.description}</p>
+          <img src={blog.cover} alt="cover" className="w-full" />
+          <p className="mt-6 p-4">{blog.description}</p>
         </div>
       ) : (
         <EmptyList />
@@ -45,4 +49,4 @@ const BlogId = () => {
   );
 };
 
-export default BlogId;
+export default BlogPost;

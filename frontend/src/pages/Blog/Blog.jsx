@@ -1,7 +1,7 @@
-import SearchBar from "../components/SearchBar";
-import BlogList from "../components/BlogList/BlogList";
-import EmptyList from "../components/BlogList/EmptyList";
-import { blogList } from "../assets/data/blog";
+import SearchBar from "../../components/SearchBar/";
+import BlogList from "../../components/BlogList/BlogList";
+import EmptyList from "../../components/BlogList/EmptyList";
+import { blogList } from "../../assets/data/blog";
 import { useState } from "react";
 
 const Blog = () => {
