@@ -1,15 +1,33 @@
 {
-  "teachers": [],
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Natan Andrade",
+      "specialization": "Front-End",
+      "photo": "/assets/images/author.jpg",
+      "totalStudents": 1500
+    },
+    {
+      "id": 2,
+      "name": "Gabriel Padrão",
+      "specialization": "Back-End",
+      "photo": "/assets/images/author.jpg",
+      "totalStudents": 1500
+    },
+    {
+      "id": 3,
+      "name": "Raphael José",
+      "specialization": "DevOps",
+      "photo": "/assets/images/author.jpg",
+      "totalStudents": 1500
+    }
+  ],
   "blogPosts": [
     {
       "id": 1,
       "title": "7 ferramentas CSS que você deveria usar",
       "category": "Desenvolvimento",
-      "subCategory": [
-        "frontend",
-        "ui/ux",
-        "design"
-      ],
+      "subCategory": ["frontend", "ui/ux", "design"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "authorName": "Felipo Neves",
       "authorAvatar": "/assets/images/author.jpg",
@@ -20,10 +38,7 @@
       "id": 2,
       "title": "Opera GX integra Aria, IA nativa para aprimorar navegação gamer",
       "category": "Navegadores",
-      "subCategory": [
-        "internet",
-        "games"
-      ],
+      "subCategory": ["internet", "games"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "authorName": "Heitor Inacio",
       "authorAvatar": "/assets/images/author.jpg",
@@ -34,10 +49,7 @@
       "id": 3,
       "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
       "category": "Acessibilidade",
-      "subCategory": [
-        "Web",
-        "Tecnologia"
-      ],
+      "subCategory": ["Web", "Tecnologia"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "authorName": "John Balth",
       "authorAvatar": "/assets/images/author.jpg",
@@ -48,10 +60,7 @@
       "id": 4,
       "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
       "category": "Acessibilidade",
-      "subCategory": [
-        "Web",
-        "Tecnologia"
-      ],
+      "subCategory": ["Web", "Tecnologia"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "authorName": "John Balth",
       "authorAvatar": "/assets/images/author.jpg",
@@ -62,10 +71,7 @@
       "id": 5,
       "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
       "category": "Acessibilidade",
-      "subCategory": [
-        "Web",
-        "Tecnologia"
-      ],
+      "subCategory": ["Web", "Tecnologia"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "authorName": "John Balth",
       "authorAvatar": "/assets/images/author.jpg",
@@ -76,10 +82,7 @@
       "id": 6,
       "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
       "category": "Acessibilidade",
-      "subCategory": [
-        "Web",
-        "Tecnologia"
-      ],
+      "subCategory": ["Web", "Tecnologia"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "authorName": "John Balth",
       "authorAvatar": "/assets/images/author.jpg",
