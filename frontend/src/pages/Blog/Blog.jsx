@@ -30,18 +30,29 @@ const Blog = () => {
   };
 
   return (
-    <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4;">
-      {/* Search Bar */}
-      <SearchBar
-        value={searchKey}
-        clearSearch={handleClearSearch}
-        formSubmit={handleSearchBar}
-        handleSearchKey={(e) => setSearchKey(e.target.value)}
-      />
+    <>
+      <section className="bg-[#fff9ea]">
+        <div className="px-4 mx-auto max-w-screen-md mt-[50px] mb-[70px] h-[100%]">
+          <h2 className="heading text-center">Trilhas de Conhecimento</h2>
+          <p className="mb-8 lg:mb-16 text-center font-light text__para">
+            O lugar ideal que irá te ajudar a alcançar resultados excelentes no
+            campo que mais importa para você!
+          </p>
+        </div>
+      </section>
+      <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4;">
+        {/* Search Bar */}
+        <SearchBar
+          value={searchKey}
+          clearSearch={handleClearSearch}
+          formSubmit={handleSearchBar}
+          handleSearchKey={(e) => setSearchKey(e.target.value)}
+        />
 
-      {/* Blog List & Empty View */}
-      {!blogs.length ? <EmptyList /> : <BlogList blogs={blogs} />}
-    </div>
+        {/* Blog List & Empty View */}
+        {!blogs.length ? <EmptyList /> : <BlogList blogs={blogs} />}
+      </div>
+    </>
   );
 };
 

@@ -7,10 +7,12 @@ const Teachers = () => {
     <>
       <section className="bg-[#fff9ea]">
         <div className="px-4 mx-auto max-w-screen-md mt-[50px] mb-[70px] h-[100%]">
-          <h2 className="heading text-center">Entre em contato conosco!</h2>
+          <h2 className="heading text-center">
+            Ache o professor ideal para você!
+          </h2>
           <p className="mb-8 lg:mb-16 text-center font-light text__para">
             Está com dificuldade em algum assunto e quer sanar todas as suas
-            dúvidas?
+            dúvidas? Marque uma reunião com nossos professores!
           </p>
           <SearchBar />
         </div>
@@ -22,18 +24,6 @@ const Teachers = () => {
             {teachers.map((teacher) => (
               <TeacherCard key={teacher.id} teacher={teacher} />
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
-          <div className="xl:w-[470px] mx-auto">
-            <h2 className="heading text-center">O que os alunos dizem?</h2>
-            <p className="text__para text-center">
-              World-class care for everyone. Our health System offers unmatched,
-              expert health care.
-            </p>
           </div>
         </div>
       </section>
