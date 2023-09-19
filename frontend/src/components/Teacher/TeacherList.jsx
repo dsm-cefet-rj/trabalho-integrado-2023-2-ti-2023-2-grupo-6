@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-key, no-unused-vars  */
-
-import { teachers } from "../../assets/data/teachers";
 import TeacherCard from "./TeacherCard";
 
-const TeacherList = () => {
+const TeacherList = (teachers) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
+    <div className="grid lg:grid-cols-[repeat(3,1fr)] gap-12 md:grid-cols-[repeat(2,1fr)] grid-cols-[repeat(1,1fr)]">
       {teachers.map((teacher) => (
-        <TeacherCard key={teacher.id} teacher={teacher} />
+        <TeacherCard teacher={teacher} key={teacher.id} />
       ))}
     </div>
   );
