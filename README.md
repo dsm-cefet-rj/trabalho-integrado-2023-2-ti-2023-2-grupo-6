@@ -30,6 +30,9 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🔧 Instalação e uso
 
+1. Para o Front: yarn > yarn dev
+2. Para o Servidor Mocado: yarn json-server --watch ./src/assets/data/db.json
+
 ### Requisitos:
 
 Para que a aplicação funcione corretamente, é necessário ter os seguintes programas:
