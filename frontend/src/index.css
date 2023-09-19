@@ -11,7 +11,7 @@
   }
 
   .header {
-    @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover w-full h-[75px] leading-[100px];
+    @apply bg-no-repeat bg-center bg-cover w-full h-[75px] leading-[100px];
   }
 
   .heading {
@@ -26,16 +26,14 @@
     @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px];
   }
 
-  .form__label{
+  .form__label {
     @apply text-black font-semibold text-[16px] mb-2;
   }
 
-  .form-input{
+  .form-input {
     @apply w-full px-4 py-3 border border-solid border-primaryColor focus:outline-none focus:border-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor
-    cursor-pointer rounded-md
+    cursor-pointer rounded-md;
   }
-
-  
 }
 
 @media only screen and (max-width: 1100px) {
