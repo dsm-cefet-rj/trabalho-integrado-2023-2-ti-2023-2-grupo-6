@@ -1,11 +1,11 @@
 import SearchBar from "../../components/SearchBar/";
 import BlogList from "../../components/BlogList/BlogList";
 import EmptyList from "../../components/BlogList/EmptyList";
-import { blogList } from "../../assets/data/blog";
+import { blogPosts } from "../../assets/data/db.json";
 import { useState } from "react";
 
 const Blog = () => {
-  const [blogs, setBlogs] = useState(blogList);
+  const [blogs, setBlogs] = useState(blogPosts);
   const [searchKey, setSearchKey] = useState("");
 
   // Search submit
@@ -16,7 +16,7 @@ const Blog = () => {
 
   // Search for blog by category
   const handleSearchResults = () => {
-    const allBlogs = blogList;
+    const allBlogs = blogPosts;
     const filteredBlogs = allBlogs.filter((blog) =>
       blog.category.toLowerCase().includes(searchKey.toLowerCase().trim())
     );
@@ -25,7 +25,7 @@ const Blog = () => {
 
   // Clear search and show all blogs
   const handleClearSearch = () => {
-    setBlogs(blogList);
+    setBlogs(blogPosts);
     setSearchKey("");
   };
 

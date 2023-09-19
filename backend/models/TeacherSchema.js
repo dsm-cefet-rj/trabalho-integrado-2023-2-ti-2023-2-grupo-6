@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ProfessorSchema = new mongoose.Schema({
+const teacherSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
@@ -40,4 +40,4 @@ const ProfessorSchema = new mongoose.Schema({
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
 });
 
-export default mongoose.model("Professor", ProfessorSchema);
+export default mongoose.model("Professor", teacherSchema);

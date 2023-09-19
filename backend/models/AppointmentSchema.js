@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const reservaSchema = new mongoose.Schema(
+const appointmentSchema = new mongoose.Schema(
   {
     professor: {
       type: mongoose.Types.ObjectId,
@@ -25,4 +25,4 @@ const reservaSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Reserva", reservaSchema);
+export default mongoose.model("Reserva", appointmentSchema);
