@@ -1,29 +1,29 @@
-export const professores = [
+export const teachers = [
   {
-    id: "01",
+    id: 1,
     name: "Natan Andrade",
     specialty: "Front-End",
     avgRating: 4.8,
     totalRating: 272,
     photo: null,
-    totalAlunos: 1500,
+    totalStudents: 1500,
   },
   {
-    id: "02",
+    id: 2,
     name: "Gabriel Padrão",
     specialty: "Back-End",
     avgRating: 4.8,
     totalRating: 272,
     photo: null,
-    totalAlunos: 1500,
+    totalStudents: 1500,
   },
   {
-    id: "03",
+    id: 3,
     name: "Raphael José",
     specialty: "DevOps",
     avgRating: 4.8,
     totalRating: 272,
     photo: null,
-    totalAlunos: 1500,
+    totalStudents: 1500,
   },
 ];
