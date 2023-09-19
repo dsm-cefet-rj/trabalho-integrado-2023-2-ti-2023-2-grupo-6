@@ -5,7 +5,7 @@ import TeacherCard from "../../components/Teacher/TeacherCard";
 const Teachers = () => {
   return (
     <>
-      <section className="bg-[#fff9ea]">
+      <section className="">
         <div className="px-4 mx-auto max-w-screen-md mt-[50px] mb-[70px] h-[100%]">
           <h2 className="heading text-center">
             Ache o professor ideal para você!

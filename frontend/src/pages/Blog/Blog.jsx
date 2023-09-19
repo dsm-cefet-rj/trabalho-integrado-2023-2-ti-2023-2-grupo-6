@@ -31,7 +31,7 @@ const Blog = () => {
 
   return (
     <>
-      <section className="bg-[#fff9ea]">
+      <section>
         <div className="px-4 mx-auto max-w-screen-md mt-[50px] mb-[70px] h-[100%]">
           <h2 className="heading text-center">Trilhas de Conhecimento</h2>
           <p className="mb-8 lg:mb-16 text-center font-light text__para">
