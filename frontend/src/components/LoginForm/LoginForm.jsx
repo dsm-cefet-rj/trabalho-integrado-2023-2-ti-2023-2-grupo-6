@@ -1,34 +1,33 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../store/thunks/userThunks";
 import { toast } from "react-toastify";
+import { login } from "../../store/thunks/userThunks";
 import {
   selectUserThunksError,
   selectUserThunksStatus,
 } from "../../store/slices/userSlice";
-import { useNavigate } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
   const status = useSelector(selectUserThunksStatus);
   const error = useSelector(selectUserThunksError);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleLoginEvent = (e) => {
@@ -79,8 +78,7 @@ rounded-md cursor-pointer"
         />
         <div
           className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
+          onClick={toggleShowPassword}
         >
           {showPassword ? (
             <AiOutlineEye className="text-[#103d0561]" />
