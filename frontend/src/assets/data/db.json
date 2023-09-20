@@ -49,7 +49,8 @@
       "name": "Jorge Silva Santos",
       "email": "jorge.silva@email.com",
       "profilePicture": "/assets/images/author.jpg",
-      "type": "TEACHER",
+      "role": "TEACHER",
+      "gender": "Masculino",
       "professionalId": 1
     },
     {
@@ -57,7 +58,8 @@
       "name": "Pedro Teste",
       "email": "pedro@teste.com",
       "profilePicture": "",
-      "type": "STUDENT"
+      "gender": "Feminino",
+      "role": "STUDENT"
     }
   ]
 }
