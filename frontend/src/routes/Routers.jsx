@@ -1,3 +1,5 @@
+import { Route, Routes } from "react-router-dom";
+
 import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -6,8 +8,6 @@ import Blog from "../pages/Blog/Blog";
 import BlogPost from "../pages/Blog/BlogPost";
 import TeacherDetails from "../pages/Teachers/TeacherDetails";
 import Teachers from "../pages/Teachers/Teachers";
-
-import { Route, Routes } from "react-router-dom";
 
 const Routers = () => {
   return (

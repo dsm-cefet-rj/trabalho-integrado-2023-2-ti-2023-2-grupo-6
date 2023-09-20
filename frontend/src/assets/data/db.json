@@ -2,95 +2,62 @@
   "teachers": [
     {
       "id": 1,
-      "name": "Natan Andrade",
+      "userId": 1,
       "specialization": "Front-End",
-      "photo": "/assets/images/author.jpg",
-      "totalStudents": 1500
-    },
-    {
-      "id": 2,
-      "name": "Gabriel Padrão",
-      "specialization": "Back-End",
-      "photo": "/assets/images/author.jpg",
-      "totalStudents": 1500
-    },
-    {
-      "id": 3,
-      "name": "Raphael José",
-      "specialization": "DevOps",
-      "photo": "/assets/images/author.jpg",
-      "totalStudents": 1500
+      "totalStudents": 1500,
+      "description": "Profissional formado com 55 anos de experiência",
+      "availableHours": [
+        "2023-05-12T17:00:00.000Z",
+        "2023-05-04T15:00:00.000Z",
+        "2023-06-22T13:00:00.000Z"
+      ]
     }
   ],
   "blogPosts": [
     {
       "id": 1,
+      "cover": "/assets/images/designer-1.jpg",
       "title": "7 ferramentas CSS que você deveria usar",
       "category": "Desenvolvimento",
-      "subCategory": ["frontend", "ui/ux", "design"],
+      "subCategory": ["Frontend", "/UXI", "Design"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "authorName": "Felipo Neves",
-      "authorAvatar": "/assets/images/author.jpg",
       "createdAt": "03/07/2021",
-      "cover": "/assets/images/designer-1.jpg"
+      "teacherId": 1
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "label": "Meet",
+      "link": "https://meet.com.br",
+      "teacherId": 1
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "userId": 21,
+      "teacherId": 1,
+      "locationId": 1,
+      "time": "12:00",
+      "date": "2023-05-04T03:00:00.000Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Jorge Silva Santos",
+      "email": "jorge.silva@email.com",
+      "profilePicture": "/assets/images/author.jpg",
+      "type": "TEACHER",
+      "professionalId": 1
     },
     {
       "id": 2,
-      "title": "Opera GX integra Aria, IA nativa para aprimorar navegação gamer",
-      "category": "Navegadores",
-      "subCategory": ["internet", "games"],
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "authorName": "Heitor Inacio",
-      "authorAvatar": "/assets/images/author.jpg",
-      "createdAt": "03/07/2021",
-      "cover": "/assets/images/fQwuyKJ9qxjSbr6REcgtmW-1200-80.jpg"
-    },
-    {
-      "id": 3,
-      "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
-      "category": "Acessibilidade",
-      "subCategory": ["Web", "Tecnologia"],
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "authorName": "John Balth",
-      "authorAvatar": "/assets/images/author.jpg",
-      "createdAt": "03/07/2021",
-      "cover": "/assets/images/graphic-design-trends.png"
-    },
-    {
-      "id": 4,
-      "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
-      "category": "Acessibilidade",
-      "subCategory": ["Web", "Tecnologia"],
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "authorName": "John Balth",
-      "authorAvatar": "/assets/images/author.jpg",
-      "createdAt": "03/07/2021",
-      "cover": "/assets/images/graphic-design-trends.png"
-    },
-    {
-      "id": 5,
-      "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
-      "category": "Acessibilidade",
-      "subCategory": ["Web", "Tecnologia"],
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "authorName": "John Balth",
-      "authorAvatar": "/assets/images/author.jpg",
-      "createdAt": "03/07/2021",
-      "cover": "/assets/images/graphic-design-trends.png"
-    },
-    {
-      "id": 6,
-      "title": "Como a tecnologia pode viabilizar acessibilidade nos espaços urbanos do Brasil e mudar a vida de milhares de pessoas",
-      "category": "Acessibilidade",
-      "subCategory": ["Web", "Tecnologia"],
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "authorName": "John Balth",
-      "authorAvatar": "/assets/images/author.jpg",
-      "createdAt": "03/07/2021",
-      "cover": "/assets/images/graphic-design-trends.png"
+      "name": "Pedro Teste",
+      "email": "pedro@teste.com",
+      "profilePicture": "",
+      "type": "STUDENT"
     }
-  ],
-  "locations": [],
-  "appointments": [],
-  "users": []
+  ]
 }
