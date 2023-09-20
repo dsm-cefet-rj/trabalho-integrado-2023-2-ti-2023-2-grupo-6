@@ -40,7 +40,8 @@ const Blog = () => {
           </p>
         </div>
       </section>
-      <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4;">
+
+      <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4">
         {/* Search Bar */}
         <SearchBar
           value={searchKey}

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
-("react-icons/bs");
 import Tag from "../BlogList/Tag";
 
 const TeacherCard = ({
