@@ -37,78 +37,61 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getUsers.pending, (state) => {
-      state.status = "loading";
-    });
-
-    builder.addCase(getUsers.fulfilled, (state, action) => {
-      state.status = "loaded";
-      userAdapter.setAll(state, action.payload);
-    });
-
-    builder.addCase(getUsers.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
-
-    builder.addCase(updateUser.pending, (state) => {
-      state.status = "loading";
-    });
-
-    builder.addCase(updateUser.fulfilled, (state, action) => {
-      state.status = "saved";
-      userAdapter.upsertOne(state, action.payload);
-    });
-
-    builder.addCase(updateUser.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
-
-    builder.addCase(createUser.pending, (state) => {
-      state.status = "loading";
-    });
-
-    builder.addCase(createUser.fulfilled, (state, action) => {
-      state.status = "saved";
-      userAdapter.addOne(state, action.payload);
-    });
-
-    builder.addCase(createUser.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
-
-    builder.addCase(deleteUser.pending, (state) => {
-      state.status = "loading";
-    });
-
-    builder.addCase(deleteUser.fulfilled, (state, action) => {
-      state.status = "deleted";
-      userAdapter.removeOne(state, action.payload);
-    });
-
-    builder.addCase(deleteUser.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
-
-    builder.addCase(login.pending, (state) => {
-      state.status = "loading";
-    });
-
-    builder.addCase(login.fulfilled, (state, action) => {
-      state.status = "success";
-      state.loggedUser = action.payload._doc;
-      state.token = action.payload.token;
-      localStorage.setItem("user", JSON.stringify(action.payload._doc));
-      localStorage.setItem("token", action.payload.token);
-    });
-
-    builder.addCase(login.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
+    builder
+      .addCase(getUsers.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.status = "loaded";
+        userAdapter.setAll(state, action.payload);
+      })
+      .addCase(getUsers.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action.error.message;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.status = "saved";
+        userAdapter.upsertOne(state, action.payload);
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action.error.message;
+      })
+      .addCase(createUser.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(createUser.fulfilled, (state, action) => {
+        state.status = "saved";
+        userAdapter.addOne(state, action.payload);
+      })
+      .addCase(createUser.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action.error.message;
+      })
+      .addCase(deleteUser.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.status = "deleted";
+        userAdapter.removeOne(state, action.payload);
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action.error.message;
+      })
+      .addCase(login.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.status = "success";
+        state.loggedUser = action.payload._doc;
+        state.token = action.payload.token;
+        localStorage.setItem("user", JSON.stringify(action.payload._doc));
+        localStorage.setItem("token", action.payload.token);
+      });
   },
 });
 

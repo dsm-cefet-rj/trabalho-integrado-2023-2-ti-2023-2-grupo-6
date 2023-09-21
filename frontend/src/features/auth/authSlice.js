@@ -10,6 +10,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
+  token: null,
 };
 
 // Register user
@@ -61,8 +62,12 @@ export const authSlice = createSlice({
     login: (state, action) => {
       state.user = action.payload;
     },
+    token: (state, action) => {
+      state.token = action.payload;
+    },
     logout: (state) => {
       state.user = null;
+      state.token = null;
     },
   },
   extraReducers: (builder) => {
@@ -87,7 +92,10 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.token = action.payload.token;
         state.user = action.payload;
+        localStorage.setItem("user", JSON.stringify(action.payload._doc));
+        localStorage.setItem("token", action.payload.token);
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;

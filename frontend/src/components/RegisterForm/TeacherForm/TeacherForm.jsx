@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { createUser } from "../../../store/thunks/userThunks";
-import {
-  selectUserThunksError,
-  selectUserThunksStatus,
-  setStatus,
-} from "../../../store/slices/userSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
+import { register, reset } from "../../../features/auth/authSlice";
 import avatar from "../../../assets/images/signup/avatar.jpg";
+import Spinner from "../Spinner/Spinner";
 
 const TeacherForm = () => {
   const [formData, setFormData] = useState({
@@ -18,33 +14,15 @@ const TeacherForm = () => {
     email: "",
     password: "",
     profilePicture: "",
-    gender: "Masculino",
+    gender: "",
     role: "TEACHER",
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event) => {
+  const handleTogglePasswordVisibility = (event) => {
     event.preventDefault();
+    setShowPassword((show) => !show);
   };
-
-  const [errors, setErrors] = useState({});
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const status = useSelector(selectUserThunksStatus);
-  const error = useSelector(selectUserThunksError);
-
-  useEffect(() => {
-    if (status === "saved") {
-      toast.success("Usuário foi cadastrado com sucesso");
-      navigate("/login");
-      dispatch(setStatus("loaded"));
-    } else if (error) {
-      console.error(error);
-      toast.error("Ocorreu um erro");
-      dispatch(setStatus("loaded"));
-    }
-  }, [status, error, navigate, dispatch]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,40 +34,40 @@ const TeacherForm = () => {
     setFormData({ ...formData, profilePicture: file });
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    if (!formData.name) {
-      newErrors.name = "Campo obrigatório";
+  const { user, isError, isSuccess, isLoading, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess || user) {
+      navigate("/login");
     }
 
-    if (!formData.email) {
-      newErrors.email = "Campo obrigatório";
-    }
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
-    if (!formData.password) {
-      newErrors.password = "Campo obrigatório";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const submitHandler = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      // Handle form submission
-      dispatch(createUser(formData));
-    }
+    dispatch(register(formData));
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
       <h3 className="text-headingColor text-[26px] leading-9 font-bold mb-10 text-center">
-        Bem-Vindo, <span className="text-primaryColor">Aluno!</span>
+        Bem-Vindo, <span className="text-primaryColor">Professor!</span>
       </h3>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={onSubmit}>
         <div className="mb-5">
           <input
             type="text"
@@ -100,10 +78,8 @@ const TeacherForm = () => {
             className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
 focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
 rounded-md cursor-pointer"
+            required
           />
-          {errors.name && (
-            <div className="text-red-500 text-[14px]">{errors.name}</div>
-          )}
         </div>
 
         <div className="mb-5">
@@ -116,10 +92,8 @@ rounded-md cursor-pointer"
             className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
     focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
     rounded-md cursor-pointer"
+            required
           />
-          {errors.email && (
-            <div className="text-red-500 text-[14px]">{errors.email}</div>
-          )}
         </div>
 
         <div className="mb-5 relative">
@@ -132,14 +106,12 @@ rounded-md cursor-pointer"
             className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
     focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor
     placeholder:text-textColor rounded-md cursor-pointer"
+            required
           />
-          {errors.password && (
-            <div className="text-red-500 text-[14px]">{errors.password}</div>
-          )}
+
           <div
             className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDownPassword}
+            onClick={handleTogglePasswordVisibility}
           >
             {showPassword ? (
               <AiOutlineEye className="text-[#103d0561]" />
@@ -174,6 +146,7 @@ rounded-md cursor-pointer"
                 onChange={handleFileChange}
                 accept=".jpg, .png"
                 className="absolute top-0 left-0 opacity-0 h-full w-full cursor-pointer"
+                required
               />
               <label
                 htmlFor="customFile"
@@ -195,10 +168,14 @@ rounded-md cursor-pointer"
                 onChange={handleInputChange}
                 className="text-headingColor font-semibold text-[15px] leading-7 px-4
                   py-3 focus:outline-none cursor-pointer ml-2"
+                required
               >
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="outro">Prefiro Não dizer</option>
+                <option value="" disabled selected>
+                  Selecione sua opção
+                </option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Prefiro Não dizer</option>
               </select>
             </label>
           </div>

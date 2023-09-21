@@ -9,21 +9,26 @@ import BlogPost from "../pages/Blog/BlogPost";
 import TeacherDetails from "../pages/Teachers/TeacherDetails";
 import Teachers from "../pages/Teachers/Teachers";
 import TeachersProfile from "../pages/Teachers/TeachersProfile";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Routers = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Signup />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/blog" element={<Blog />}></Route>
-      <Route path="/blog/:id" element={<BlogPost />}></Route>
-      <Route path="/professores" element={<Teachers />} />
-      <Route path="/professores/:id" element={<TeacherDetails />} />
-      <Route path="/professores/profile/:id" element={<TeachersProfile />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Signup />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />}></Route>
+        <Route path="/blog/:id" element={<BlogPost />}></Route>
+        <Route path="/professores" element={<Teachers />} />
+        <Route path="/professores/:id" element={<TeacherDetails />} />
+        <Route path="/professores/profile/:id" element={<TeachersProfile />} />
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };
 

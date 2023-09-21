@@ -1,8 +1,11 @@
 import { useRef, useEffect } from "react";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import logo from "../../assets/images/logo.svg";
 import userImg from "../../assets/images/logo.svg";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, reset } from "../../features/auth/authSlice";
 
 const navLinks = [
   { path: "/home", display: "Home" },
@@ -12,10 +15,24 @@ const navLinks = [
 ];
 
 const Header = () => {
+  // Refs para elementos DOM
   const headerRef = useRef(null);
   const menuRef = useRef(null);
 
-  const hadleStickyHeader = () => {
+  // Hooks do React
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+
+  // Função para lidar com o evento de logout
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/login");
+  };
+
+  // Função para tornar o cabeçalho menor
+  const handleStickyHeader = () => {
     window.addEventListener("scroll", () => {
       if (
         document.body.scrollTop > 80 ||
@@ -29,15 +46,16 @@ const Header = () => {
   };
 
   useEffect(() => {
-    hadleStickyHeader();
+    // Ativar o cabeçalho menor quando montado e limpar quando desmontado
+    handleStickyHeader();
+    return () => window.removeEventListener("scroll", handleStickyHeader);
+  }, []);
 
-    return () => window.removeEventListener("scroll", hadleStickyHeader);
-  });
-
+  // Função para alternar o menu móvel
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
   return (
-    <header className="header flex items-center" ref={headerRef}>
+    <header className="header flex items-center " ref={headerRef}>
       <div className="container">
         <div className="flex items-center justify-between max-lg:my-3">
           {/*Logo*/}
@@ -67,7 +85,6 @@ const Header = () => {
             </ul>
           </div>
 
-          {/*Nav Right*/}
           <div className="flex items-center gap-4">
             <div className="hidden">
               <Link to="/">
@@ -77,11 +94,20 @@ const Header = () => {
               </Link>
             </div>
 
-            <Link to="/login">
-              <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900">
-                Login
+            {user ? (
+              <button
+                onClick={onLogout}
+                className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900"
+              >
+                Logout <FaSignOutAlt className="ml-2" />
               </button>
-            </Link>
+            ) : (
+              <Link to="/login">
+                <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900">
+                  Login <FaSignInAlt className="ml-2" />
+                </button>
+              </Link>
+            )}
 
             <span className="lg:hidden" onClick={toggleMenu}>
               <BiMenu className="w-6 h-6 cursor-pointer" />

@@ -1,56 +1,59 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { login } from "../../store/thunks/userThunks";
-import {
-  selectUserThunksError,
-  selectUserThunksStatus,
-} from "../../store/slices/userSlice";
+import { useEffect, useState } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { login, reset } from "../../features/auth/authSlice";
+import Spinner from "../RegisterForm/Spinner/Spinner";
 
 const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const status = useSelector(selectUserThunksStatus);
-  const error = useSelector(selectUserThunksError);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleTogglePasswordVisibility = (event) => {
+    event.preventDefault();
+    setShowPassword((show) => !show);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleLoginEvent = (e) => {
-    e.preventDefault();
-    let userCredentials = {
-      email: formData.email,
-      password: formData.password,
-    };
-    dispatch(login(userCredentials));
-  };
+  const { user, isError, isSuccess, isLoading, message } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
-    if (status === "success") {
-      toast.success("Login realizado com sucesso");
-      navigate("/");
-    } else if (error) {
-      console.error(error);
-      toast.error("Ocorreu um erro");
+    if (isError) {
+      toast.error(message);
     }
-  }, [status, error, navigate]);
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    dispatch(login(formData));
+  };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
-    <form className="py-4 md:py-0" onSubmit={handleLoginEvent}>
+    <form className="py-4 md:py-0" onSubmit={onSubmit}>
       <div className="mb-5">
         <input
           type="email"
@@ -58,10 +61,8 @@ const LoginForm = () => {
           name="email"
           value={formData.email}
           onChange={handleInputChange}
+          className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
           required
-          className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
-focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
-rounded-md cursor-pointer"
         />
       </div>
 
@@ -72,13 +73,13 @@ rounded-md cursor-pointer"
           name="password"
           value={formData.password}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
-    focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
-    rounded-md cursor-pointer"
+          className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
+          required
         />
+
         <div
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-          onClick={toggleShowPassword}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+          onClick={handleTogglePasswordVisibility}
         >
           {showPassword ? (
             <AiOutlineEye className="text-[#103d0561]" />
@@ -88,12 +89,13 @@ rounded-md cursor-pointer"
         </div>
       </div>
 
+      {/* Submit button */}
       <div className="mt-7 align-items:center">
         <button
           type="submit"
           className="w-full bg-primaryColor text-white text-[14px] leading-[20px] rounded-lg text-center px-4 py-3"
         >
-          Login
+          Criar Conta
         </button>
       </div>
 
