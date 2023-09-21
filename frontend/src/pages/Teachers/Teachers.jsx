@@ -1,6 +1,6 @@
 import SearchBar from "../../components/SearchBar/index";
 import TeacherList from "../../components/Teacher/TeacherList";
-import { teachers } from "../../assets/data/db.json";
+import { teachers } from "../../server/database/db.json";
 import { useState } from "react";
 import EmptyList from "../../components/BlogList/EmptyList";
 

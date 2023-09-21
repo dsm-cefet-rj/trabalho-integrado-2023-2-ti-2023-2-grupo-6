@@ -55,23 +55,5 @@
       "date": "2023-05-04T03:00:00.000Z"
     }
   ],
-  "users": [
-    {
-      "id": 1,
-      "name": "Jorge Silva Santos",
-      "email": "jorge.silva@email.com",
-      "profilePicture": "/assets/images/author.jpg",
-      "role": "TEACHER",
-      "gender": "Masculino",
-      "teacherId": 1
-    },
-    {
-      "id": 2,
-      "name": "Pedro Teste",
-      "email": "pedro@teste.com",
-      "profilePicture": "",
-      "gender": "Feminino",
-      "role": "STUDENT"
-    }
-  ]
+  "users": []
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { blogPosts } from "../../assets/data/db.json";
+import { blogPosts } from "../../server/database/db.json";
 import Tag from "../../components/BlogList/Tag";
 import EmptyList from "../../components/BlogList/EmptyList";
 import { Link } from "react-router-dom";

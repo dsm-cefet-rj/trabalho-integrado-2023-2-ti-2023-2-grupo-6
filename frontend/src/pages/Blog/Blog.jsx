@@ -1,7 +1,7 @@
 import SearchBar from "../../components/SearchBar/";
 import BlogList from "../../components/BlogList/BlogList";
 import EmptyList from "../../components/BlogList/EmptyList";
-import { blogPosts } from "../../assets/data/db.json";
+import { blogPosts } from "../../server/database/db.json";
 import { useState } from "react";
 
 const Blog = () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { teachers } from "../../assets/data/db.json";
+import { teachers } from "../../server/database/db.json";
 import Tag from "../../components/BlogList/Tag";
 import { Link } from "react-router-dom";
 import AppointmentPainel from "./AppointmentPainel";
