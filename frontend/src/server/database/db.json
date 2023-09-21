@@ -31,11 +31,7 @@
       "cover": "/assets/images/designer-1.jpg",
       "title": "7 ferramentas CSS que você deveria usar",
       "category": "Desenvolvimento",
-      "subCategory": [
-        "Frontend",
-        "/UXI",
-        "Design"
-      ],
+      "subCategory": ["Frontend", "/UXI", "Design"],
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "createdAt": "03/07/2021",
       "teacherId": 1
@@ -64,7 +60,7 @@
       "name": "1",
       "email": "1@1",
       "password": "1",
-      "profilePicture": {},
+      "profilePicture": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/541.jpg",
       "gender": "Outro",
       "role": "TEACHER",
       "id": 1

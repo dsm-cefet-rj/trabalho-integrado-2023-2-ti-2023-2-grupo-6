@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import Tag from "../BlogList/Tag";
 
 const TeacherCard = ({
-  teacher: { id, name, photo, specialization, totalStudents },
+  teacher: {
+    id,
+    user: { name, profilePicture },
+    specialization,
+    totalStudents,
+  },
 }) => {
   return (
     <Link className="no-underline text-inherit" to={`/professores/${id}`}>
       <div className="flex flex-col">
         <img
           className="w-full h-[250px] object-cover mb-2 rounded-[20px]"
-          src={photo}
+          src={profilePicture}
           alt="photo"
         />
         <Tag label={specialization} />
