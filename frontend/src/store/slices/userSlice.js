@@ -33,7 +33,7 @@ export const userSlice = createSlice({
     logout: (state) => {
       localStorage.clear();
       state.token = null;
-      state.user = null;
+      state.loggedUser = null;
     },
   },
   extraReducers: (builder) => {
