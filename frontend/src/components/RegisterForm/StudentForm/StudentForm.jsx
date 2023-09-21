@@ -170,7 +170,7 @@ rounded-md cursor-pointer"
                   py-3 focus:outline-none cursor-pointer ml-2"
                 required
               >
-                <option defaultValue={""} disabled selected>
+                <option defaultValue={"Null"} disabled selected>
                   Selecione sua opção
                 </option>
                 <option value="Masculino">Masculino</option>

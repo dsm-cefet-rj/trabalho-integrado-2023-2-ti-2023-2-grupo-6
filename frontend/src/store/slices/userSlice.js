@@ -33,7 +33,7 @@ export const userSlice = createSlice({
     logout: (state) => {
       localStorage.clear();
       state.token = null;
-      state.loggedUser = null;
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
@@ -41,56 +41,74 @@ export const userSlice = createSlice({
       .addCase(getUsers.pending, (state) => {
         state.status = "loading";
       })
+
       .addCase(getUsers.fulfilled, (state, action) => {
         state.status = "loaded";
         userAdapter.setAll(state, action.payload);
       })
+
       .addCase(getUsers.rejected, (state, action) => {
         state.status = "error";
         state.error = action.error.message;
       })
+
       .addCase(updateUser.pending, (state) => {
         state.status = "loading";
       })
+
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = "saved";
         userAdapter.upsertOne(state, action.payload);
       })
+
       .addCase(updateUser.rejected, (state, action) => {
         state.status = "error";
         state.error = action.error.message;
       })
+
       .addCase(createUser.pending, (state) => {
         state.status = "loading";
       })
+
       .addCase(createUser.fulfilled, (state, action) => {
         state.status = "saved";
         userAdapter.addOne(state, action.payload);
       })
+
       .addCase(createUser.rejected, (state, action) => {
         state.status = "error";
         state.error = action.error.message;
       })
+
       .addCase(deleteUser.pending, (state) => {
         state.status = "loading";
       })
+
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.status = "deleted";
         userAdapter.removeOne(state, action.payload);
       })
+
       .addCase(deleteUser.rejected, (state, action) => {
         state.status = "error";
         state.error = action.error.message;
       })
+
       .addCase(login.pending, (state) => {
         state.status = "loading";
       })
+
       .addCase(login.fulfilled, (state, action) => {
         state.status = "success";
         state.loggedUser = action.payload._doc;
         state.token = action.payload.token;
         localStorage.setItem("user", JSON.stringify(action.payload._doc));
         localStorage.setItem("token", action.payload.token);
+      })
+
+      .addCase(login.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action.error.message;
       });
   },
 });

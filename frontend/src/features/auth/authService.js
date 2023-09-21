@@ -29,10 +29,30 @@ const login = async (userData) => {
   return response.date;
 };
 
+const getUserById = async (id) => {
+  return await axios.get(API_URL + `${id}`);
+};
+
+const getUsers = async () => {
+  return await axios.get(API_URL);
+};
+
+const updateUser = async (id, user) => {
+  return await axios.patch(API_URL + `${id}`, user);
+};
+
+const deleteUser = async (id) => {
+  return await axios.delete(API_URL + `${id}`);
+};
+
 const authService = {
   register,
   logout,
   login,
+  getUserById,
+  getUsers,
+  updateUser,
+  deleteUser,
 };
 
 export default authService;

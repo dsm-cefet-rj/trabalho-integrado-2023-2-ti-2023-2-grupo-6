@@ -173,6 +173,11 @@ rounded-md cursor-pointer"
                 <option value="" disabled selected>
                   Selecione sua opção
                 </option>
+                <option
+                  value={"Selecione sua opção"}
+                  disabled
+                  selected
+                ></option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
                 <option value="Outro">Prefiro Não dizer</option>
