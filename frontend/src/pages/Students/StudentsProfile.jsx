@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
+import db from '../../server/database/db.json'
 const StudentsProfile = () => {
+
+  const url = window.location.href; 
+  const partesDaURL = url.split('/');
+  const numeroStr = partesDaURL.pop(); 
+  const alunoId = parseInt(numeroStr)-1; 
+
   return (
     <section>
       <Link
         className="no-underline text-[0.8rem] text-[#a9a9a9] font-medium block ml-2.5 mt-2.5 mb-8"
-        to="/Home"
+        to="/"
       >
         <span> &#8592;</span> <span>Voltar</span>
       </Link>
@@ -13,9 +20,8 @@ const StudentsProfile = () => {
           <div className="md:col-span-2">
             <div className="flex items-center gap-5">
               <figure className="max-w-[300px] max-h-[300px]">
-                <h1>Foto</h1>
                 <img
-                  
+                  src={db.users[alunoId].profilePicture}
                   alt=""
                   className="w-full h-[200px] object-cover mb-2 rounded-[20px]"
                 />
@@ -23,13 +29,13 @@ const StudentsProfile = () => {
 
               <div>
                 <h3 className="text-headingColor text-[22px] leading-9 mt-3 font-bold">
-                  Student name
+                {db.users[alunoId].name}
                 </h3>
                 <h2>
-                  Email
+                {db.users[alunoId].email}
                 </h2>
                 <h2>
-                  Gênero
+               Gênero: {db.users[alunoId].gender}
                 </h2>
               </div>
             </div>
