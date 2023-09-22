@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import db from "../../server/database/db.json";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,14 +21,14 @@ const AppointmentPainel = () => {
   }
 
   const [formData, setFormData] = useState({
-    date: "",
+    horario: "", // Renomeei para "horario" para corresponder ao "name" do <select>
   });
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     toast.success("Consulta marcada com sucesso!");
 
-    const { date, value } = event.target;
-    setFormData({ ...formData, [date]: value });
+    console.log(formData.horario); // Aqui você pode acessar o valor selecionado
   };
 
   const handleChange = (event) => {
@@ -58,36 +58,30 @@ const AppointmentPainel = () => {
           ))}
         </ul>
       </div>
+      <form onSubmit={handleSubmit}>
+        <div className="text-center mt-4 rounded-md">
+          <label className="text-headingColor font-bold text-[16px] leading-7">
+            Seu horário:
+            <select
+              onChange={handleChange}
+              value={formData.horario}
+              name="horario"
+              className="text-headingColor font-semibold text-[12px] leading-7 px-4 py-3 focus:outline-none cursor-pointer ml-2 border-primaryColor"
+            >
+              {db.teachers[teacherId].availableHours.map((e) => (
+                <option value={e} key={e}>
+                  {formatarData(e)}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
 
-      <div className="text-center mt-4 rounded-md">
-        <label className="text-headingColor font-bold text-[16px] leading-7">
-          Seu horário:
-          <select
-            onChange={handleChange}
-            value={FormData.date}
-            name="horario"
-            className="text-headingColor font-semibold text-[12px] leading-7 px-4
-                  py-3 focus:outline-none cursor-pointer ml-2 border-primaryColor"
-          >
-            {db.teachers[teacherId].availableHours.map((e) => (
-              <option
-                value={formData.date}
-                className="flex items-center justify-between mb-2"
-                key={e}
-              >
-                {formatarData(e)}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
+        <button className="mt-4 btn px-2 w-full rounded-md hover:bg-green-900">
+          Marque sua aula
+        </button>
+      </form>
 
-      <button
-        onClick={handleSubmit}
-        className="mt-4 btn px-2 w-full rounded-md hover:bg-green-900"
-      >
-        Marque sua aula
-      </button>
       <ToastContainer />
     </div>
   );

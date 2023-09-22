@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 import { login, reset } from "../../features/auth/authSlice";
 import Spinner from "../RegisterForm/Spinner/Spinner";
 
+
+import db from "../../server/database/db.json";
+
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -44,9 +47,36 @@ const LoginForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+     //rodrigo
+     console.log(formData.email, formData.password)
+     await authenticate(formData.email, formData.password);
+     //rodrigo
     dispatch(login(formData));
   };
+
+  //rodrigo
+  async function authenticate(email, password)
+  {
+    if(!email || !password)
+    {
+      console.log('Preencha todos os campos')
+      return;
+    }
+    let achou = false;
+    db.users.forEach((e)=>{
+      if(e.email==email && e.password==password)
+      {
+        achou=true;
+        localStorage.setItem('id',e.id);
+        navigate('/home');
+      }
+    })
+    if(achou==false)
+    {
+      console.log('Algum dado não está correto, preencha novamente')
+    }
+  }
+  //rodrigo
 
   if (isLoading) {
     return <Spinner />;
