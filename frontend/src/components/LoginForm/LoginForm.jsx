@@ -47,14 +47,14 @@ const LoginForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-     //rodrigo
+     
      console.log(formData.email, formData.password)
      await authenticate(formData.email, formData.password);
-     //rodrigo
+     
     dispatch(login(formData));
   };
 
-  //rodrigo
+  //Autenticação via login
   async function authenticate(email, password)
   {
     if(!email || !password)
@@ -76,7 +76,7 @@ const LoginForm = () => {
       console.log('Algum dado não está correto, preencha novamente')
     }
   }
-  //rodrigo
+  
 
   if (isLoading) {
     return <Spinner />;
