@@ -95,7 +95,7 @@ const LoginForm = () => {
           type="submit"
           className="w-full bg-primaryColor text-white text-[14px] leading-[20px] rounded-lg text-center px-4 py-3"
         >
-          Criar Conta
+          Entrar
         </button>
       </div>
 
