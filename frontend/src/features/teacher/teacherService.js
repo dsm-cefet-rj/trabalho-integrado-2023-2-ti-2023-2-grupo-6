@@ -10,7 +10,7 @@ const updateTeacher = async (id, teacher) => {
   return await axios.patch(API_URL + `/teachers/${id}`, teacher);
 };
 
-const createTeacher = async (teacher) => {
+export const createTeacher = async (teacher) => {
   return await axios.post(API_URL + `/teachers`, teacher);
 };
 
@@ -24,7 +24,6 @@ const deleteTeacher = async (id) => {
 
 const teacherService = {
   getTeachers,
-  createTeacher,
   updateTeacher,
   createFullTeacher,
   deleteTeacher,

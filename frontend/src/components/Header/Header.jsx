@@ -6,6 +6,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
+import { users } from "../../server/database/db.json";
 
 const navLinks = [
   { path: "/home", display: "Home" },
@@ -95,12 +96,23 @@ const Header = () => {
             </div>
 
             {user ? (
-              <button
-                onClick={onLogout}
-                className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900"
-              >
-                Logout <FaSignOutAlt className="ml-2" />
-              </button>
+              <div className="flex items-center gap-5">
+                <Link to={`/users/profile/${users.id}`}>
+                  <figure className="max-w-[40px] max-h-[40px] ">
+                    <img
+                      src={logo}
+                      alt=""
+                      className="w-[40px] h-[40px] object-cover mb-2 rounded-full shadow-lg border-[2px] border-primaryColor"
+                    />
+                  </figure>
+                </Link>
+                <button
+                  onClick={onLogout}
+                  className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900"
+                >
+                  Logout <FaSignOutAlt className="ml-2" />
+                </button>
+              </div>
             ) : (
               <Link to="/login">
                 <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900">

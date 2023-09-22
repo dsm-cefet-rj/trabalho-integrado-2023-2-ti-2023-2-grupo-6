@@ -1,6 +1,5 @@
 import axios from "axios";
-
-import { createTeacher } from "../teacher/teacherSlice";
+import { createTeacher } from "../teacher/teacherService";
 
 const API_URL = "http://localhost:3000/users/";
 
@@ -16,6 +15,7 @@ const register = async (userData) => {
         userId: newUser.id,
         specialization: "Desenvolvedor",
         totalStudents: 0,
+        resume: "",
         description: "",
         availableHours: [],
       };
