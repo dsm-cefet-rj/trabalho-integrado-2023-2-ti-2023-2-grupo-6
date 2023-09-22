@@ -7,6 +7,15 @@ const StudentsProfile = () => {
   const numeroStr = partesDaURL.pop(); 
   const alunoId = parseInt(numeroStr)-1; 
 
+  if(db.users[alunoId].role == "TEACHER"){
+    return (
+      <div className="flex h-[600px] text-center items-center justify-center">
+        <h1 className="justify-center text-[30px]"><strong>Este usuário nao é aluno</strong></h1>
+      </div>
+    )
+  }
+ 
+
   return (
     <section>
       <Link
