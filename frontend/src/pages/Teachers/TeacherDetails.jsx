@@ -24,7 +24,7 @@ const TeacherDetails = () => {
     <section>
       <Link
         className="no-underline text-[0.8rem] text-[#a9a9a9] font-medium block ml-2.5 mt-2.5 mb-8"
-        to="/professores"
+        to="/teachers"
       >
         <span> &#8592;</span> <span>Voltar</span>
       </Link>

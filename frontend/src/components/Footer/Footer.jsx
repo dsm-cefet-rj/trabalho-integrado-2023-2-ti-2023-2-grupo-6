@@ -25,7 +25,7 @@ const quickLinks01 = [
 
 const quickLinks02 = [
   {
-    path: "/professores",
+    path: "/teachers",
     display: "Encontre seu Professor",
   },
   {

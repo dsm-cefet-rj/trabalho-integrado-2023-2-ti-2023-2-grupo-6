@@ -24,10 +24,10 @@ const Routers = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />}></Route>
         <Route path="/blog/:id" element={<BlogPost />}></Route>
-        <Route path="/professores" element={<Teachers />} />
-        <Route path="/professores/:id" element={<TeacherDetails />} />
-        <Route path="/professores/profile/:id" element={<TeachersProfile />} />
-        <Route path="/alunos/profile/:id" element={<StudentsProfile/>} />
+        <Route path="/teachers" element={<Teachers />} />
+        <Route path="/teachers/:id" element={<TeacherDetails />} />
+        <Route path="/teachers/profile/:id" element={<TeachersProfile />} />
+        <Route path="/alunos/profile/:id" element={<StudentsProfile />} />
       </Routes>
       <ToastContainer />
     </>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { createTeacher } from "../teacher/teacherService";
 
 const API_URL = "http://localhost:3000/users/";
 
@@ -7,10 +8,22 @@ const register = async (userData) => {
   const response = await axios.post(API_URL, userData);
 
   if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    const newUser = response.data;
+    if (newUser.role === "TEACHER") {
+      // Create a corresponding teacher record
+      const teacherData = {
+        userId: newUser.id,
+        specialization: "Desenvolvedor",
+        totalStudents: 0,
+        description: "",
+        availableHours: [],
+      };
+      await createTeacher(teacherData); // Use the createTeacher function from teacherService
+    }
+    localStorage.setItem("user", JSON.stringify(newUser));
   }
 
-  return response.date;
+  return response.data;
 };
 
 // Logout user

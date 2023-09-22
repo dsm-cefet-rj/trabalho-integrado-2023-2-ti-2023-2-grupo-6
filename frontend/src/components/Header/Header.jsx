@@ -9,7 +9,7 @@ import { logout, reset } from "../../features/auth/authSlice";
 
 const navLinks = [
   { path: "/home", display: "Home" },
-  { path: "/professores", display: "Ache um professor!" },
+  { path: "/teachers", display: "Ache um professor!" },
   { path: "/blog", display: "Trilhas de Conhecimento" },
   { path: "/contact", display: "Contatos" },
 ];

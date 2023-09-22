@@ -12,7 +12,7 @@ const TeacherCard = ({
   },
 }) => {
   return (
-    <Link className="no-underline text-inherit" to={`/professores/${id}`}>
+    <Link className="no-underline text-inherit" to={`/teachers/${id}`}>
       <div className="flex flex-col">
         <img
           className="w-full h-[250px] object-cover mb-2 rounded-[20px]"
