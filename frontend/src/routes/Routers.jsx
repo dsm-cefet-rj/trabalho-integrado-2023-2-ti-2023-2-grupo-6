@@ -11,6 +11,7 @@ import Teachers from "../pages/Teachers/Teachers";
 import TeachersProfile from "../pages/Teachers/TeachersProfile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import StudentsProfile from "../pages/Students/StudentsProfile";
 
 const Routers = () => {
   return (
@@ -26,6 +27,7 @@ const Routers = () => {
         <Route path="/professores" element={<Teachers />} />
         <Route path="/professores/:id" element={<TeacherDetails />} />
         <Route path="/professores/profile/:id" element={<TeachersProfile />} />
+        <Route path="/alunos/profile/:id" element={<StudentsProfile/>} />
       </Routes>
       <ToastContainer />
     </>
