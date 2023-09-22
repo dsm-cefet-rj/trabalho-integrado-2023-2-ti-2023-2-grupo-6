@@ -1,5 +1,6 @@
 import axios from "axios";
-import { createTeacher } from "../teacher/teacherService";
+
+import { createTeacher } from "../teacher/teacherSlice";
 
 const API_URL = "http://localhost:3000/users/";
 

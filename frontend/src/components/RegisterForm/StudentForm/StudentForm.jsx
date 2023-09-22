@@ -12,7 +12,7 @@ const StudentForm = () => {
     name: "",
     email: "",
     password: "",
-    profilePicture: "", // Armazene o URL da imagem aqui
+    profilePicture: "",
     gender: "",
     role: "STUDENT",
   });
@@ -59,7 +59,7 @@ const StudentForm = () => {
   return (
     <>
       <h3 className="text-headingColor text-[26px] leading-9 font-bold mb-10 text-center">
-        Bem-Vindo, <span className="text-primaryColor">Aluno!</span>
+        Bem-Vindo, <span className="text-primaryColor">Professor!</span>
       </h3>
       <form onSubmit={onSubmit}>
         <div className="mb-5">
@@ -73,6 +73,7 @@ const StudentForm = () => {
   focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
   rounded-md cursor-pointer"
             required
+            autoComplete="name"
           />
         </div>
 
@@ -87,6 +88,7 @@ const StudentForm = () => {
       focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
       rounded-md cursor-pointer"
             required
+            autoComplete="email"
           />
         </div>
 
@@ -101,6 +103,7 @@ const StudentForm = () => {
       focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor
       placeholder:text-textColor rounded-md cursor-pointer"
             required
+            autoComplete="current-password"
           />
 
           <div
@@ -140,8 +143,8 @@ const StudentForm = () => {
         py-3 focus:outline-none cursor-pointer ml-2"
               required
             >
-              <option defaultValue={"Null"} disabled>
-                Selecione sua opção
+              <option value="" disabled>
+                Selecione um motivo
               </option>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>

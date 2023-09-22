@@ -44,36 +44,31 @@ const LoginForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-     
-     console.log(formData.email, formData.password)
-     await authenticate(formData.email, formData.password);
-     
+
+    console.log(formData.email, formData.password);
+    await authenticate(formData.email, formData.password);
+
     dispatch(login(formData));
   };
 
   //Autenticação via login
-  async function authenticate(email, password)
-  {
-    if(!email || !password)
-    {
-      console.log('Preencha todos os campos')
+  async function authenticate(email, password) {
+    if (!email || !password) {
+      console.log("Preencha todos os campos");
       return;
     }
     let achou = false;
-    db.users.forEach((e)=>{
-      if(e.email==email && e.password==password)
-      {
-        achou=true;
-        localStorage.setItem('id',e.id);
-        navigate('/teachers');
+    db.users.forEach((e) => {
+      if (e.email == email && e.password == password) {
+        achou = true;
+        localStorage.setItem("id", e.id);
+        navigate("/teachers");
       }
-    })
-    if(achou==false)
-    {
-      console.log('Algum dado não está correto, preencha novamente')
+    });
+    if (achou == false) {
+      console.log("Algum dado não está correto, preencha novamente");
     }
   }
-  
 
   if (isLoading) {
     return <Spinner />;
@@ -90,6 +85,7 @@ const LoginForm = () => {
           onChange={handleInputChange}
           className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
           required
+          autoComplete="email"
         />
       </div>
 
@@ -102,6 +98,7 @@ const LoginForm = () => {
           onChange={handleInputChange}
           className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
           required
+          autoComplete="current-password"
         />
 
         <div

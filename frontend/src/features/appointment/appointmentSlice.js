@@ -1,12 +1,9 @@
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-
 import {
-  createAppointment,
-  deleteAppointment,
-  getClientAppointments,
-  getProfessionalAppointments,
-  updateAppointment,
-} from "../thunks";
+  createSlice,
+  createEntityAdapter,
+  createAsyncThunk,
+} from "@reduxjs/toolkit";
+import appointmentService from "./appointmentService";
 
 const appointmentAdapter = createEntityAdapter();
 
@@ -15,98 +12,134 @@ const initialState = appointmentAdapter.getInitialState({
   isError: null,
 });
 
+export const getStudentAppointments = createAsyncThunk(
+  "appointment/getStudentAppointments",
+  async (token) => {
+    const response = await appointmentService.getStudentAppointments(token);
+    return response.data;
+  }
+);
+
+export const getTeacherAppointments = createAsyncThunk(
+  "appointment/getTeacherAppointments",
+  async (id) => {
+    const response = await appointmentService.getTeacherAppointments(id);
+
+    return response.data;
+  }
+);
+
+export const updateAppointment = createAsyncThunk(
+  "appointment/updateAppointment",
+  async (appointment) => {
+    const response = await appointmentService.updateAppointment(appointment);
+
+    return response.data;
+  }
+);
+
+export const createAppointment = createAsyncThunk(
+  "appointment/createAppointment",
+  async (appointment) => {
+    const response = await appointmentService.createAppointment(appointment);
+
+    return response.data;
+  }
+);
+
+export const deleteAppointment = createAsyncThunk(
+  "appointment/deleteAppointment",
+  async (id, token) => {
+    const response = await appointmentService.deleteAppointment(id, token);
+
+    return response.data;
+  }
+);
+
 export const appointmentSlice = createSlice({
   name: "appointment",
   initialState: initialState,
   reducers: {
-    setStatus: (state, action) => {
-      state.status = action.payload;
+    setMessage: (state, action) => {
+      state.message = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getClientAppointments.pending, (state) => {
-      state.status = "loading";
-    });
+    builder
+      .addCase(getStudentAppointments.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(getClientAppointments.fulfilled, (state, action) => {
-      state.status = "loaded";
-      appointmentAdapter.setAll(state, action.payload);
-    });
+      .addCase(getStudentAppointments.fulfilled, (state, action) => {
+        state.message = "loaded";
+        appointmentAdapter.setAll(state, action.payload);
+      })
 
-    builder.addCase(getClientAppointments.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
+      .addCase(getStudentAppointments.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
 
-    builder.addCase(getProfessionalAppointments.pending, (state) => {
-      state.status = "loading";
-    });
+      .addCase(getTeacherAppointments.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(getProfessionalAppointments.fulfilled, (state, action) => {
-      state.status = "loaded";
-      appointmentAdapter.setAll(state, action.payload);
-    });
+      .addCase(getTeacherAppointments.fulfilled, (state, action) => {
+        state.message = "loaded";
+        appointmentAdapter.setAll(state, action.payload);
+      })
 
-    builder.addCase(getProfessionalAppointments.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
+      .addCase(getTeacherAppointments.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
 
-    builder.addCase(updateAppointment.pending, (state) => {
-      state.status = "loading";
-    });
+      .addCase(updateAppointment.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(updateAppointment.fulfilled, (state, action) => {
-      state.status = "saved";
-      appointmentAdapter.upsertOne(state, action.payload);
-    });
+      .addCase(updateAppointment.fulfilled, (state, action) => {
+        state.message = "saved";
+        appointmentAdapter.upsertOne(state, action.payload);
+      })
 
-    builder.addCase(updateAppointment.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
+      .addCase(updateAppointment.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
 
-    builder.addCase(createAppointment.pending, (state) => {
-      state.status = "loading";
-    });
+      .addCase(createAppointment.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(createAppointment.fulfilled, (state, action) => {
-      state.status = "saved";
-      appointmentAdapter.addOne(state, action.payload);
-    });
+      .addCase(createAppointment.fulfilled, (state, action) => {
+        state.message = "saved";
+        appointmentAdapter.addOne(state, action.payload);
+      })
 
-    builder.addCase(createAppointment.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
+      .addCase(createAppointment.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
 
-    builder.addCase(deleteAppointment.pending, (state) => {
-      state.status = "loading";
-    });
+      .addCase(deleteAppointment.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(deleteAppointment.fulfilled, (state, action) => {
-      state.status = "deleted";
-      appointmentAdapter.removeOne(state, action.payload);
-    });
-
-    builder.addCase(deleteAppointment.rejected, (state, action) => {
-      state.status = "error";
-      state.error = action.error.message;
-    });
+      .addCase(deleteAppointment.fulfilled, (state, action) => {
+        state.message = "deleted";
+        appointmentAdapter.removeOne(state, action.payload);
+      })
+      .addCase(deleteAppointment.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      });
   },
 });
 
-export const {
-  selectAll: selectAllAppointments,
-  selectById: selectAppointmentById,
-} = appointmentAdapter.getSelectors((state) => state?.appointment);
+export const { selectAll: selectAllAppointments } =
+  appointmentAdapter.getSelectors((state) => state?.appointment);
 
-export const selectAppointmentsThunksStatus = (state) =>
-  state?.appointment.status;
-
-export const selectAppointmentsThunksError = (state) =>
-  state?.appointment.error;
-
-export const { setStatus } = appointmentSlice.actions;
+export const { setMessage } = appointmentSlice.actions;
 
 export default appointmentSlice.reducer;

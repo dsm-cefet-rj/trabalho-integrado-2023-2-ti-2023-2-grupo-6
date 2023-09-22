@@ -11,6 +11,14 @@
         "2023-06-22T13:00:00.000Z"
       ],
       "id": 1
+    },
+    {
+      "userId": 3,
+      "specialization": "Desenvolvedor",
+      "totalStudents": 0,
+      "description": "",
+      "availableHours": [],
+      "id": 2
     }
   ],
   "blogPosts": [
@@ -67,85 +75,22 @@
       "id": 2
     },
     {
-      "name": "Natan teste",
-      "email": "contas.natanandrade@gmail.com",
-      "password": "123",
-      "profilePicture": {},
-      "gender": "Feminino",
+      "name": "teste1",
+      "email": "1@1",
+      "password": "1",
+      "profilePicture": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBYWFRgVFhYYGBgaGBgYGBgYGhwYGRoYGBoaHBgYGBgcIS4lHB4rHxkaJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QGBISHjEhISE0NDQxNDQ0NDQ0NDE0MTQ0NDQxNDE0NDQ0NDQ0MT80NDQ0NDQ0PzQ0Pz80MTQ0MTExMf/AABEIAOAA4AMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAAECAwUGB//EAD8QAAEDAQUEBwcDAgUFAQAAAAEAAhEDBBIhMVEFQWGRBhMicYGx8BUyUqHB0eEUkvFCciNigqLCJFNjstIH/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAfEQEBAQEAAwEBAQEBAAAAAAAAARECEiFRQTEicRP/2gAMAwEAAhEDEQA/ABP0jE36NiinXbHA/wCiam/QtSkp5TDaj+hal7PapXileOqZDyqHs8JvZ4Vt86pXymQ8qpOzk3s5EB5Uw8p4nlQfs5P7NKOa8q1l45AlMXyrM9mlN7NcugpWaSGue1hOQOcawdwVlOyXh2Xsd/buiZvXojJYtk/Wpz1fxzR2c5R9nuW4KlO8GdYA+9dIcLrb2geCQ4zGWqKfYHtEm7BIAIcMSdw1MxhxV2fTx6+OXNidxUTZHLqBs55yAPjB+aotNnLBMgjfE4HxATZ9TLPxzZsrk36dy2i/gmNQaLWM6xuocmNJ2i2esGiV8aJ7NjGuO0SuO0WzeboEuzoE9rsYl06JQVuXWaJrjNE2p6YklK8Vt9SxL9OxNooSSSVCSShKECSSSRCSSUgECAVrQmaFaxvrXggi/stLjgGiSVgW3pJVD2XHOY0SInBwxHbgxkYw0zQ3SC3Oe6C6YBDAGw1pzlokz3neudZayJBxB+mmi59XXXnnGpU2i8vDz74cDevGcDOBJkEHDOVdZ9p1Wue9r3C+e20xiNDB89VkPqSbxziO+N58JT07TmTy844YKTG/bRt9uey6Wuu3gL4BMSMBOuSFse2KrHBzXn/M0klh1BZkfFD2moHQ3HsmPATjPiVGmwA46+Rww5c0prpbT0jfUcQ15YDBaWm6QYGOHGfEkmVv7D2wH/4dpeJIFx7zDzMyxzoh0HfGWpxXnr2gEiciUTZ9rvYA0YxjiJjnnu5LNnxZfr0i02G62+03m7+HiJB17tyzyFkbO6XPpsBcGEEXSwgXcNGiCJ5Yd0bPWMe1r2Tde0OAIxE5id40K1z1b6rn3zJ7ispJyoro5YSSZKUXDp1GUpQOmlIlJAklElNeQTSULye8gklKjeTXkEwptCgCptKouYFjbU2z77Gf0yC/jva378FsudDTGi4Ku8Nc4ZkTJPD7lS3F5mqbfaS45k4AY92crT2DsxhF94vE5A5ALLsFl6xwGmJHALr6FO6AG4QuPVdKVXY9N4y3blkWno9j2cvWa3w5wz+/0VpqE4bu+fIKajmqOwT3FM/o685O8F0t6MZGqdtQ7gD3fmEi65J2wagMkaz9U1m2E9zpGHHcF2b7UAO0CBlJGHHHJRo2tgyjHx8k6ufxZXDWmymm4seII4Yd4wxHNeg7Dq06lmDWgXqbBMESG6kQPtpoMXpFQD6fWAdqnjI3sJxHhmheh1uDLQ0OiHAtiLw7RGQ7wN6k62a1PjccoErQ2swNeYAG+RxGmQ7oWcSu8uzXCzLhSlKiSmvIiaSheSvIJSlKheSvIE5h0UbrtF1/6FiY2JiauOPg6JQdF1psTFB1iYmmOVx0Sx0XUfomKLrGxNMc42dCrmStxtiar6ez2ppjltr2vqqRdGJ7De9289wBK5EWeTiQJI5549y7Tp/Zi1lBrfdL3kmN7QI8ccPFciw3STj456ADRS3WuZkH7MoBroblr9VuZYEjny7lm7NpRGMH6lF2mhJ7LgDxhcr7rYltpYMHN7pP2V9N7HYtjwKx772RNwgQZb/CJs+0gXQ6OQ4Z8kZGWi7ECAq20XEQ0gTxMHwgpVXsIBkGMYlJ1sYOHEY+MeskDiyPJwAMaEfgpNsJnEDA4xI5oarbQe0MvnjzHzCnR2nuJJGWvis1qC6lBoYRuIIz8MVxVgN2oDlDuRaZ5LqK9pBB3esPBczbKMAmPe8wcZTn9ade+1XwHzMgEGZw7+GXgqHPR/RjZIr2Zj23hALDjOIxPmq9s7ONIgDeu3PUzHO83bQBeo9atGy7Fe9s4qT+jz+KeUJxWX1ibrFoO2A/ionYNRPKHh0CFRN1iO9hVFA7FqBPKHhXQfqSmNcoIVEjUKrmM65LrUFfKcXuKAzrU/WIUU3KbKDlFwYyoEVTrBA07OUbSs5U1qc1ldM3E2UkZtew8zd+q4NlPthsTBvEne7KBwC3ul223OfUsjGi6y4HO3l+D44AYcigKFOSd5I/JTfS2YCt9V47LDhv/Kzi543/ADKPtrXBxJaVnGg9wLjgNwB45E7ljWoRtrxqeceaenbHXr0YacUKbO4Tez3AFSpMP2S+1dHZLV2TIwPy4goYW5kAEmOZWnZ7GOovmPdx8sFyFV5kjiVkdVS6t47LwI+L6K9lKkMC8Tu3Liw6M5HdjmrWEnJ0+tFfSY7GrTkSHSI3Y4Disl4LmOGYDiRwP2OKCsFV4eADnhz4LRZZXuqNpM96q9lNvC+QC7wGKc+q1XqH/wCdsAsDDnL3kTpeIHksjpPXv12sG5ddZrIyzWdtJnu02wN0ne6OJxXDWUdbaXOzE+SF/mOv2awNYBG5FQNFVTbAATlyjpE7o0CV1ugVJqJdYgtuN0Cg5jdFEvUC5DHLbMpB7ZK0G2Vqx9iVsIWt1y7PLYtFnaFIMboqDVURURYKgJpQ/WpdYootrlfTcgGPRNJ6LHmHSypctlYDAuq3i7TsMMDwRVmr5cfql0ysf/VPJ/ruPaf9Ib/wI8EIwwsL02H0WOE4DuHqVkVbKJzPeMPJX0ahOARQYN+iyRkmxzx78VbZNnScAeJjfpKLqmBgg37Ycy60NOGgnnzQdq6yg0bk4QOca+C84tdgN90anBbjNvEGZgZlDvt7KnbbneJIgjDfnxT9VjNso3yrKlkmLpxGAEQt+jTY4YgKxtNrDOEfRCMixWB94F10Yg4k4fJdJsm307PaWVqgL20w8i6Ae05sNOOQF448EPUrtjDDuWNtWqHBgO8nkB+VNaetWrbrK1k6+mTddeAnMOaS0jmFldFLLm87ysmwWR1GwUKTpDqhdUcDuvm80RuN274yuv2NQuMA4LX4Z7/40HhUOVrlANlRuKyErquFNP1aKoIVble4Kl5Qjg9mvh0LYJWI3svWuHSF2eWp3kxcohOhD304coEJBRRVIEouklY2dlXtYseTUYXS/Z3WUOsaO3T7XEs/rHh73gdVwjHr07bzYstc/wDhf/6leWsT8KOs5GaJvk4eW/ghWOw0GqJZUDRjjPgpiauugDHE6LPqMa4yAJV9WrOMfbuQpw3xpJ+i16xQrbJediZGi0LDZGsBwz359w81VRYZkgxr9kS2qeZ7t/8ACzogx9wlp7weCk6rIMIa0Ovif6m4/cKlrzIUWLXO09eoROxLGK1rosILgHsc4R2bjXXn3u9rUIeHqV23QzZrmMdaHiC9pazESWkyXwNxutA8dUk03B+0X9ZaBoF0NN0NAXLUAesc46rWNoW/FJ3mtTrQkLQFjur8VUa3enif+jbdawqn20LINRNfOieMTy6rRda5VLqyELikASr/AJP91gWlkOlHUTLQqdoNACt2diFr9Z30sTwUUKQSuhMTQ1wqQYiQ0JKYvkKshgItrlmtfG9XsqKeJ5LtqUr9CqwZupPaO8sdC8ipvMgjI4r2GlUXklqo9XVqU/ge9oPBrob8oVxZdXMeIxUKrXPM3ojQY8lUx8GDv+qJa8DCFjF0P1IODqj3f2ACO+Z8k42ezc987pukDvwByVNd0mclQbS8ZOPejWi32eocL7Yj4jpOUYKu9VZmLwHjCHbanj+rmiKD3O94kjONyyumbWk5FspNOIV9YCZ5IVr8URYSZjfwXrNop9TTYz4WMZ+1oC8qsbAXjUG9yxM8vmvWtvuD3saN5B8M1ZcLNgWjYS4XoKubs1x3LestnhgHBFsoJ5VfGOep7HccyES3Yw3ldFSoIj9MntfUct7JaEztngbl0NWig6tNRqViPsoCEtADQdSta0NhYFR5e+B6Gqje+mBaX3iirHgEPVGCJsLS5vh8wu1uPLzzovrlE1kPaWkO7wFBrCqxgnrk19QZSRDKKmtTkzXImmCnZTRVKmmtTmJUKZXmvSujFprRufOk3gHR816LadrUKRuve2/gAxvaeSd10ZeK8825aBUr1HiYc8kawMBlwCntbkY9Cpj3I6mR5wPMrOqsVjK+HGPLf5c0StYtbAkc/mouYzTkJ3Ssw1jHqJx+6dlTKCM5GWu8dyGNSlSpnMZ6j89x8VTXpsG4aePihjVzIy4aep8FL9RIGgz4QFKQPaHmEqLAGl2HDDCMZ+iotdokxpuGXrNEWOmXETkMhulRWpYKESfiEY7hmPpPgvSNkM617X5i42OQleftwidQFtbO2i9h7BiOO7FZt9tSvUWMVzQvLLX02tFOoLjg5rmiWPF8B0nEOwcARGE4Quh2d08ovH+Kx1M6jts8IAd8irlXXd0SiJXOWPpBZ3+5WY4/DN137XQfki37UYN/yKqYOrOQFdyDrbYG4HyWdadquOQAUyrLijpBbAxt0HE+So6OUJBed+Xcub23aXveBrn3LYsNvuNDeCnjV8oyy2VbYzdMaGeeagnAx+S69TY483KKrs+WCiximwyPW5X0qXBJ/F6ntFlNXBoAJJAAEknAADeTuWVtHb1OlLW9t4wIB7IOhdrwC5faO1qtbB7obncaLreGGZ8SVZzajft/SpjSW0m3z8bsGeAzPyWJa9vV6gul5AOYb2BGmGfis2EwW5zF0rA+9UHCTzMD5D5qx+IUdi0Zc5+MBgiN7jMIkMw5DwXPr+lZj2aqqpSHij7RSQT37isaQO4uBUH1z6+iucQqHhNUwrYJdY4qLQrGMU1SosxWzZB67v4Qtjs28rWo2cYY/QJUWPGuGox++SOpi7JOHZk6QEOxgOB90YzuGu7AfhBbQtfWEU2Ytbg54kXtAJzCc87QK4l73P3ZN7lNkjFWBsCBknaJXfE0m1tQtey7VfSi68x8BN5sf2nLwhZMJwzeSpeTXYWbpKx+D2lh1Hab9xyRr7S1wljg4aj66Lz9X2a0va4Fri0jePWKl5sXI7inse+ZK06OxQNyzNg9LaZhlcBjtzx7h/uGbO/Edy7JjwQC0ggiQQZBGoIzC5dWy+25I4tlgKtdYcFqABc/tnpRTpyynFR+Ug9hp4uHvHgOYXWS1yXsLGS97gxg3nyGp4Bc3tzpM58soyxmRdk94/4N+fkse2Wp9V197pO7cANGjIKgMXTnnAmNVhp4p6TmzAInRWzC1iVQ6nCiBirryhUargEpVDTedDiOIKMfXjEYg5aKmo0OGIn1ruQb7NHuuI4H8Ll1zrUo9rge8oC0sgymmoMA4evBV1HvOBgrneasO4TxVDqZlPL9PmFJpf8AD65qeNCZSRdno7zkqG39AO9Wsa85vA7h+FfCg19YDDmdApMtzRlid0HehG2WfecT8kXZ6QGUDX+cytTj6am573+8brPhGE9/55KTGDIDDzVt3lopxC6TnEtRDFMM/lTYpucBwHlxKuJqi58lW4SqbRayT2YjjmfsFW20O0CbAT1aYsKpFqOg5/hWMtg3iPXBNjS5uhWhsrbFazH/AA39mZLHdph/07jxEFZwtTNR5eamCFnrnSVftXpBUrC5Nxm9rTi7+92nDLvWG60tHHuH1yQjnE5kny8Aox5pvxle+0k5Yd+JUZJzM+tFFoVjQptossmD28THPD6rTqsyWSHwQRuIPJbVT88/5XTlmqC1MXK54VLgtCh3yUXQibqYsWfFdCOAVTmI00wnFNTxXQApqYYiyxNdUwUNaFY2FZdUw2EwMBoVNrYTtCk1quGpNVjRKZjFcWgTu+iqIyBiTgMZ0Cy7Vai84YNGQ+pULXab5ge6DhxOpVTQsWqeVMKKe8oJSoF2MJTP1+wThAgEgCMiR3ZckgrWMGZ8B91BnOGJ7yORUmj7qLz2j3k88VMDyVChSCgCpBBKVr2V96m3ujl+FjLR2W+Q5uOEOA1nA+QWub7SiAZGKipOwPfjpwUb3r160XVkpUSFLDVR8VFNCchOANfXr1vUlBUAnDVZCVxMFd1TaFK4pBnBMEVNpSuevXh6wVtNm+cfWKSBx2c8D5flZNvtl7sNPZnE6n7K3adrjsNPefos5rFnrr8WRNqnKg0JyVhTlyTRPdvOn5S9flSMAAD+UCLtMAo3sEpT02Xu5QWUmzjyH1SqPIz5/n19rmHdn69epUKgKoz6gx8AUmuVtZuXcRyP5VKCYTlRH5+n0TkoEETY61x4JOGIPcR/HJUMpuOTXHwKuZZKh/o5kDzKslBj7cw7yeF0qoWun6YVX7Nqf5R/qTO2Y/Vn7vwtb0noT+rpempNtNLX/ahhsx+rOf4T+zan+X9wTeviehBrU/iHJMHUz/W1DnZlTRp/1N+6Xsyr8I/cz7pt+L6GB7B/W3mpdcze9vMoH2XV+D/cz/6TezqvwH9zfum9fD00m1afxt/cU5rU/jH7iss7Oq/AfkfIqDrHUGNx3KU2/DI1uvZ/3BzKjatotDew4OccO7iVkmg8Zsd4tKiIUvVMONSnASAUgQsqTUnJ3Ksuk8B8yguYMO9INVc8FNrtM0D3Jw5lWNMCMfIevypYAbvW9Rc/1uQMT6/Pr5qYfIjyQzqnj3JMM93D7qD/2Q==",
+      "gender": "Outro",
       "role": "TEACHER",
       "id": 3
     },
     {
-      "name": "Natan Andrade",
-      "email": "a@a.com",
-      "password": "1",
-      "profilePicture": {},
-      "gender": "",
-      "role": "TEACHER",
-      "id": 4
-    },
-    {
-      "name": "Natan Andrade",
-      "email": "contas.natanandrade@gmail.com",
-      "password": "123",
-      "profilePicture": {},
-      "gender": "Outro",
-      "role": "TEACHER",
-      "id": 5
-    },
-    {
-      "name": "123",
-      "email": "123@123",
-      "password": "12",
-      "profilePicture": {},
-      "gender": "Feminino",
-      "role": "TEACHER",
-      "id": 6
-    },
-    {
-      "name": "Natan Andrade",
-      "email": "1@12",
-      "password": "123",
-      "profilePicture": {},
-      "gender": "Masculino",
-      "role": "TEACHER",
-      "id": 7
-    },
-    {
-      "name": "122313",
-      "email": "t2@gmail.com",
-      "password": "123",
-      "profilePicture": {},
-      "gender": "Masculino",
-      "role": "TEACHER",
-      "id": 8
-    },
-    {
       "name": "teste1",
-      "email": "teste@gmail.com",
-      "password": "123",
-      "profilePicture": {},
+      "email": "1@1",
+      "password": "1",
+      "profilePicture": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUVFRgVFRYZGBgaGBgYGBoYGBoaGBgYGBoaGhoYGhocIS4lHB4rIRgYJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QGhERGDEhGSE0MTQ0NDQ0MTQ0NDQ0NDQ0MTQ0NDE0NjQ0NDQ0NDQ0NDQ0NDg0NDQ0NDQ0NDQ0NDE0Mf/AABEIALcBEwMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAAAAgEDBAUGB//EAD4QAAICAAQDBgQDBgUEAwEAAAECABEDBBIhMUFhBSJRcYGRBhMyoVKxwUJicoLR8BQjM5LhB6Ky8TSTwhb/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/xAAiEQEBAAIDAAEEAwAAAAAAAAAAAQIRAyExEgRBUXETYYH/2gAMAwEAAhEDEQA/APnwMdTKhHWVyXAzTleDnwQ16lV/UzIJqyx7mJ/AB7uv9IRWDHEqEdZA6xwYgkrCHEYRAI0B7kgxIwgTJuLLdIXjufDw8/6SARCeHDmeAHrLO4OJLeWw9zv9pS2ITx9PAeQkAwNHzvBQPS/zuBx2PM+/6RdFfUQvnx9uMZcRByLeZ0j2Fn7wE1mW4OadL0kC/wB1T+Y2h/ihyRB6E/8AkTHwc4Aw1IhHPuL/AMQKC5JJO5JsnxJ5yLMbHxFLEqukXsLuh5mVaoFykxy0oR42uAjHeasy1aB+4v3szEWluYxD3f4FgVM0UwLmKWlARFKydUXVACsXTAt1kFoAUilZBMUmFTUImqEDMIwiCOJVWCasD6H/AJP/ACmQTXl/9PE/k/MyIrRSSABuSAPMy3HwwtaTYN71zBo+m33kZY0GfwFD+Jth9tR9JK7p1Uk+jV+VfeAgMYGViMIDAxriLJEiLNUm5Zj5fSt3uCFYVsCQSBfPgb8pSDA0E6Nv2uf7vTz/AChgIGssSFA3NXudgK5n+hkYeVdwGVSQS",
       "gender": "Masculino",
-      "role": "TEACHER",
-      "id": 9
-    },
-    {
-      "name": "pedro cassa",
-      "email": "pc@pc",
-      "password": "123",
-      "profilePicture": {},
-      "gender": "Outro",
-      "role": "TEACHER",
-      "id": 10
-    },
-    {
-      "name": "Gabriel",
-      "email": "gabriel@email.com",
-      "password": "123456",
-      "profilePicture": {},
-      "gender": "",
-      "role": "TEACHER",
-      "id": 11
+      "role": "STUDENT",
+      "id": 4
     }
   ]
 }
