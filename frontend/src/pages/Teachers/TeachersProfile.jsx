@@ -47,7 +47,7 @@ const TeachersProfile = () => {
                     "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"
                   }
                 >
-                  Agenda de Consultas
+                  Agenda de Aulas Marcadas
                 </h3>
               </div>
               <div>
