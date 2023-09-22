@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import db from '../../server/database/db.json'
+import TeachersProfile from "../Teachers/TeachersProfile";
 const StudentsProfile = () => {
 
   const url = window.location.href; 
   const partesDaURL = url.split('/');
   const numeroStr = partesDaURL.pop(); 
-  const alunoId = parseInt(numeroStr)-1; 
+  const userId = parseInt(numeroStr)-1; 
 
-  if(db.users[alunoId].role == "TEACHER"){
+  if(db.users[userId].role == "TEACHER"){
     return (
-      <div className="flex h-[600px] text-center items-center justify-center">
-        <h1 className="justify-center text-[30px]"><strong>Este usuário nao é aluno</strong></h1>
-      </div>
+      <TeachersProfile/>
     )
   }
  
@@ -30,21 +29,22 @@ const StudentsProfile = () => {
             <div className="flex items-center gap-5">
               <figure className="max-w-[300px] max-h-[300px]">
                 <img
-                  src={db.users[alunoId].profilePicture}
+                  src={db.users[userId].profilePicture}
                   alt=""
-                  className="w-full h-[200px] object-cover mb-2 rounded-[20px]"
+                  className="w-[200px] h-[200px] object-cover mb-2 rounded-full shadow-2xl"
                 />
+                <p className="text-center mt-5">Aluno</p>
               </figure>
 
-              <div>
-                <h3 className="text-headingColor text-[22px] leading-9 mt-3 font-bold">
-                {db.users[alunoId].name}
+              <div className=" ml-8 mb-6 ">
+                <h3 className="text-headingColor text-[26px] leading-9 mt-3 font-bold mb-5">
+                  {db.users[userId].name}
                 </h3>
-                <h2>
-                {db.users[alunoId].email}
+                <h2 className="pt-9 pb-1">
+                  <strong className="text-headingColor">Email:</strong> {db.users[userId].email}
                 </h2>
                 <h2>
-               Gênero: {db.users[alunoId].gender}
+                  <strong className="text-headingColor">Gênero:</strong>  {db.users[userId].gender}
                 </h2>
               </div>
             </div>

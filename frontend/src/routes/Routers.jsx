@@ -27,7 +27,7 @@ const Routers = () => {
         <Route path="/teachers" element={<Teachers />} />
         <Route path="/teachers/:id" element={<TeacherDetails />} />
         <Route path="/teachers/profile/:id" element={<TeachersProfile />} />
-        <Route path="/alunos/profile/:id" element={<StudentsProfile />} />
+        <Route path="/users/profile/:id" element={<StudentsProfile />} />
       </Routes>
       <ToastContainer />
     </>
