@@ -21,14 +21,12 @@ const AppointmentPainel = () => {
   }
 
   const [formData, setFormData] = useState({
-    horario: "", // Renomeei para "horario" para corresponder ao "name" do <select>
+    horario: "", 
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     toast.success("Consulta marcada com sucesso!");
-
-    console.log(formData.horario); // Aqui você pode acessar o valor selecionado
   };
 
   const handleChange = (event) => {

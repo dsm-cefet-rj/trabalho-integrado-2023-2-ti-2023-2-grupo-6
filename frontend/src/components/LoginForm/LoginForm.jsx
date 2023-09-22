@@ -3,11 +3,8 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import { login, reset } from "../../features/auth/authSlice";
 import Spinner from "../RegisterForm/Spinner/Spinner";
-
-
 import db from "../../server/database/db.json";
 
 const LoginForm = () => {
@@ -68,7 +65,7 @@ const LoginForm = () => {
       {
         achou=true;
         localStorage.setItem('id',e.id);
-        navigate('/home');
+        navigate('/teachers');
       }
     })
     if(achou==false)
