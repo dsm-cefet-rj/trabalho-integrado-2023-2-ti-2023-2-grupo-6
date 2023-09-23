@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import logo from "../../assets/images/logo.svg";
 import userImg from "../../assets/images/logo.svg";
@@ -26,6 +26,8 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
+    localStorage.removeItem('id');
+    setProfilePic('');
     navigate("/login");
   };
 
@@ -44,14 +46,31 @@ const Header = () => {
   };
 
   useEffect(() => {
+    if(localStorage.getItem('id'))
+    {
+      users.forEach((e)=>{
+        if(Number(e.id)==localStorage.getItem('id'))
+        {
+          setProfilePic(e.profilePicture);
+        }
+      }
+      )
+    }
+
+
     // Ativar o cabeçalho menor quando montado e limpar quando desmontado
     handleStickyHeader();
     return () => window.removeEventListener("scroll", handleStickyHeader);
-  }, []);
+  },);
 
   // Função para alternar o menu móvel
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
+
+  //Criando estado da profile picture
+
+  
+  const [profilePic, setProfilePic] = useState();
   return (
     <header className="header flex items-center " ref={headerRef}>
       <div className="container">
@@ -87,17 +106,17 @@ const Header = () => {
             <div className="hidden">
               <Link to="/">
                 <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
-                  <img src={userImg} className="w-full rounded-full" alt="" />
+                  <img src={profilePic} className="w-full rounded-full" alt="" />
                 </figure>
               </Link>
             </div>
 
-            {user ? (
+            {localStorage.getItem('id') ? (
               <div className="flex items-center gap-5">
-                <Link to={`/users/profile/${users.id}`}>
+                <Link to={`/users/profile/${localStorage.getItem('id')}`}>
                   <figure className="max-w-[40px] max-h-[40px] ">
                     <img
-                      src={logo}
+                      src={profilePic}
                       alt=""
                       className="w-[40px] h-[40px] object-cover mb-2 rounded-full shadow-lg border-[2px] border-primaryColor"
                     />

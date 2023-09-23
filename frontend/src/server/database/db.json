@@ -30,6 +30,33 @@
       "description": "",
       "availableHours": [],
       "id": 3
+    },
+    {
+      "userId": 6,
+      "specialization": "Desenvolvedor",
+      "totalStudents": 0,
+      "resume": "",
+      "description": "",
+      "availableHours": [],
+      "id": 4
+    },
+    {
+      "userId": 7,
+      "specialization": "Desenvolvedor",
+      "totalStudents": 0,
+      "resume": "",
+      "description": "",
+      "availableHours": [],
+      "id": 5
+    },
+    {
+      "userId": 8,
+      "specialization": "Desenvolvedor",
+      "totalStudents": 0,
+      "resume": "",
+      "description": "",
+      "availableHours": [],
+      "id": 6
     }
   ],
   "blogPosts": [
@@ -111,6 +138,33 @@
       "gender": "Masculino",
       "role": "TEACHER",
       "id": 5
+    },
+    {
+      "name": "Tiquinho Soares",
+      "email": "tiquinho@email.com",
+      "password": "123",
+      "profilePicture": "https://conteudo.imguol.com.br/c/esporte/16/2023/06/10/tiquinho-soares-do-botafogo-comemora-contra-o-fortaleza-pelo-brasileirao-1686448131563_v2_450x600.jpg.webp",
+      "gender": "Masculino",
+      "role": "TEACHER",
+      "id": 6
+    },
+    {
+      "name": "Arrascaeta",
+      "email": "arrasca@email.com",
+      "password": "123",
+      "profilePicture": "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt29480a1d4d84e7bc/6197cd2389cc6d112d607f3e/fla_arrasca_treino.jpg?auto=webp&format=pjpg&width=1200&quality=60",
+      "gender": "Outro",
+      "role": "TEACHER",
+      "id": 7
+    },
+    {
+      "name": "Tche Tche",
+      "email": "tche@botafogo.com",
+      "password": "123",
+      "profilePicture": "https://pbs.twimg.com/media/FQVwQEbXIAsiDKn?format=jpg&name=4096x4096",
+      "gender": "Masculino",
+      "role": "TEACHER",
+      "id": 8
     }
   ]
 }
