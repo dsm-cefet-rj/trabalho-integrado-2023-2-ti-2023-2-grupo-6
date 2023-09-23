@@ -16,16 +16,13 @@ const navLinks = [
 ];
 
 const Header = () => {
-  // Refs para elementos DOM
   const headerRef = useRef(null);
   const menuRef = useRef(null);
 
-  // Hooks do React
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  // Função para lidar com o evento de logout
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());

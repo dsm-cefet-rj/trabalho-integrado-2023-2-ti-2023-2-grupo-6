@@ -1,23 +1,27 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { teachers } from "../../server/database/db.json";
-import Tag from "../../components/BlogList/Tag";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getTeachersDetails,
+  selectTeacherById,
+} from "../../features/teacher/teacherSlice";
+import { Link, useParams } from "react-router-dom";
 import AppointmentPainel from "./AppointmentPainel";
+import Tag from "../../components/BlogList/Tag";
 
 const TeacherDetails = () => {
   const { id } = useParams();
-  const [teacher, setTeacher] = useState(null);
+
+  const dispatch = useDispatch();
+  const selectedTeacher = useSelector((state) => selectTeacherById(state, id));
 
   useEffect(() => {
-    let teacher = teachers.find((teacher) => teacher.id === parseInt(id));
-    if (teacher) {
-      setTeacher(teacher);
+    if (id && !selectedTeacher) {
+      dispatch(getTeachersDetails(id));
     }
-  }, [id]);
+  }, [dispatch, id, selectedTeacher]);
 
-  if (!teacher) {
-    return null;
+  if (!selectedTeacher) {
+    return <div>Carregando...</div>;
   }
 
   return (
@@ -34,7 +38,7 @@ const TeacherDetails = () => {
             <div className="flex items-center gap-5">
               <figure className="max-w-[300px] max-h-[300px]">
                 <img
-                  src={teacher.photo}
+                  src={selectedTeacher.user.profilePicture}
                   alt=""
                   className="w-full h-[200px] object-cover mb-2 rounded-[20px]"
                 />
@@ -42,13 +46,12 @@ const TeacherDetails = () => {
 
               <div>
                 <h3 className="text-headingColor text-[22px] leading-9 mt-3 font-bold">
-                  {teacher.name}
+                  {selectedTeacher.user.name}
                 </h3>
-                <Tag label={teacher.specialization} />
+                <Tag label={selectedTeacher.specialization} />
 
                 <p className="text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px]">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Culpa veritatis sit earum rem magni expedita.
+                  {selectedTeacher.resume}
                 </p>
               </div>
             </div>
@@ -59,18 +62,12 @@ const TeacherDetails = () => {
                     "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"
                   }
                 >
-                  Descubra mais sobre {teacher.name}
+                  Descubra mais sobre {selectedTeacher.user.name}
                 </h3>
               </div>
 
               <p className="text__para text-[14px]">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium quisquam suscipit libero assumenda illum
-                necessitatibus esse obcaecati rerum perspiciatis temporibus. Ab
-                magnam facilis officia modi explicabo ducimus voluptate atque
-                aliquam? Quisquam suscipit libero assumenda illum necessitatibus
-                esse obcaecati rerum perspiciatis temporibus. ducimus voluptate
-                atque aliquam?
+                {selectedTeacher.description}
               </p>
               <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
                 <h3

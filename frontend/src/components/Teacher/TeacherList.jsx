@@ -6,14 +6,12 @@ import {
   getTeachers,
   selectAllTeachers,
 } from "../../features/teacher/teacherSlice";
-// import { getTeachers } from "../../features/teacher/teacherService";
 
 const TeacherList = () => {
   const dispatch = useDispatch();
   const teachers = useSelector(selectAllTeachers);
 
   useEffect(() => {
-    console.log("Disparando ação getTeachers");
     dispatch(getTeachers());
   }, [dispatch]);
 

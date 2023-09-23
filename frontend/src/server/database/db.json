@@ -4,7 +4,8 @@
       "userId": 2,
       "specialization": "Desenvolvedor",
       "totalStudents": 0,
-      "description": "",
+      "resume": "Sou um cara legal",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "availableHours": [
         "2023-05-12T17:00:00.000Z",
         "2023-05-04T15:00:00.000Z",
@@ -16,9 +17,19 @@
       "userId": 3,
       "specialization": "Desenvolvedor",
       "totalStudents": 0,
-      "description": "",
+      "resume": "Sou um cara legal",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "availableHours": [],
       "id": 2
+    },
+    {
+      "userId": 5,
+      "specialization": "Desenvolvedor",
+      "totalStudents": 0,
+      "resume": "",
+      "description": "",
+      "availableHours": [],
+      "id": 3
     }
   ],
   "blogPosts": [
@@ -91,6 +102,15 @@
       "gender": "Masculino",
       "role": "STUDENT",
       "id": 4
+    },
+    {
+      "name": "Professor Xavier",
+      "email": "Xavier@gmail.com",
+      "password": "123",
+      "profilePicture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkJzKoTodRFm1peRngJMbTNLqh31DSuru0nLx2HzV8tQ&s",
+      "gender": "Masculino",
+      "role": "TEACHER",
+      "id": 5
     }
   ]
 }

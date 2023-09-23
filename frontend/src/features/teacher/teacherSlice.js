@@ -18,6 +18,14 @@ export const getTeachers = createAsyncThunk("teacher/getTeachers", async () => {
   return response.data;
 });
 
+export const getTeachersDetails = createAsyncThunk(
+  "teachers/getTeachersDetails",
+  async (id) => {
+    const response = await teacherService.getTeachersDetails(id);
+    return response.data;
+  }
+);
+
 export const updateTeacher = createAsyncThunk(
   "teacher/updateTeacher",
   async (teacher) => {
@@ -54,67 +62,79 @@ export const teacherSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getTeachers.pending, (state) => {
-      state.message = "loading";
-    });
+    builder
+      .addCase(getTeachers.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(getTeachers.fulfilled, (state, action) => {
-      state.message = "loaded";
-      teacherAdapter.setAll(state, action.payload);
-    });
+      .addCase(getTeachers.fulfilled, (state, action) => {
+        state.message = "loaded";
+        teacherAdapter.setAll(state, action.payload);
+      })
 
-    builder.addCase(getTeachers.rejected, (state, action) => {
-      state.message = "error";
-      state.isError = action.error.message;
-    });
+      .addCase(getTeachers.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
 
-    builder.addCase(updateTeacher.pending, (state) => {
-      state.message = "loading";
-    });
+      .addCase(updateTeacher.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(updateTeacher.fulfilled, (state, action) => {
-      state.message = "saved";
-      teacherAdapter.upsertOne(state, action.payload);
-    });
+      .addCase(updateTeacher.fulfilled, (state, action) => {
+        state.message = "saved";
+        teacherAdapter.upsertOne(state, action.payload);
+      })
 
-    builder.addCase(updateTeacher.rejected, (state, action) => {
-      state.message = "error";
-      state.isError = action.error.message;
-    });
+      .addCase(updateTeacher.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
 
-    builder.addCase(createTeacher.pending, (state) => {
-      state.message = "loading";
-    });
+      .addCase(createTeacher.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(createTeacher.fulfilled, (state, action) => {
-      state.message = "saved";
-      teacherAdapter.addOne(state, action.payload);
-    });
+      .addCase(createTeacher.fulfilled, (state, action) => {
+        state.message = "saved";
+        teacherAdapter.addOne(state, action.payload);
+      })
 
-    builder.addCase(createTeacher.rejected, (state, action) => {
-      state.message = "error";
-      state.isError = action.error.message;
-    });
+      .addCase(createTeacher.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
 
-    builder.addCase(deleteTeacher.pending, (state) => {
-      state.message = "loading";
-    });
+      .addCase(deleteTeacher.pending, (state) => {
+        state.message = "loading";
+      })
 
-    builder.addCase(deleteTeacher.fulfilled, (state, action) => {
-      state.message = "deleted";
-      teacherAdapter.removeOne(state, action.payload);
-    });
+      .addCase(deleteTeacher.fulfilled, (state, action) => {
+        state.message = "deleted";
+        teacherAdapter.removeOne(state, action.payload);
+      })
 
-    builder.addCase(deleteTeacher.rejected, (state, action) => {
-      state.message = "error";
-      state.isError = action.error.message;
-    });
+      .addCase(deleteTeacher.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
+
+      .addCase(getTeachersDetails.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getTeachersDetails.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.selectedTeacher = action.payload;
+      })
+      .addCase(getTeachersDetails.rejected, (state, action) => {
+        state.status = "failed";
+        state.isError = action.error.message;
+      });
   },
 });
 
-export const { selectAll: selectAllTeachers } = teacherAdapter.getSelectors(
-  (state) => state?.teacher
-);
+export const { selectAll: selectAllTeachers, selectById: selectTeacherById } =
+  teacherAdapter.getSelectors((state) => state?.teacher);
 
 export const { setMessage } = teacherSlice.actions;
 
