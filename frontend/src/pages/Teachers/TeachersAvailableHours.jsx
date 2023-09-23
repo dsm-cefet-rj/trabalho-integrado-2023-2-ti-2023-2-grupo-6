@@ -1,11 +1,20 @@
 import React from 'react'
+import { useState } from 'react';
 
 const TeachersAvailableHours = () => {
   
+    const [formData, setFormData] = useState({ dataHorario: "" });
+
     function criaHorario(e)
     {
-      e.preventDefault()
+      e.preventDefault();
+      console.log(formData.dataHorario);
     }
+
+    const handleChange = (e) => {
+        setFormData({ dataHorario: e.target.value });
+    };
+
   return (
     <>
     <div className="text-center h-[250px] w-[250px] shadow-md text-[20px] rounded-lg p-3">
@@ -14,7 +23,7 @@ const TeachersAvailableHours = () => {
             onSubmit={criaHorario}
             className="mt-4 flex flex-col gap-3"
             >
-                  <input
+                  <input onChange={handleChange}
                     className="border text-[16px] mb-2" 
                     type="datetime-local"
                     > 
