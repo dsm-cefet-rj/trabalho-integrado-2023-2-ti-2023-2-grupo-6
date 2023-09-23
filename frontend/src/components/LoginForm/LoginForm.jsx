@@ -59,7 +59,7 @@ const LoginForm = () => {
     }
     let achou = false;
     db.users.forEach((e) => {
-      if (e.email == email && e.password == password) {
+      if (e.email.toLowerCase() == email.toLowerCase() && e.password == password) {
         achou = true;
         localStorage.setItem("id", e.id);
         navigate("/teachers");
