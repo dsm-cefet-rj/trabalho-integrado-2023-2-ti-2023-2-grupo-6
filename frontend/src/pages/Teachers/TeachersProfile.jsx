@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import db from '../../server/database/db.json'
+import TeachersAvailableHours from "./TeachersAvailableHours";
 
 const TeachersProfile = () => {
   
@@ -7,6 +8,9 @@ const TeachersProfile = () => {
   const partesDaURL = url.split('/');
   const numeroStr = partesDaURL.pop(); 
   const userId = parseInt(numeroStr)-1;
+  
+  const idDoUser = userId+1
+
 
   return (
     <section>
@@ -17,9 +21,12 @@ const TeachersProfile = () => {
         <span> &#8592;</span> <span>Voltar</span>
       </Link>
       <div className="max-w-[1200px] px-5 mx-auto">
-        <div className="max-w-[1000px] items-center">
+        <div className="max-w-[1000px] items-center ">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 justify-between">
+            
+            <div className="flex"> 
+
               <figure className="max-w-[300px] max-h-[300px]">
                 <img
                   src={db.users[userId].profilePicture}
@@ -29,16 +36,26 @@ const TeachersProfile = () => {
                 <p className="text-center mt-5">Professor</p>
               </figure>
 
-              <div className="ml-8 mb-6">
-                <h3 className="text-headingColor text-[22px] leading-9 mt-3 font-bold">
-                {db.users[userId].name}
-                </h3>
-                <h2 className="pt-9 pb-1">
-                  <strong className="text-headingColor">Email:</strong> {db.users[userId].email}                </h2>
-                <h2>
-                  <strong className="text-headingColor">Gênero:</strong>  {db.users[userId].gender}
-                </h2>
+              <div className="flex justify-between items-center gap-10">
+                <div className="ml-8 items-center">
+                  <h3 className="text-headingColor text-[22px] leading-9 font-bold">
+                  {db.users[userId].name}
+                  </h3>
+                  <h2 className="pt-9 pb-1">
+                    <strong className="text-headingColor">Email:</strong> {db.users[userId].email}                </h2>
+                  <h2>
+                    <strong className="text-headingColor">Gênero:</strong>  {db.users[userId].gender}
+                  </h2>
+                </div>
+                
               </div>
+            </div>
+
+            {(Number(localStorage.getItem('id'))==Number(idDoUser))?
+              <TeachersAvailableHours/>
+            :<div></div>
+          } 
+            
             </div>
             <div className="">
               <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
