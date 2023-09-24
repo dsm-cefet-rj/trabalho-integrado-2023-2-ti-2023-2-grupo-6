@@ -3,18 +3,50 @@ import db from "../../server/database/db.json";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { formatarData } from "../../common/functions";
+import { useDispatch } from "react-redux";
+import { createAppointment } from "../../features/appointment/appointmentSlice";
 
 const AppointmentPainel = () => {
   const teacherId =
-    Number(window.location.href.charAt(window.location.href.length - 1)) - 1;
+    Number(window.location.href.charAt(window.location.href.length - 1))-1;
 
   const [formData, setFormData] = useState({
     horario: "",
   });
 
+  const teacherIdForAppointments = teacherId + 1
+
+  const studentId = localStorage.getItem('id')
+
+  const dispatch = useDispatch()
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    toast.success("Consulta marcada com sucesso!");
+    
+    const selectedDate = formData.horario;
+
+    console.log(db.appointments.length)
+
+    if(selectedDate == ""){
+      toast.error("Selecione uma data")
+      return
+    }
+    
+    if(studentId){
+      dispatch(
+        createAppointment({
+          studentId: Number(studentId),
+          teacherId: teacherIdForAppointments,
+          date: selectedDate,
+          id: db.appointments.length + 1,
+        })
+      )
+        .then(() => {
+          toast.success("Horário marcado com Sucesso!")
+        })
+    } else {
+      toast.error("É preciso estar logado para marcar uma aula!")
+    }
   };
 
   const handleChange = (event) => {
