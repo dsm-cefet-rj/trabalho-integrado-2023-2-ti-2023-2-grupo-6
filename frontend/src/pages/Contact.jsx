@@ -1,4 +1,35 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { sendContactMessage } from "../features/contact/contactSlice";
+
 const Contact = () => {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [assunto, setAssunto] = useState("");
+  const [mensagem, setMensagem] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const contactData = {
+      email,
+      assunto,
+      mensagem,
+    };
+
+    try {
+      // Despache a ação para enviar a mensagem de contato
+      await dispatch(sendContactMessage(contactData));
+      // Limpe os campos do formulário após o envio
+      setEmail("");
+      setAssunto("");
+      setMensagem("");
+    } catch (error) {
+      // Lide com erros, se necessário
+      console.error("Erro ao enviar mensagem de contato:", error);
+    }
+  };
+
   return (
     <section>
       <div className="px-4 mx-auto max-w-screen-md mt-[50px] mb-[70px] h-[100%]">
@@ -7,9 +38,9 @@ const Contact = () => {
           Está com dificuldade em algum assunto e quer sanar todas as suas
           dúvidas?
         </p>
-        <form action="#" className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-8">
           <div>
-            <label htmlFor="" className="form__label">
+            <label htmlFor="email" className="form__label">
               Digite seu Email
             </label>
             <input
@@ -17,6 +48,9 @@ const Contact = () => {
               id="email"
               placeholder="exemplo@email.com"
               className="form-input mt-1"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div>
@@ -28,6 +62,9 @@ const Contact = () => {
               id="assunto"
               placeholder="Qual assunto você deseja escrever?"
               className="form-input mt-1"
+              value={assunto}
+              onChange={(e) => setAssunto(e.target.value)}
+              required
             />
           </div>
           <div className="sm:col-span-2">
@@ -40,6 +77,9 @@ const Contact = () => {
               id="mensagem"
               placeholder="Como podemos ajudar?"
               className="form-input mt-1"
+              value={mensagem}
+              onChange={(e) => setMensagem(e.target.value)}
+              required
             />
           </div>
           <button type="submit" className="btn rounded sm:w-fit">

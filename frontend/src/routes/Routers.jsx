@@ -12,6 +12,8 @@ import TeachersProfile from "../pages/Teachers/TeachersProfile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import StudentsProfile from "../pages/Students/StudentsProfile";
+import ContactList from "../components/ContactList/ContactList";
+import Working from "../components/Working/Working";
 
 const Routers = () => {
   return (
@@ -22,12 +24,14 @@ const Routers = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/contactList" element={<ContactList />} />
         <Route path="/blog" element={<Blog />}></Route>
         <Route path="/blog/:id" element={<BlogPost />}></Route>
         <Route path="/teachers" element={<Teachers />} />
         <Route path="/teachers/:id" element={<TeacherDetails />} />
         <Route path="/teachers/profile/:id" element={<TeachersProfile />} />
         <Route path="/users/profile/:id" element={<StudentsProfile />} />
+        <Route path="/working" element={<Working />} />
       </Routes>
       <ToastContainer />
     </>

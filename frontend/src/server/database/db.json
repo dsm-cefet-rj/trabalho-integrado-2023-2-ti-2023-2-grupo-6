@@ -28,6 +28,20 @@
       "id": 2
     }
   ],
+  "contact": [
+    {
+      "email": "Xavier@gmail.com",
+      "assunto": "Bug",
+      "mensagem": "foda",
+      "id": 1
+    },
+    {
+      "email": "Xavier@gmail.com",
+      "assunto": "Bug não existe mais",
+      "mensagem": "Lorem ipsum dolor sit amet. Aut eaque saepe ea maiores esse ea voluptatem veniam et voluptatem eligendi. Quo aspernatur beatae rem inventore enim et explicabo quia ut possimus dolor ut illo modi aut tempore nostrum.\n\nEos corporis quia ex eius autem et aspernatur debitis non culpa expedita. Quo voluptatem quos in excepturi ipsa sed perferendis animi et labore aperiam aut internos ducimus. Qui dolor ipsa et exercitationem magni ut quis repellat id omnis esse. Ea quibusdam perspiciatis ad cumque numquam et placeat sunt non neque internos ut cupiditate possimus quo libero nihil et blanditiis quia!\n\nEt deserunt amet eum sint dolores et veniam nemo vel vero inventore. Id consequatur aliquid id quasi nostrum aut pariatur exercitationem sed tenetur excepturi hic temporibus laborum a fugit laborum et facilis maxime. Aut accusantium omnis quo quod placeat quo magnam ullam sit autem saepe. Est rerum enim et soluta officiis aut nostrum quaerat aut laboriosam repellat ut atque soluta vel reiciendis eius.",
+      "id": 2
+    }
+  ],
   "blogPosts": [
     {
       "id": 1,

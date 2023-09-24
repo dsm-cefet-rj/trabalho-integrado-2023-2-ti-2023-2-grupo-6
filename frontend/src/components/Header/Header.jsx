@@ -1,17 +1,16 @@
 import { useRef, useEffect, useState } from "react";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import logo from "../../assets/images/logo.svg";
-import userImg from "../../assets/images/logo.svg";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
 import { users } from "../../server/database/db.json";
 
 const navLinks = [
   { path: "/home", display: "Home" },
   { path: "/teachers", display: "Ache um professor!" },
-  { path: "/blog", display: "Trilhas de Conhecimento" },
+  { path: "/working", display: "[Em breve...]" },
   { path: "/contact", display: "Contatos" },
 ];
 
@@ -21,13 +20,12 @@ const Header = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
 
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    localStorage.removeItem('id');
-    setProfilePic('');
+    localStorage.removeItem("id");
+    setProfilePic("");
     navigate("/login");
   };
 
@@ -46,30 +44,24 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if(localStorage.getItem('id'))
-    {
-      users.forEach((e)=>{
-        if(Number(e.id)==localStorage.getItem('id'))
-        {
+    if (localStorage.getItem("id")) {
+      users.forEach((e) => {
+        if (Number(e.id) == localStorage.getItem("id")) {
           setProfilePic(e.profilePicture);
         }
-      }
-      )
+      });
     }
-
 
     // Ativar o cabeçalho menor quando montado e limpar quando desmontado
     handleStickyHeader();
     return () => window.removeEventListener("scroll", handleStickyHeader);
-  },);
+  });
 
   // Função para alternar o menu móvel
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
-
   //Criando estado da profile picture
 
-  
   const [profilePic, setProfilePic] = useState();
   return (
     <header className="header flex items-center " ref={headerRef}>
@@ -106,14 +98,18 @@ const Header = () => {
             <div className="hidden">
               <Link to="/">
                 <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
-                  <img src={profilePic} className="w-full rounded-full" alt="" />
+                  <img
+                    src={profilePic}
+                    className="w-full rounded-full"
+                    alt=""
+                  />
                 </figure>
               </Link>
             </div>
 
-            {localStorage.getItem('id') ? (
+            {localStorage.getItem("id") ? (
               <div className="flex items-center gap-5">
-                <Link to={`/users/profile/${localStorage.getItem('id')}`}>
+                <Link to={`/users/profile/${localStorage.getItem("id")}`}>
                   <figure className="max-w-[40px] max-h-[40px] ">
                     <img
                       src={profilePic}
