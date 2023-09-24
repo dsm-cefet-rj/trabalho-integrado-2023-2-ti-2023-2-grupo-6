@@ -120,14 +120,14 @@ const Header = () => {
                 </Link>
                 <button
                   onClick={onLogout}
-                  className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900"
+                  className="bg-primaryColor py-2 mb-[10px] px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900"
                 >
                   Logout <FaSignOutAlt className="ml-2" />
                 </button>
               </div>
             ) : (
               <Link to="/login">
-                <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900">
+                <button className="bg-primaryColor py-2 mb-[10px] px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px] hover:bg-green-900">
                   Login <FaSignInAlt className="ml-2" />
                 </button>
               </Link>
