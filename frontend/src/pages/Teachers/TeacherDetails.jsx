@@ -46,7 +46,7 @@ const TeacherDetails = () => {
       </Link>
       <div className="max-w-[1170px] px-5 mx-auto">
         <div className="grid md:grid-cols-3 gap-[50px]">
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 ">
             <div className="flex items-center gap-5">
               <figure className="max-w-[300px] max-h-[300px]">
                 <img
@@ -162,7 +162,11 @@ const TeacherDetails = () => {
             </div>
           </div>
           <div>
-            {!isTeacher ?<AppointmentPainel /> : null}
+            {!isTeacher ?<AppointmentPainel /> : (
+              <div className="shadow-2xl mt-[40px] p-4 max-w-[300px] text-center text-primaryColor rounded-lg font-bold">
+                Entre ou Registre-se como aluno para agendar uma aula com outro Professor
+              </div>
+            )}
           </div>
         </div>
       </div>
