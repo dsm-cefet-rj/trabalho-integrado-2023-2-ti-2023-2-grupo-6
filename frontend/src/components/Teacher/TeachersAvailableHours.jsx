@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { updateAvailableHours } from "../../features/teacher/teacherSlice";
+import { formatarData } from "../../common/functions";
 
 const TeachersAvailableHours = () => {
   const [formData, setFormData] = useState({ availableHours: [] });
@@ -21,7 +22,11 @@ const TeachersAvailableHours = () => {
       )
         .then(() => {
           // Sucesso: exibe um toast de sucesso
-          toast.success("Horário disponibilizado com sucesso!");
+          toast.success(
+            `Horário disponibilizado com sucesso para ${formatarData(
+              formData.availableHours
+            )}`
+          );
           setFormData({ availableHours: "" });
         })
         .catch((error) => {
@@ -43,19 +48,22 @@ const TeachersAvailableHours = () => {
         <h1 className="text-headingColor text-[20px] leading-9 font-bold">
           Disponibilize um horário
         </h1>
-        <form onSubmit={SaveNewHour} className="mt-4 flex flex-col gap-3">
+        <form onSubmit={SaveNewHour} className="mt-4 flex flex-col gap-1">
           <input
             onChange={handleChange}
             value={formData.availableHours}
-            className="border text-[16px] mb-2"
+            className="border text-[16px] "
             type="datetime-local"
           ></input>
           <button
             type="submit"
-            className="mt-4 btn px-1 w-full text-[14px] h-7 rounded-md hover:bg-green-900"
+            className=" btn my-2 flex justify-center items-center w-full text-[14px]  rounded-md hover:bg-green-900"
           >
             Disponibilizar
           </button>
+          <p className=" text-[10px] font-bold text-red-700">
+            Observação: A data só será salva apenas uma vez.
+          </p>
         </form>
       </div>
     </>

@@ -2,23 +2,11 @@ import { useState } from "react";
 import db from "../../server/database/db.json";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { formatarData } from "../../common/functions";
 
 const AppointmentPainel = () => {
   const teacherId =
     Number(window.location.href.charAt(window.location.href.length - 1)) - 1;
-
-  function formatarData(dataStr) {
-    const data = new Date(dataStr);
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    };
-    const formatter = new Intl.DateTimeFormat("pt-BR", options);
-    return formatter.format(data);
-  }
 
   const [formData, setFormData] = useState({
     horario: "",
