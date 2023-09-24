@@ -33,7 +33,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      toast.error("Dados incorretos, tente novamente!");
     }
     if (isSuccess || user) {
       navigate("/login");
