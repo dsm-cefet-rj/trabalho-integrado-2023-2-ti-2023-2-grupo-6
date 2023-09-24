@@ -7,8 +7,20 @@ import {
 import { Link, useParams } from "react-router-dom";
 import AppointmentPainel from "./AppointmentPainel";
 import Tag from "../../components/BlogList/Tag";
+import db from '../../server/database/db.json'
 
 const TeacherDetails = () => {
+  // Pegando id para verificar se é professor
+  //const url = window.location.href; 
+  //const partesDaURL = url.split('/');
+  //const numeroStr = partesDaURL.pop(); 
+  //const userId = parseInt(numeroStr)-1; 
+  const localStorageId = Number(localStorage.getItem("id"));
+  const isTeacher = db.users[localStorageId-1]?.role == "TEACHER";
+  console.log(isTeacher)
+  console.log(localStorageId)
+
+
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -150,7 +162,7 @@ const TeacherDetails = () => {
             </div>
           </div>
           <div>
-            <AppointmentPainel />
+            {!isTeacher ?<AppointmentPainel /> : null}
           </div>
         </div>
       </div>
