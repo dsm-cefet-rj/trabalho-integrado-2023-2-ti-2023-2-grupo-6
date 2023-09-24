@@ -53,6 +53,17 @@ export const deleteTeacher = createAsyncThunk(
   }
 );
 
+export const updateAvailableHours = createAsyncThunk(
+  "teacher/updateAvailableHours",
+  async ({ id, availability }) => {
+    const response = await teacherService.updateAvailableHours(
+      id,
+      ...availability
+    );
+    return response.data;
+  }
+);
+
 export const teacherSlice = createSlice({
   name: "teacher",
   initialState: initialState,
@@ -128,6 +139,18 @@ export const teacherSlice = createSlice({
       })
       .addCase(getTeachersDetails.rejected, (state, action) => {
         state.status = "failed";
+        state.isError = action.error.message;
+      })
+      .addCase(updateAvailableHours.fulfilled, (state, action) => {
+        state.message = "availability added";
+        const { id, availability } = action.payload || {};
+        const teacher = state.entities[id];
+        if (teacher) {
+          teacher.availableHours.push(availability);
+        }
+      })
+      .addCase(updateAvailableHours.rejected, (state, action) => {
+        state.message = "error";
         state.isError = action.error.message;
       });
   },

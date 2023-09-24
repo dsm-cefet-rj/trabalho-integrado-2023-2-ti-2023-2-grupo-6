@@ -18,6 +18,20 @@ export const createTeacher = async (teacher) => {
   return await axios.post(API_URL + `/teachers`, teacher);
 };
 
+const updateAvailableHours = async (id, newAvailability) => {
+  const response = await axios.get(API_URL + `/teachers/${id}`);
+
+  if (response.data) {
+    const teacherData = {
+      ...response.data, // Mantém os dados existentes do professor
+      availableHours: [...response.data.availableHours, newAvailability],
+    };
+    await updateTeacher(id, teacherData);
+  }
+
+  return response.data;
+};
+
 const createFullTeacher = async (teacher) => {
   return await axios.post(API_URL + `/teachers/full`, teacher);
 };
@@ -30,6 +44,7 @@ const teacherService = {
   getTeachers,
   getTeachersDetails,
   updateTeacher,
+  updateAvailableHours,
   createFullTeacher,
   deleteTeacher,
 };

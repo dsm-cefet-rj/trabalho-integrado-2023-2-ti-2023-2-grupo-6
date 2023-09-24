@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import db from "../../server/database/db.json";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,7 +21,7 @@ const AppointmentPainel = () => {
   }
 
   const [formData, setFormData] = useState({
-    horario: "", 
+    horario: "",
   });
 
   const handleSubmit = (event) => {

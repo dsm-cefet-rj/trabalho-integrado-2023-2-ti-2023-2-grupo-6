@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
-import db from '../../server/database/db.json'
-import TeachersAvailableHours from "./TeachersAvailableHours";
+import db from "../../server/database/db.json";
+import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
 
 const TeachersProfile = () => {
-  
-  const url = window.location.href; 
-  const partesDaURL = url.split('/');
-  const numeroStr = partesDaURL.pop(); 
-  const userId = parseInt(numeroStr)-1;
-  
-  const idDoUser = userId+1
+  const url = window.location.href;
+  const partesDaURL = url.split("/");
+  const numeroStr = partesDaURL.pop();
+  const userId = parseInt(numeroStr) - 1;
 
+  const idDoUser = userId + 1;
 
   return (
     <section>
@@ -24,38 +22,38 @@ const TeachersProfile = () => {
         <div className="max-w-[1000px] items-center ">
           <div className="md:col-span-2">
             <div className="flex items-center gap-5 justify-between">
-            
-            <div className="flex"> 
+              <div className="flex">
+                <figure className="max-w-[300px] max-h-[300px]">
+                  <img
+                    src={db.users[userId].profilePicture}
+                    alt=""
+                    className="w-[200px] h-[200px] object-cover mb-2 rounded-full shadow-2xl"
+                  />
+                  <p className="text-center mt-5">Professor</p>
+                </figure>
 
-              <figure className="max-w-[300px] max-h-[300px]">
-                <img
-                  src={db.users[userId].profilePicture}
-                  alt=""
-                  className="w-[200px] h-[200px] object-cover mb-2 rounded-full shadow-2xl"
-                />
-                <p className="text-center mt-5">Professor</p>
-              </figure>
-
-              <div className="flex justify-between items-center gap-10">
-                <div className="ml-8 items-center">
-                  <h3 className="text-headingColor text-[22px] leading-9 font-bold">
-                  {db.users[userId].name}
-                  </h3>
-                  <h2 className="pt-9 pb-1">
-                    <strong className="text-headingColor">Email:</strong> {db.users[userId].email}                </h2>
-                  <h2>
-                    <strong className="text-headingColor">Gênero:</strong>  {db.users[userId].gender}
-                  </h2>
+                <div className="flex justify-between items-center gap-10">
+                  <div className="ml-8 items-center">
+                    <h3 className="text-headingColor text-[22px] leading-9 font-bold">
+                      {db.users[userId].name}
+                    </h3>
+                    <h2 className="pt-9 pb-1">
+                      <strong className="text-headingColor">Email:</strong>{" "}
+                      {db.users[userId].email}{" "}
+                    </h2>
+                    <h2>
+                      <strong className="text-headingColor">Gênero:</strong>{" "}
+                      {db.users[userId].gender}
+                    </h2>
+                  </div>
                 </div>
-                
               </div>
-            </div>
 
-            {(Number(localStorage.getItem('id'))==Number(idDoUser))?
-              <TeachersAvailableHours/>
-            :<div></div>
-          } 
-            
+              {Number(localStorage.getItem("id")) == Number(idDoUser) ? (
+                <TeachersAvailableHours />
+              ) : (
+                <div></div>
+              )}
             </div>
             <div className="">
               <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
@@ -79,7 +77,7 @@ const TeachersProfile = () => {
                       </p>
                     </div>
                     <p className="text-[14px] leading-5 font-medium text-textColor">
-                    Assunto: Desenvolvimento
+                      Assunto: Desenvolvimento
                     </p>
                   </li>
                   <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
@@ -112,8 +110,7 @@ const TeachersProfile = () => {
               </div>
             </div>
           </div>
-          <div>
-        </div>
+          <div></div>
         </div>
       </div>
     </section>

@@ -22,6 +22,7 @@ const Teachers = () => {
         .includes(searchKey.toLowerCase().trim())
     );
     setTeacherList(filteredTeachers);
+    console.log(filteredTeachers);
   };
 
   // Clear search and show all teachers
