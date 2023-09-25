@@ -25,60 +25,76 @@ const EditModal = ({ teacher, onClose }) => {
   };
 
   return (
-    <div className="edit-modal">
-      <h2>Editar Informações do Professor</h2>
-      <form>
-        <div className="form-group">
-          <label htmlFor="specialization">Especialização:</label>
-          <input
-            type="text"
-            id="specialization"
-            placeholder="Digite sua especialização"
-            name="specialization"
-            value={editedTeacher.specialization}
-            onChange={handleInputChange}
-            className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
-  focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
-  rounded-md cursor-pointer"
-            required
-            autoComplete="specialization"
-          />
+    <section>
+      <div className="px-4 mx-auto max-w-screen-md mt-[50px] mb-[70px] h-[100%]">
+        <h3 className="heading text-[30px] text-center">
+          Editar Informações do Professor
+        </h3>
+        <p className="mb-8 lg:mb-8 text-center font-light text__para">
+          Adicione abaixo informações relacionadas ao seu perfil!
+        </p>
+        <form>
+          <div>
+            <label htmlFor="specialization" className="form__label">
+              Especialização:
+            </label>
+            <input
+              type="text"
+              id="specialization"
+              placeholder="Digite sua especialização"
+              name="specialization"
+              className="form-input mt-1"
+              value={editedTeacher.specialization}
+              onChange={handleInputChange}
+              required
+              autoComplete="specialization"
+            />
+          </div>
+          <div className="my-5">
+            <label htmlFor="resume" className="form__label">
+              Resumo:
+            </label>
+            <input
+              id="resume"
+              name="resume"
+              type="text"
+              placeholder="Digite um resumo sobre você!"
+              value={editedTeacher.resume}
+              onChange={handleInputChange}
+              className="form-input mt-1"
+              required
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <label htmlFor="description" className="form__label">
+              Descrição:
+            </label>
+            <textarea
+              id="description"
+              rows="6"
+              name="description"
+              type="text"
+              placeholder="Digite uma descrição sobre você!"
+              value={editedTeacher.description}
+              onChange={handleInputChange}
+              className="form-input mt-1"
+              required
+            />
+          </div>
+        </form>
+        <div className="flex justify-center items-center space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <button
+            onClick={onClose}
+            className="btn text-primaryColor bg-white border border-primaryColor"
+          >
+            Cancelar
+          </button>
+          <button onClick={handleSaveClick} className="btn">
+            Salvar
+          </button>
         </div>
-        <div className="form-group">
-          <label htmlFor="resume">Resumo:</label>
-          <textarea
-            id="resume"
-            name="resume"
-            value={editedTeacher.resume}
-            placeholder="Digite um resumo sobre você!"
-            onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-solid border-[#103d0561] focus:outline-none
-            focus:border-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
-            rounded-md cursor-pointer"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Descrição:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={editedTeacher.description}
-            onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-solid border-[#103d0561] focus:outline-none
-            focus:border-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
-            rounded-md cursor-pointer"
-          />
-        </div>
-      </form>
-      <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-        <button onClick={handleSaveClick} className="btn">
-          Salvar
-        </button>
-        <button onClick={onClose} className="btn">
-          Cancelar
-        </button>
       </div>
-    </div>
+    </section>
   );
 };
 

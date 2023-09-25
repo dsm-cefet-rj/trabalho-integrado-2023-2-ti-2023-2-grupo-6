@@ -86,7 +86,7 @@ const TeachersProfile = () => {
                 <div></div>
               )}
             </div>
-            <div className="">
+            <div className="flex flex-col">
               <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
                 <h3
                   className={
@@ -122,19 +122,18 @@ const TeachersProfile = () => {
                   )}
                 </ul>
               </div>
+              <div className="flex justify-center">
+                <button className="btn" onClick={handleEditClick}>
+                  Adicionar dados complementares
+                </button>
+                {isEditModalOpen && (
+                  <EditModal
+                    teacher={db.users[teacherId]}
+                    onClose={handleCloseEditModal}
+                  />
+                )}
+              </div>
             </div>
-          </div>
-          <div>
-            {/* Exibir informações do professor aqui */}
-            <button className="btn" onClick={handleEditClick}>
-              Adicionar dados complementares
-            </button>
-            {isEditModalOpen && (
-              <EditModal
-                teacher={db.users[teacherId]}
-                onClose={handleCloseEditModal}
-              />
-            )}
           </div>
         </div>
       </div>
