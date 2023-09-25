@@ -23,14 +23,14 @@ const ContactList = () => {
             {contacts.map((contact) => (
               <li
                 key={contact.id}
-                className="flex flex-col sm:flex-row sm:justify-between md:gap-5 mb-[30px] shadow-lg rounded-[5px] p-4 bg-slate-100 "
+                className="flex flex-col sm:flex-row sm:justify-between md:gap-5 mb-[30px] shadow-lg rounded-[5px] p-4 bg-[#cff0b4] "
               >
                 <div className="flex flex-col gap-2 sm:gap-4 ">
                   <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
                     Email: {contact.email}
                   </span>
                   <p className="text-[16px] leading-6 font-medium text-textColor">
-                    Assunto: {contact.assunto}
+                    <strong>Assunto:</strong> {contact.assunto}
                   </p>
                 </div>
                 <p className="text-[14px] leading-5 font-medium text-textColor">
