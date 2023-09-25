@@ -69,10 +69,10 @@ const TeacherDetails = () => {
                   Descubra mais sobre {selectedTeacher.user.name}
                 </h3>
               </div>
-
-              <p className="text__para text-[14px]">
+              <p className="text__para text-[14px] leading-6 break-words">
                 {selectedTeacher.description}
               </p>
+
               <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
                 <h3
                   className={
