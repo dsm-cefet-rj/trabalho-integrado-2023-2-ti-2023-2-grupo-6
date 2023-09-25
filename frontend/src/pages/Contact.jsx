@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendContactMessage } from "../features/contact/contactSlice";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -18,15 +19,14 @@ const Contact = () => {
     };
 
     try {
-      // Despache a ação para enviar a mensagem de contato
+      // Ação para enviar a mensagem de contato
       await dispatch(sendContactMessage(contactData));
       // Limpe os campos do formulário após o envio
       setEmail("");
       setAssunto("");
       setMensagem("");
     } catch (error) {
-      // Lide com erros, se necessário
-      console.error("Erro ao enviar mensagem de contato:", error);
+      toast.error("Erro ao enviar mensagem de contato:", error);
     }
   };
 

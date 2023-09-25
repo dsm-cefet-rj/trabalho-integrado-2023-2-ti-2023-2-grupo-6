@@ -2,10 +2,9 @@
   "teachers": [
     {
       "userId": 1,
-      "specialization": "Desenvolvedor",
-      "totalStudents": 0,
-      "resume": "",
-      "description": "",
+      "specialization": "teste",
+      "resume": "123",
+      "description": "123a",
       "availableHours": [
         "2023-09-06T00:20",
         "2023-09-25T00:22",
@@ -18,7 +17,6 @@
     {
       "userId": 2,
       "specialization": "Desenvolvedor",
-      "totalStudents": 0,
       "resume": "",
       "description": "",
       "availableHours": [

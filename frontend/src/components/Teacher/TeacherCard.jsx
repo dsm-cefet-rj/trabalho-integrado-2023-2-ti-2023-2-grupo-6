@@ -7,8 +7,8 @@ const TeacherCard = ({
   teacher: {
     id,
     user: { name, profilePicture },
+    resume,
     specialization,
-    totalStudents,
   },
 }) => {
   return (
@@ -21,8 +21,8 @@ const TeacherCard = ({
         />
         <Tag label={specialization} />
         <h3 className=" flex-1 mt-2 mb-4 mx-0">{name}</h3>
-        <p className="relative max-h-[50px] overflow-hidden text-[0.8rem] text-[#a9a9a9] pr-[0.6rem] before:absolute before:right-0 before:bottom-0 before:content-['...']">
-          {totalStudents} estudantes
+        <p className="relative max-h-[60px] overflow-hidden text-[0.8rem] text-[#a9a9a9] pr-[0.6rem] before:absolute before:right-0 before:bottom-0 before:content-['...']">
+          {resume}
         </p>
       </div>
     </Link>

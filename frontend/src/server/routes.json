@@ -1,7 +1,0 @@
-{
-  "/teachers/*": "/$1",
-  "/blogPosts/*": "/$1",
-  "/locations/*": "/$1",
-  "/appointments/*": "/$1",
-  "/users/*": "/$1"
-}

@@ -10,8 +10,20 @@ const getTeachersDetails = async (id) => {
   return await axios.get(API_URL + `/teachers/${id}?_expand=user`);
 };
 
-const updateTeacher = async (id, teacher) => {
-  return await axios.patch(API_URL + `/teachers/${id}`, teacher);
+const updateTeacher = async (teacher) => {
+  const { id, specialization, resume, description } = teacher; // Extrai as propriedades relevantes
+
+  if (!id) {
+    throw new Error("ID do professor não especificado.");
+  }
+
+  const updatedTeacher = {
+    specialization,
+    resume,
+    description,
+  };
+
+  return await axios.patch(API_URL + `/teachers/${id}`, updatedTeacher);
 };
 
 export const createTeacher = async (teacher) => {

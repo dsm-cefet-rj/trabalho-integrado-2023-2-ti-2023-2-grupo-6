@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import db from "../../server/database/db.json";
 import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
 import { formatarData } from "../../common/functions";
+import EditModal from "../../components/Teacher/EditModal";
+import { useState } from "react";
 
 const TeachersProfile = () => {
   const url = window.location.href;
@@ -27,6 +29,16 @@ const TeachersProfile = () => {
       studentIdToEmailMap[user.id] = user.email;
     }
   });
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+  };
 
   return (
     <section>
@@ -112,7 +124,18 @@ const TeachersProfile = () => {
               </div>
             </div>
           </div>
-          <div></div>
+          <div>
+            {/* Exibir informações do professor aqui */}
+            <button className="btn" onClick={handleEditClick}>
+              Adicionar dados complementares
+            </button>
+            {isEditModalOpen && (
+              <EditModal
+                teacher={db.users[teacherId]}
+                onClose={handleCloseEditModal}
+              />
+            )}
+          </div>
         </div>
       </div>
     </section>

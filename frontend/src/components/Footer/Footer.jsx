@@ -20,6 +20,10 @@ const quickLinks01 = [
     path: "/contact",
     display: "Entre em Contato",
   },
+  {
+    path: "/contactList",
+    display: "Lista de Contatos",
+  },
 ];
 
 const quickLinks02 = [

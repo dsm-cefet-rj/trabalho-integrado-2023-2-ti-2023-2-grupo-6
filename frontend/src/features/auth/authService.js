@@ -14,7 +14,6 @@ const register = async (userData) => {
       const teacherData = {
         userId: newUser.id,
         specialization: "Desenvolvedor",
-        totalStudents: 0,
         resume: "",
         description: "",
         availableHours: [],

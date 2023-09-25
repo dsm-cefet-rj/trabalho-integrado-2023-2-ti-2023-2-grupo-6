@@ -7,19 +7,11 @@ import {
 import { Link, useParams } from "react-router-dom";
 import AppointmentPainel from "./AppointmentPainel";
 import Tag from "../../components/BlogList/Tag";
-import db from '../../server/database/db.json'
+import db from "../../server/database/db.json";
 
 const TeacherDetails = () => {
-  // Pegando id para verificar se é professor
-  //const url = window.location.href; 
-  //const partesDaURL = url.split('/');
-  //const numeroStr = partesDaURL.pop(); 
-  //const userId = parseInt(numeroStr)-1; 
   const localStorageId = Number(localStorage.getItem("id"));
-  const isTeacher = db.users[localStorageId-1]?.role == "TEACHER";
-  console.log(isTeacher)
-  console.log(localStorageId)
-
+  const isTeacher = db.users[localStorageId - 1]?.role == "TEACHER";
 
   const { id } = useParams();
 
@@ -162,9 +154,14 @@ const TeacherDetails = () => {
             </div>
           </div>
           <div>
-            {!isTeacher ?<AppointmentPainel /> : (
+            {!isTeacher ? (
+              <AppointmentPainel />
+            ) : (
               <div className="shadow-2xl mt-[40px] p-4 max-w-[300px] text-center text-primaryColor rounded-lg font-bold">
-                Entre ou Registre-se como aluno para agendar uma aula com outro Professor
+                <span className="text-orangeColor">Entre</span> ou{" "}
+                <span className="text-orangeColor">Registre-se</span> como{" "}
+                <span className="text-orangeColor">Aluno</span> para agendar uma
+                aula com outro Professor!
               </div>
             )}
           </div>
