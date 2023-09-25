@@ -54,7 +54,7 @@ const TeacherDetails = () => {
                 </h3>
                 <Tag label={selectedTeacher.specialization} />
 
-                <p className="text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px]">
+                <p className="text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px] break-words">
                   {selectedTeacher.resume}
                 </p>
               </div>

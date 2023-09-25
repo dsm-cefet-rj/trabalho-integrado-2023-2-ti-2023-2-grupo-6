@@ -41,11 +41,12 @@ const EditModal = ({ teacher, onClose }) => {
             <input
               type="text"
               id="specialization"
-              placeholder="Digite sua especialização"
+              placeholder="Digite sua especialização em até 15 caracteres!"
               name="specialization"
               className="form-input mt-1"
               value={editedTeacher.specialization}
               onChange={handleInputChange}
+              maxLength={15}
               required
               autoComplete="specialization"
             />
@@ -58,10 +59,11 @@ const EditModal = ({ teacher, onClose }) => {
               id="resume"
               name="resume"
               type="text"
-              placeholder="Digite um resumo sobre você!"
+              placeholder="Digite um resumo, de até 100 caracteres, sobre você!"
               value={editedTeacher.resume}
               onChange={handleInputChange}
               className="form-input mt-1"
+              maxLength={100}
               required
             />
           </div>
@@ -74,11 +76,12 @@ const EditModal = ({ teacher, onClose }) => {
               rows="6"
               name="description"
               type="text"
-              placeholder="Digite uma descrição sobre você!"
+              placeholder="Digite uma descrição, de até 1000 caracteres, sobre você!"
               value={editedTeacher.description}
               onChange={handleInputChange}
               className="form-input mt-1"
               required
+              maxLength={1000}
             />
           </div>
         </form>
