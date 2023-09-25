@@ -111,14 +111,14 @@ const TeachersProfile = () => {
                       <li key={appointment.id} className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
                         <div>
                           <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                            {formatarData(appointment.date)}
+                            Data - Horário: {formatarData(appointment.date)}
                           </span>
-                          <p className="text-[16px] leading-6 font-medium text-textColor">
-                            {studentIdToNameMap[appointment.studentId]}
+                          <p className="text-[15px] leading-6 font-medium text-textColor">
+                          <strong>Aluno: </strong>{studentIdToNameMap[appointment.studentId]}
                           </p>
                         </div>
-                        <p className="text-[14px] leading-5 font-medium text-textColor">
-                          {studentIdToEmailMap[appointment.studentId]}
+                        <p className="text-[15px] leading-5 font-medium text-textColor">
+                        <strong>Email - Aluno: </strong>{studentIdToEmailMap[appointment.studentId]}
                         </p>
                       </li>
                     ) : null
