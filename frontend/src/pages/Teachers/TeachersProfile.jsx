@@ -3,12 +3,51 @@ import db from "../../server/database/db.json";
 import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
 
 const TeachersProfile = () => {
+  // formatar data
+  function formatarData(data) {
+    const dataObj = new Date(data);
+    const dia = String(dataObj.getDate()).padStart(2, '0');
+    const mes = obterNomeDoMes(dataObj.getMonth());
+    const ano = dataObj.getFullYear();
+    const horas = String(dataObj.getHours()).padStart(2, '0');
+    const minutos = String(dataObj.getMinutes()).padStart(2, '0');
+  
+    return `${dia} de ${mes} - ${ano} às ${horas}:${minutos}`;
+  }
+  // para a funçao do formato de data
+  function obterNomeDoMes(indice) {
+    const meses = [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ];
+    return meses[indice];
+  }
+  
+
   const url = window.location.href;
   const partesDaURL = url.split("/");
   const numeroStr = partesDaURL.pop();
-  const userId = parseInt(numeroStr) - 1;
+  const teacherId = parseInt(numeroStr) - 1;
 
-  const idDoUser = userId + 1;
+  const teacherIdForAppointments = teacherId + 1;
+  console.log(teacherIdForAppointments)
+
+  //const studentId = localStorage.getItem('id')
+
+  //mapeia o studentId para o nome para usar na renderização do componente de lista
+  const studentIdToNameMap = {};
+  db.users.forEach((user) => {
+    if (user.role === 'STUDENT') {
+      studentIdToNameMap[user.id] = user.name;
+    }
+  });
+    //mapeia o studentId para o email para usar na renderização do componente de lista
+  const studentIdToEmailMap = {};
+  db.users.forEach((user) => {
+  if (user.role === 'STUDENT') {
+    studentIdToEmailMap[user.id] = user.email;
+  }
+});
 
   return (
     <section>
@@ -25,7 +64,7 @@ const TeachersProfile = () => {
               <div className="flex">
                 <figure className="max-w-[300px] max-h-[300px]">
                   <img
-                    src={db.users[userId].profilePicture}
+                    src={db.users[teacherId].profilePicture}
                     alt=""
                     className="w-[200px] h-[200px] object-cover mb-2 rounded-full shadow-2xl"
                   />
@@ -35,21 +74,21 @@ const TeachersProfile = () => {
                 <div className="flex justify-between items-center gap-10">
                   <div className="ml-8 items-center">
                     <h3 className="text-headingColor text-[22px] leading-9 font-bold">
-                      {db.users[userId].name}
+                      {db.users[teacherId].name}
                     </h3>
                     <h2 className="pt-9 pb-1">
                       <strong className="text-headingColor">Email:</strong>{" "}
-                      {db.users[userId].email}{" "}
+                      {db.users[teacherId].email}{" "}
                     </h2>
                     <h2>
                       <strong className="text-headingColor">Gênero:</strong>{" "}
-                      {db.users[userId].gender}
+                      {db.users[teacherId].gender}
                     </h2>
                   </div>
                 </div>
               </div>
 
-              {Number(localStorage.getItem("id")) == Number(idDoUser) ? (
+              {Number(localStorage.getItem("id")) == Number(teacherIdForAppointments) ? (
                 <TeachersAvailableHours />
               ) : (
                 <div></div>
@@ -67,45 +106,23 @@ const TeachersProfile = () => {
               </div>
               <div>
                 <ul className="pt-4 md:p-5">
-                  <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
-                    <div>
-                      <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                        07-04-2010 - 13-09-2014
-                      </span>
-                      <p className="text-[16px] leading-6 font-medium text-textColor">
-                        Aluno: Natan Balthazar
-                      </p>
-                    </div>
-                    <p className="text-[14px] leading-5 font-medium text-textColor">
-                      Assunto: Desenvolvimento
-                    </p>
-                  </li>
-                  <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
-                    <div>
-                      <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                        07-04-2010 - 13-09-2014
-                      </span>
-                      <p className="text-[16px] leading-6 font-medium text-textColor">
-                        Aluno: Gabriel Padrão
-                      </p>
-                    </div>
-                    <p className="text-[14px] leading-5 font-medium text-textColor">
-                      Assunto: Banco de Dados
-                    </p>
-                  </li>
-                  <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
-                    <div>
-                      <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                        07-04-2010 - 13-09-2014
-                      </span>
-                      <p className="text-[16px] leading-6 font-medium text-textColor">
-                        Aluno: Gabriel Padrão
-                      </p>
-                    </div>
-                    <p className="text-[14px] leading-5 font-medium text-textColor">
-                      Assunto: Banco de Dados
-                    </p>
-                  </li>
+                  {db.appointments.map((appointment) => (
+                    appointment.teacherId === teacherIdForAppointments ? (
+                      <li key={appointment.id} className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                        <div>
+                          <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
+                            {formatarData(appointment.date)}
+                          </span>
+                          <p className="text-[16px] leading-6 font-medium text-textColor">
+                            {studentIdToNameMap[appointment.studentId]}
+                          </p>
+                        </div>
+                        <p className="text-[14px] leading-5 font-medium text-textColor">
+                          {studentIdToEmailMap[appointment.studentId]}
+                        </p>
+                      </li>
+                    ) : null
+                  ))}
                 </ul>
               </div>
             </div>
