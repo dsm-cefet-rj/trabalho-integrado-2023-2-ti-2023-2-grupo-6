@@ -8,7 +8,7 @@ import { createAppointment } from "../../features/appointment/appointmentSlice";
 
 const AppointmentPainel = () => {
   const teacherId =
-    Number(window.location.href.charAt(window.location.href.length - 1))-1;
+    Number(window.location.href.charAt(window.location.href.length - 1)) - 1;
 
   const [formData, setFormData] = useState({
     horario: "",
@@ -20,19 +20,35 @@ const AppointmentPainel = () => {
 
   const dispatch = useDispatch()
 
+  let horaOcupada = false
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const selectedDate = formData.horario;
 
     console.log(db.appointments.length)
 
-    if(selectedDate == ""){
+    if (selectedDate == "") {
       toast.error("Selecione uma data")
       return
     }
+
+    db.appointments.forEach((ap) => {
+      if (ap.date === selectedDate && ap.teacherId == teacherIdForAppointments) {
+        horaOcupada = true
+      }
+    })
+
+    if (horaOcupada){
+      toast.error("Horário acabou de ser selecionado!")
+    }
+
+    if (!studentId){
+      toast.error("É preciso estar logado para marcar uma aula!")
+    }
     
-    if(studentId){
+    if (studentId && !horaOcupada) {
       dispatch(
         createAppointment({
           studentId: Number(studentId),
@@ -41,11 +57,7 @@ const AppointmentPainel = () => {
           id: db.appointments.length + 1,
         })
       )
-        .then(() => {
-          toast.success("Horário marcado com Sucesso!")
-        })
-    } else {
-      toast.error("É preciso estar logado para marcar uma aula!")
+      toast.success("Horário marcado com Sucesso!")
     }
   };
 
