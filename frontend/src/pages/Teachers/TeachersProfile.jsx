@@ -1,53 +1,32 @@
 import { Link } from "react-router-dom";
 import db from "../../server/database/db.json";
 import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
+import { formatarData } from "../../common/functions";
 
 const TeachersProfile = () => {
-  // formatar data
-  function formatarData(data) {
-    const dataObj = new Date(data);
-    const dia = String(dataObj.getDate()).padStart(2, '0');
-    const mes = obterNomeDoMes(dataObj.getMonth());
-    const ano = dataObj.getFullYear();
-    const horas = String(dataObj.getHours()).padStart(2, '0');
-    const minutos = String(dataObj.getMinutes()).padStart(2, '0');
-  
-    return `${dia} de ${mes} - ${ano} às ${horas}:${minutos}`;
-  }
-  // para a funçao do formato de data
-  function obterNomeDoMes(indice) {
-    const meses = [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ];
-    return meses[indice];
-  }
-  
-
   const url = window.location.href;
   const partesDaURL = url.split("/");
   const numeroStr = partesDaURL.pop();
   const teacherId = parseInt(numeroStr) - 1;
 
   const teacherIdForAppointments = teacherId + 1;
-  console.log(teacherIdForAppointments)
 
   //const studentId = localStorage.getItem('id')
 
-  //mapeia o studentId para o nome para usar na renderização do componente de lista
+  // Mapeia o studentId para o nome para usar na renderização do componente de lista
   const studentIdToNameMap = {};
   db.users.forEach((user) => {
-    if (user.role === 'STUDENT') {
+    if (user.role === "STUDENT") {
       studentIdToNameMap[user.id] = user.name;
     }
   });
-    //mapeia o studentId para o email para usar na renderização do componente de lista
+  //mapeia o studentId para o email para usar na renderização do componente de lista
   const studentIdToEmailMap = {};
   db.users.forEach((user) => {
-  if (user.role === 'STUDENT') {
-    studentIdToEmailMap[user.id] = user.email;
-  }
-});
+    if (user.role === "STUDENT") {
+      studentIdToEmailMap[user.id] = user.email;
+    }
+  });
 
   return (
     <section>
@@ -88,7 +67,8 @@ const TeachersProfile = () => {
                 </div>
               </div>
 
-              {Number(localStorage.getItem("id")) == Number(teacherIdForAppointments) ? (
+              {Number(localStorage.getItem("id")) ==
+              Number(teacherIdForAppointments) ? (
                 <TeachersAvailableHours />
               ) : (
                 <div></div>
@@ -106,23 +86,28 @@ const TeachersProfile = () => {
               </div>
               <div>
                 <ul className="pt-4 md:p-5">
-                  {db.appointments.map((appointment) => (
+                  {db.appointments.map((appointment) =>
                     appointment.teacherId === teacherIdForAppointments ? (
-                      <li key={appointment.id} className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                      <li
+                        key={appointment.id}
+                        className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
+                      >
                         <div>
                           <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
                             Data - Horário: {formatarData(appointment.date)}
                           </span>
                           <p className="text-[15px] leading-6 font-medium text-textColor">
-                          <strong>Aluno: </strong>{studentIdToNameMap[appointment.studentId]}
+                            <strong>Aluno: </strong>
+                            {studentIdToNameMap[appointment.studentId]}
                           </p>
                         </div>
                         <p className="text-[15px] leading-5 font-medium text-textColor">
-                        <strong>Email - Aluno: </strong>{studentIdToEmailMap[appointment.studentId]}
+                          <strong>Email - Aluno: </strong>
+                          {studentIdToEmailMap[appointment.studentId]}
                         </p>
                       </li>
                     ) : null
-                  ))}
+                  )}
                 </ul>
               </div>
             </div>

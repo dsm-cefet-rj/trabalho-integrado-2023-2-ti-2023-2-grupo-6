@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { updateAvailableHours } from "../../features/teacher/teacherSlice";
+import { formatarData } from "../../common/functions";
 
 const TeachersAvailableHours = () => {
   const [formData, setFormData] = useState({ availableHours: [] });
@@ -26,7 +27,9 @@ const TeachersAvailableHours = () => {
         .then(() => {
           // Sucesso: exibe um toast de sucesso
           toast.success(
-            `Horário disponibilizado com sucesso para ${formData.availableHours}`
+            `Horário disponibilizado com sucesso para ${formatarData(
+              formData.availableHours
+            )}`
           );
           setFormData({ availableHours: "" });
         })

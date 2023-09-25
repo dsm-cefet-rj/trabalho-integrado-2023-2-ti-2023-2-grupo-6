@@ -1,4 +1,4 @@
-import work from "../../../public/assets/images/work.gif";
+import work from "/assets/images/work.gif";
 const Working = () => {
   return (
     <section>
