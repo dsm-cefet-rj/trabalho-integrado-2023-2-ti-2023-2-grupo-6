@@ -1,56 +1,33 @@
 import { Link } from "react-router-dom";
-import db from '../../server/database/db.json'
+import db from "../../server/database/db.json";
 import TeachersProfile from "../Teachers/TeachersProfile";
+import { formatarData } from "../../common/functions";
 const StudentsProfile = () => {
+  const url = window.location.href;
+  const partesDaURL = url.split("/");
+  const numeroStr = partesDaURL.pop();
+  const userId = parseInt(numeroStr) - 1;
 
-  // formatar data
-  function formatarData(data) {
-    const dataObj = new Date(data);
-    const dia = String(dataObj.getDate()).padStart(2, '0');
-    const mes = obterNomeDoMes(dataObj.getMonth());
-    const ano = dataObj.getFullYear();
-    const horas = String(dataObj.getHours()).padStart(2, '0');
-    const minutos = String(dataObj.getMinutes()).padStart(2, '0');
-  
-    return `${dia} de ${mes} - ${ano} às ${horas}:${minutos}`;
-  }
-  // para a funçao do formato de data
-  function obterNomeDoMes(indice) {
-    const meses = [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ];
-    return meses[indice];
-  }
-
-  const url = window.location.href; 
-  const partesDaURL = url.split('/');
-  const numeroStr = partesDaURL.pop(); 
-  const userId = parseInt(numeroStr)-1; 
-
-  if(db.users[userId].role == "TEACHER"){
-    return (
-      <TeachersProfile/>
-    )
+  if (db.users[userId].role == "TEACHER") {
+    return <TeachersProfile />;
   }
 
   //mapeia o studentId para o nome para usar na renderização do componente de lista
   const teacherIdToNameMap = {};
   db.users.forEach((user) => {
-    if (user.role === 'TEACHER') {
+    if (user.role === "TEACHER") {
       teacherIdToNameMap[user.id] = user.name;
     }
   });
-    //mapeia o studentId para o email para usar na renderização do componente de lista
+  //mapeia o studentId para o email para usar na renderização do componente de lista
   const teacherIdToEmailMap = {};
   db.users.forEach((user) => {
-  if (user.role === 'TEACHER') {
-    teacherIdToEmailMap[user.id] = user.email;
-  }
-});
+    if (user.role === "TEACHER") {
+      teacherIdToEmailMap[user.id] = user.email;
+    }
+  });
 
-  const studentId = localStorage.getItem('id')
- 
+  const studentId = localStorage.getItem("id");
 
   return (
     <section>
@@ -78,10 +55,12 @@ const StudentsProfile = () => {
                   {db.users[userId].name}
                 </h3>
                 <h2 className="pt-9 pb-1">
-                  <strong className="text-headingColor">Email:</strong> {db.users[userId].email}
+                  <strong className="text-headingColor">Email:</strong>{" "}
+                  {db.users[userId].email}
                 </h2>
                 <h2>
-                  <strong className="text-headingColor">Gênero:</strong>  {db.users[userId].gender}
+                  <strong className="text-headingColor">Gênero:</strong>{" "}
+                  {db.users[userId].gender}
                 </h2>
               </div>
             </div>
@@ -97,33 +76,37 @@ const StudentsProfile = () => {
               </div>
               <div>
                 <ul className="pt-4 md:p-5">
-                  {db.appointments.map((appointment) => (
+                  {db.appointments.map((appointment) =>
                     appointment.studentId == studentId ? (
-                      <li key={appointment.id} className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                      <li
+                        key={appointment.id}
+                        className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
+                      >
                         <div>
                           <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
                             Data - Horário: {formatarData(appointment.date)}
                           </span>
                           <p className="text-[15px] leading-6 font-medium text-textColor">
-                          <strong>Professor: </strong> {teacherIdToNameMap[appointment.teacherId]}
+                            <strong>Professor: </strong>{" "}
+                            {teacherIdToNameMap[appointment.teacherId]}
                           </p>
                         </div>
                         <p className="text-[15px] leading-5 font-medium text-textColor">
-                          <strong>Email - Professor: </strong> {teacherIdToEmailMap[appointment.teacherId]}
+                          <strong>Email - Professor: </strong>{" "}
+                          {teacherIdToEmailMap[appointment.teacherId]}
                         </p>
                       </li>
                     ) : null
-                  ))}
+                  )}
                 </ul>
               </div>
             </div>
           </div>
-          <div>
-        </div>
+          <div></div>
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default StudentsProfile;
