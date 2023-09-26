@@ -13,13 +13,11 @@ const Blog = () => {
   const [blogs, setBlogs] = useState(blogPosts);
   const [searchKey, setSearchKey] = useState("");
 
-  // Search submit
   const handleSearchBar = (e) => {
     e.preventDefault();
     handleSearchResults();
   };
 
-  // Search for blog by category
   const handleSearchResults = () => {
     const allBlogs = blogPosts;
     const filteredBlogs = allBlogs.filter((blog) =>
@@ -28,7 +26,6 @@ const Blog = () => {
     setBlogs(filteredBlogs);
   };
 
-  // Clear search and show all blogs
   const handleClearSearch = () => {
     setBlogs(blogPosts);
     setSearchKey("");
@@ -49,11 +46,13 @@ const Blog = () => {
       <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4">
         <div className="flex flex-col justify-center">
           {!isTeacher ? (
-            <div className="shadow-2xl mt-[40px] p-4 max-w-[300px] text-center text-primaryColor rounded-lg font-bold">
-              <span className="text-orangeColor">Entre</span> ou{" "}
-              <span className="text-orangeColor">Registre-se</span> como{" "}
-              <span className="text-orangeColor">Professor</span> para adicionar
-              um Post!
+            <div className="flex justify-center">
+              <div className="shadow-xl mt-[10px] p-4 max-w-[300px] text-center text-primaryColor rounded-lg font-bold">
+                <span className="text-orangeColor">Entre</span> ou{" "}
+                <span className="text-orangeColor">Registre-se</span> como{" "}
+                <span className="text-orangeColor">Professor</span> para
+                adicionar um Post!
+              </div>
             </div>
           ) : (
             <Link to="/blog/myBlog" className="flex justify-center">

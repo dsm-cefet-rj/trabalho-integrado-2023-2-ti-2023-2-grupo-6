@@ -1,4 +1,3 @@
-// BlogList.js
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,7 +11,6 @@ const BlogList = () => {
   const blogPosts = useSelector(selectAllBlogPosts);
 
   useEffect(() => {
-    // Fetch blog posts when the component mounts
     dispatch(getBlogPosts());
   }, [dispatch]);
 

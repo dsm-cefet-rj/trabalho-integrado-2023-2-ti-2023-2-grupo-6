@@ -12,14 +12,13 @@ const StudentsProfile = () => {
     return <TeachersProfile />;
   }
 
-  //mapeia o studentId para o nome para usar na renderização do componente de lista
   const teacherIdToNameMap = {};
   db.users.forEach((user) => {
     if (user.role === "TEACHER") {
       teacherIdToNameMap[user.id] = user.name;
     }
   });
-  //mapeia o studentId para o email para usar na renderização do componente de lista
+
   const teacherIdToEmailMap = {};
   db.users.forEach((user) => {
     if (user.role === "TEACHER") {

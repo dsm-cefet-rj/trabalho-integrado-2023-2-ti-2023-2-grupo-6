@@ -9,7 +9,7 @@ const TeachersAvailableHours = () => {
   const dispatch = useDispatch();
 
   // Armazena o ID do professor no localStorage com a chave 'id'
-  const id = localStorage.getItem("id"); // Corrigido o nome da chave
+  const id = localStorage.getItem("id");
 
   function SaveNewHour(e) {
     e.preventDefault();
@@ -25,7 +25,6 @@ const TeachersAvailableHours = () => {
         })
       )
         .then(() => {
-          // Sucesso: exibe um toast de sucesso
           toast.success(
             `Horário disponibilizado com sucesso para ${formatarData(
               formData.availableHours
@@ -34,7 +33,6 @@ const TeachersAvailableHours = () => {
           setFormData({ availableHours: "" });
         })
         .catch((error) => {
-          // Erro: exibe um toast de erro com a mensagem de erro
           toast.error("Erro ao disponibilizar horário: " + error.message);
         });
     } else {

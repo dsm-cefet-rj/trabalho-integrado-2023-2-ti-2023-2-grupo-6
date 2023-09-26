@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch }) => (
-  <div className=" bg-[#f0f0f0] w-fit mt-10 mb-16 mx-auto p-2 rounded-[5px]">
+  <div className=" bg-[#f0f0f0] w-fit mt-10 mb-16 mx-auto p-2 rounded-[5px] shadow-md">
     <form onSubmit={formSubmit} className="flex items-center">
       <input
         type="text"

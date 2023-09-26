@@ -60,8 +60,6 @@ const Header = () => {
   // Função para alternar o menu móvel
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
-  //Criando estado da profile picture
-
   const [profilePic, setProfilePic] = useState();
   return (
     <header className="header flex items-center " ref={headerRef}>

@@ -27,7 +27,6 @@ const MyBlog = () => {
   const loggedInProfessorId = parseInt(localStorage.getItem("id"), 10);
 
   const handleCreatePost = () => {
-    // Obtém a data atual
     const currentDate = formatarData(new Date());
     const newPostData = {
       ...newPost,
@@ -36,7 +35,7 @@ const MyBlog = () => {
     };
 
     dispatch(createBlogPost(newPostData)).then(() => {
-      dispatch(getBlogPosts()); // Atualiza a lista após a criação
+      dispatch(getBlogPosts());
     });
     setNewPost({
       cover: "",
@@ -49,7 +48,7 @@ const MyBlog = () => {
   const handleUpdatePost = () => {
     if (editPost) {
       dispatch(updateBlogPost(editPost)).then(() => {
-        dispatch(getBlogPosts()); // Atualiza a lista após a atualização
+        dispatch(getBlogPosts());
       });
       setEditPost(null);
     }
@@ -57,7 +56,7 @@ const MyBlog = () => {
 
   const handleDeletePost = (id) => {
     dispatch(deleteBlogPost(id)).then(() => {
-      dispatch(getBlogPosts()); // Atualiza a lista após a exclusão
+      dispatch(getBlogPosts());
     });
   };
 

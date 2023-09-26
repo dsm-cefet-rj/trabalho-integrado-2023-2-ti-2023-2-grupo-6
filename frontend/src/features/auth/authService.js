@@ -3,14 +3,12 @@ import { createTeacher } from "../teacher/teacherService";
 
 const API_URL = "http://localhost:3000/users/";
 
-// Register user
 const register = async (userData) => {
   const response = await axios.post(API_URL, userData);
 
   if (response.data) {
     const newUser = response.data;
     if (newUser.role === "TEACHER") {
-      // Create a corresponding teacher record
       const teacherData = {
         userId: newUser.id,
         specialization: "Desenvolvedor",
@@ -18,7 +16,7 @@ const register = async (userData) => {
         description: "",
         availableHours: [],
       };
-      await createTeacher(teacherData); // Use the createTeacher function from teacherService
+      await createTeacher(teacherData);
     }
     localStorage.setItem("user", JSON.stringify(newUser));
   }
@@ -26,12 +24,10 @@ const register = async (userData) => {
   return response.data;
 };
 
-// Logout user
 const logout = () => {
   localStorage.removeItem("user");
 };
 
-// Login user
 const login = async (userData) => {
   const response = await axios.post(API_URL + "login", userData);
 

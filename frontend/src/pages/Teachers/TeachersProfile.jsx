@@ -16,16 +16,13 @@ const TeachersProfile = () => {
 
   const teacherIdForAppointments = teacherId + 1;
 
-  //const studentId = localStorage.getItem('id')
-
-  // Mapeia o studentId para o nome para usar na renderização do componente de lista
   const studentIdToNameMap = {};
   db.users.forEach((user) => {
     if (user.role === "STUDENT") {
       studentIdToNameMap[user.id] = user.name;
     }
   });
-  //mapeia o studentId para o email para usar na renderização do componente de lista
+
   const studentIdToEmailMap = {};
   db.users.forEach((user) => {
     if (user.role === "STUDENT") {

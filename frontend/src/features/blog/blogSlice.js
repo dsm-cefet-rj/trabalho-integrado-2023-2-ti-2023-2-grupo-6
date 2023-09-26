@@ -1,4 +1,3 @@
-// blogSlice.js
 import {
   createSlice,
   createEntityAdapter,

@@ -19,9 +19,7 @@ const Contact = () => {
     };
 
     try {
-      // Ação para enviar a mensagem de contato
       await dispatch(sendContactMessage(contactData));
-      // Limpe os campos do formulário após o envio
       setEmail("");
       setAssunto("");
       setMensagem("");

@@ -6,7 +6,6 @@ import TeacherForm from "../components/RegisterForm/TeacherForm/TeacherForm";
 const Signup = () => {
   const [selectedForm, setSelectedForm] = useState(null);
 
-  // Função para alternar entre o formulário de aluno e professor
   const handleFormSelect = (formType) => {
     setSelectedForm(formType);
   };

@@ -11,7 +11,7 @@ const getTeachersDetails = async (id) => {
 };
 
 const updateTeacher = async (teacher) => {
-  const { id, specialization, resume, description } = teacher; // Extrai as propriedades relevantes
+  const { id, specialization, resume, description } = teacher;
 
   if (!id) {
     throw new Error("ID do professor não especificado.");
@@ -35,15 +35,13 @@ const updateAvailableHours = async (id, newAvailability) => {
 
   if (response.data) {
     const teacherData = {
-      ...response.data, // Mantém os dados existentes do professor
+      ...response.data,
     };
 
-    // Verifica se o novo horário já existe na lista de horários disponíveis
     if (!teacherData.availableHours.includes(newAvailability)) {
       teacherData.availableHours.push(newAvailability);
       await updateTeacher(id, teacherData);
     } else {
-      // Se o horário já existe, você pode lançar um erro ou tratar de acordo com a sua lógica
       throw new Error("Horário já existe na lista de disponibilidade.");
     }
   }
