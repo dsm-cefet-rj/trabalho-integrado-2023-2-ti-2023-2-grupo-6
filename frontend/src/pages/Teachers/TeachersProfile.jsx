@@ -95,7 +95,7 @@ const TeachersProfile = () => {
               )}
             </div>
             <div className="flex flex-col">
-              <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
+              <div className="mt-[30px] border-b border-solid border-green-900">
                 <h3
                   className={
                     "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"

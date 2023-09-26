@@ -46,50 +46,97 @@ const MyBlog = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">Postagens do Blog</h1>
+      <h1 className="heading text-[30px] text-center">Postagens do Blog</h1>
+      <p className="mb-8 lg:mb-8 text-center font-light text__para">
+        Adicione abaixo uma nova Postagem!
+      </p>
       <div className="mb-4">
-        <h2 className="text-xl font-semibold mb-2">Crie uma Nova Postagem</h2>
-        <input
-          type="text"
-          placeholder="Cover URL"
-          value={newPost.cover}
-          onChange={(e) => setNewPost({ ...newPost, cover: e.target.value })}
-          className="w-full p-2 rounded border mb-2 "
-        />
-        <input
-          type="text"
-          placeholder="Title"
-          value={newPost.title}
-          onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
-          className="w-full p-2 rounded border break-words"
-          maxLength={100}
-        />
-        <input
-          type="text"
-          placeholder="Category"
-          value={newPost.category}
-          onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}
-          className="w-full p-2 mt-2 rounded border break-words"
-          maxLength={50}
-        />
-        <textarea
-          placeholder="Description"
-          value={newPost.description}
-          onChange={(e) =>
-            setNewPost({ ...newPost, description: e.target.value })
-          }
-          className="w-full p-2 mt-2 rounded border break-words"
-          maxLength={1500}
-        />
-        <button
-          onClick={handleCreatePost}
-          className="bg-blue-500 text-white px-4 py-2 mt-4 rounded hover:bg-blue-600"
-        >
-          Create
-        </button>
+        <div>
+          <label htmlFor="cover" className="form__label">
+            Url da imagem:
+          </label>
+          <input
+            type="text"
+            placeholder="Digite a URL da sua imagem"
+            name="cover"
+            value={newPost.cover}
+            onChange={(e) => setNewPost({ ...newPost, cover: e.target.value })}
+            className="form-input mt-1"
+            required
+          />
+        </div>
+
+        <div className="my-3">
+          <label htmlFor="title" className="form__label">
+            Titulo do Post:
+          </label>
+          <input
+            name="title"
+            type="text"
+            placeholder="Digite o titulo do seu Post"
+            value={newPost.title}
+            onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+            className="form-input mt-1"
+            maxLength={100}
+            title="Digite até 100 caracteres"
+            required
+          />
+        </div>
+
+        <div className="my-3">
+          <label htmlFor="category" className="form__label">
+            Categoria do Post:
+          </label>
+          <input
+            name="category"
+            type="text"
+            placeholder="Digite em qual categoria encontra-se seu Post"
+            value={newPost.category}
+            onChange={(e) =>
+              setNewPost({ ...newPost, category: e.target.value })
+            }
+            className="form-input mt-1"
+            maxLength={50}
+            title="Digite até 50 caracteres"
+            required
+          />
+        </div>
+        <div className="my-3">
+          <label htmlFor="description" className="form__label">
+            Descrição do Post:
+          </label>
+          <textarea
+            name="description"
+            placeholder="Escreva mais sobre o que você tem a ensinar"
+            value={newPost.description}
+            onChange={(e) =>
+              setNewPost({ ...newPost, description: e.target.value })
+            }
+            className="form-input mt-1"
+            maxLength={1500}
+            title="Digite até 1500 caracteres"
+            required
+          />
+        </div>
+        <div className="flex justify-center">
+          <button
+            onClick={handleCreatePost}
+            className="btn text-white px-4 py-2 mt-4 rounded hover:bg-green-900"
+          >
+            Criar novo Post
+          </button>
+        </div>
       </div>
       <div>
-        <h2 className="text-xl font-semibold mb-2">Blog Posts List</h2>
+        <div className="mt-[30px] border-b border-solid border-green-900 mb-5">
+          <h3
+            className={
+              "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"
+            }
+          >
+            Lista de Postagens
+          </h3>
+        </div>
         <ul>
           {blogPosts.map((post) => (
             <li key={post.id} className="mb-4">
@@ -99,37 +146,50 @@ const MyBlog = () => {
                 className="w-32 h-32 object-cover rounded"
               />
               <strong className="text-lg font-semibold block mt-2">
-                {post.title} ({post.category})
+                <span className="text-primaryColor">Titulo:</span> {post.title}
               </strong>
-              <p className="mt-2">{post.description}</p>
-              <button
-                onClick={() => setEditPost(post)}
-                className="bg-blue-500 text-white px-2 py-1 mt-2 rounded hover:bg-blue-600"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDeletePost(post.id)}
-                className="bg-red-500 text-white px-2 py-1 mt-2 ml-2 rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
+              <div className=" bg-gradient-to-r from-[#f4a442] to-[#cc750b] text-[0.7rem] text-white w-fit capitalize px-2 py-[0.3rem] rounded-[5px] my-2">
+                {post.category}
+              </div>
+
+              <div>
+                <strong className="text-primaryColor">Descrição:</strong>
+                <p className="mt-2">{post.description}</p>
+              </div>
+
+              <div className="flex justify-center">
+                <button
+                  onClick={() => handleDeletePost(post.id)}
+                  className="btn text-primaryColor bg-white border border-primaryColor px-2 py-1 mt-2  rounded hover:bg-primaryColor hover:text-white"
+                >
+                  Deletar Postagem
+                </button>
+                <button
+                  onClick={() => setEditPost(post)}
+                  className="btn text-white px-2 py-1 mt-2 ml-2 rounded hover:bg-green-900"
+                >
+                  Editar Postagem
+                </button>
+              </div>
             </li>
           ))}
         </ul>
       </div>
       {editPost && (
         <div className="mt-4">
-          <h2 className="text-xl font-semibold mb-2">Edit Post</h2>
-          <input
-            type="text"
-            placeholder="Cover URL"
-            value={editPost.cover}
-            onChange={(e) =>
-              setEditPost({ ...editPost, cover: e.target.value })
-            }
-            className="w-full p-2 rounded border mb-2"
-          />
+          <h2 className="text-xl font-semibold mb-2">Editando Postagem</h2>
+          <div className="">
+            <label htmlFor="cover">Cover</label>
+            <input
+              type="text"
+              placeholder="Cover URL"
+              value={editPost.cover}
+              onChange={(e) =>
+                setEditPost({ ...editPost, cover: e.target.value })
+              }
+              className="w-full p-2 rounded border mb-2"
+            />
+          </div>
           <input
             type="text"
             placeholder="Title"
@@ -156,12 +216,14 @@ const MyBlog = () => {
             }
             className="w-full p-2 mt-2 rounded border"
           />
-          <button
-            onClick={handleUpdatePost}
-            className="bg-green-500 text-white px-4 py-2 mt-4 rounded hover:bg-green-600"
-          >
-            Update
-          </button>
+          <div className="flex justify-center">
+            <button
+              onClick={handleUpdatePost}
+              className="btn text-white px-2 py-1 mt-2 ml-2 rounded hover:bg-green-900"
+            >
+              Salvar
+            </button>
+          </div>
         </div>
       )}
     </div>
