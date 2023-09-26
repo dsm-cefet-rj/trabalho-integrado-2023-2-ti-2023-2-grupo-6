@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import Tag from "./Tag";
 import db from "../../server/database/db.json";
 
-const BlogItem = ({
-  blog: { id, description, title, createdAt, authorId, cover, category },
-}) => {
+const BlogItem = ({ blog }) => {
+  
+  if (!blog || typeof blog !== 'object') {
+    return null;
+  }
+
+  const { id, description, title, createdAt, authorId, cover, category } = blog;
   const authorUser = db.users.find((user) => user.id === authorId);
 
   return (
