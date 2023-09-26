@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateTeacher } from "../../features/teacher/teacherSlice";
+import { updateTeacherDetails } from "../../features/teacher/teacherSlice";
 
 const EditModal = ({ teacher, onClose }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const EditModal = ({ teacher, onClose }) => {
   };
 
   const handleSaveClick = () => {
-    dispatch(updateTeacher(editedTeacher)).then(() => {
+    dispatch(updateTeacherDetails(editedTeacher)).then(() => {
       onClose();
     });
   };

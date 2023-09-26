@@ -10,7 +10,11 @@ const getTeachersDetails = async (id) => {
   return await axios.get(API_URL + `/teachers/${id}?_expand=user`);
 };
 
-const updateTeacher = async (teacher) => {
+const updateTeacher = async (id, teacher) => {
+  return await axios.patch(API_URL + `/teachers/${id}`, teacher);
+};
+
+const updateTeacherDetails = async (teacher) => {
   const { id, specialization, resume, description } = teacher;
 
   if (!id) {
@@ -59,6 +63,7 @@ const teacherService = {
   getTeachers,
   getTeachersDetails,
   updateTeacher,
+  updateTeacherDetails,
   updateAvailableHours,
   createFullTeacher,
   deleteTeacher,

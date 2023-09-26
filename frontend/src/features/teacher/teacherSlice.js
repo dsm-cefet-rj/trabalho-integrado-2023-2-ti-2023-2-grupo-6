@@ -35,6 +35,15 @@ export const updateTeacher = createAsyncThunk(
   }
 );
 
+export const updateTeacherDetails = createAsyncThunk(
+  "teacher/updateTeacherDetails",
+  async (teacher) => {
+    const response = await teacherService.updateTeacherDetails(teacher);
+
+    return response.data;
+  }
+);
+
 export const createTeacher = createAsyncThunk(
   "teacher/createTeacher",
   async (teacher) => {
@@ -98,6 +107,20 @@ export const teacherSlice = createSlice({
       })
 
       .addCase(updateTeacher.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
+
+      .addCase(updateTeacherDetails.pending, (state) => {
+        state.message = "loading";
+      })
+
+      .addCase(updateTeacherDetails.fulfilled, (state, action) => {
+        state.message = "saved";
+        teacherAdapter.upsertOne(state, action.payload);
+      })
+
+      .addCase(updateTeacherDetails.rejected, (state, action) => {
         state.message = "error";
         state.isError = action.error.message;
       })
