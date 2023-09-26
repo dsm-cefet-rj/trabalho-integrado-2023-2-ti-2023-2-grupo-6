@@ -11,7 +11,7 @@ export function formatarData(dataStr) {
   const horas = String(dataObj.getHours()).padStart(2, "0");
   const minutos = String(dataObj.getMinutes()).padStart(2, "0");
 
-  return `${dia} de ${mes} - ${ano} às ${horas}:${minutos}`;
+  return `${dia} de ${mes} de ${ano} às ${horas}:${minutos}`;
 }
 
 function obterNomeDoMes(indice) {

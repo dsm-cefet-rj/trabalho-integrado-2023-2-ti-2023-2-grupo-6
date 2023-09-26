@@ -6,11 +6,13 @@ import {
   updateBlogPost,
   deleteBlogPost,
 } from "../../../features/blog/blogSlice";
+import { formatarData } from "../../../common/functions";
 
 const MyBlog = () => {
   const dispatch = useDispatch();
   const blogPosts = useSelector((state) => Object.values(state.blog.entities));
   const [newPost, setNewPost] = useState({
+    createdAt: "",
     cover: "",
     title: "",
     category: "",
@@ -23,10 +25,22 @@ const MyBlog = () => {
   }, [dispatch]);
 
   const handleCreatePost = () => {
-    dispatch(createBlogPost(newPost)).then(() => {
+    // Obtém a data atual
+    const currentDate = formatarData(new Date());
+    const newPostData = {
+      ...newPost,
+      createdAt: currentDate,
+    };
+
+    dispatch(createBlogPost(newPostData)).then(() => {
       dispatch(getBlogPosts()); // Atualiza a lista após a criação
     });
-    setNewPost({ cover: "", title: "", category: "", description: "" });
+    setNewPost({
+      cover: "",
+      title: "",
+      category: "",
+      description: "",
+    });
   };
 
   const handleUpdatePost = () => {

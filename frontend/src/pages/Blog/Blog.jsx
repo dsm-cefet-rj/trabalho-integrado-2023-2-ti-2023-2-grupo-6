@@ -4,8 +4,11 @@ import EmptyList from "../../components/BlogList/EmptyList";
 import { blogPosts } from "../../server/database/db.json";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import db from "../../server/database/db.json";
 
 const Blog = () => {
+  const userRole = localStorage.getItem("id");
+
   const [blogs, setBlogs] = useState(blogPosts);
   const [searchKey, setSearchKey] = useState("");
 
@@ -44,11 +47,13 @@ const Blog = () => {
 
       <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4">
         <div className="flex flex-col justify-center">
-          <Link to="/blog/myBlog" className="flex justify-center">
-            <button className="flex justify-center btn w-[250px] h-[50px] rounded-[5px] border-[none] outline-none">
-              Meus Posts
-            </button>
-          </Link>
+          {db.users[userRole].role === "TEACHER" && (
+            <Link to="/blog/myBlog" className="flex justify-center">
+              <button className="flex justify-center btn w-[250px] h-[50px] rounded-[5px] border-[none] outline-none">
+                Meus Posts
+              </button>
+            </Link>
+          )}
           {/* Search Bar */}
           <SearchBar
             value={searchKey}
