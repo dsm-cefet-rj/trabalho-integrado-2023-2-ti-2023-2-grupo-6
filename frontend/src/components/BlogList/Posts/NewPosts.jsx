@@ -177,51 +177,82 @@ const MyBlog = () => {
       </div>
       {editPost && (
         <div className="mt-4">
-          <h2 className="text-xl font-semibold mb-2">Editando Postagem</h2>
-          <div className="">
-            <label htmlFor="cover">Cover</label>
+          <h2 className="text-xl font-semibold mb-3">Editando Postagem</h2>
+          <div>
+            <label htmlFor="cover" className="form__label">
+              Url da imagem:
+            </label>
             <input
               type="text"
-              placeholder="Cover URL"
+              placeholder="Digite a URL da sua imagem"
+              name="cover"
               value={editPost.cover}
               onChange={(e) =>
                 setEditPost({ ...editPost, cover: e.target.value })
               }
-              className="w-full p-2 rounded border mb-2"
+              className="form-input mt-1"
             />
           </div>
-          <input
-            type="text"
-            placeholder="Title"
-            value={editPost.title}
-            onChange={(e) =>
-              setEditPost({ ...editPost, title: e.target.value })
-            }
-            className="w-full p-2 rounded border"
-          />
-          <input
-            type="text"
-            placeholder="Category"
-            value={editPost.category}
-            onChange={(e) =>
-              setEditPost({ ...editPost, category: e.target.value })
-            }
-            className="w-full p-2 mt-2 rounded border"
-          />
-          <textarea
-            placeholder="Description"
-            value={editPost.description}
-            onChange={(e) =>
-              setEditPost({ ...editPost, description: e.target.value })
-            }
-            className="w-full p-2 mt-2 rounded border"
-          />
+
+          <div className="my-3">
+            <label htmlFor="title" className="form__label">
+              Titulo do Post:
+            </label>
+            <input
+              name="title"
+              type="text"
+              placeholder="Digite o titulo do seu Post"
+              value={editPost.title}
+              onChange={(e) =>
+                setEditPost({ ...editPost, title: e.target.value })
+              }
+              className="form-input mt-1"
+              maxLength={100}
+              title="Digite até 100 caracteres"
+            />
+          </div>
+
+          <div className="my-3">
+            <label htmlFor="category" className="form__label">
+              Categoria do Post:
+            </label>
+            <input
+              name="category"
+              type="text"
+              placeholder="Digite em qual categoria encontra-se seu Post"
+              value={editPost.category}
+              onChange={(e) =>
+                setEditPost({ ...editPost, category: e.target.value })
+              }
+              className="form-input mt-1"
+              maxLength={50}
+              title="Digite até 50 caracteres"
+            />
+          </div>
+
+          <div className="my-3">
+            <label htmlFor="description" className="form__label">
+              Descrição do Post:
+            </label>
+            <textarea
+              name="description"
+              placeholder="Escreva mais sobre o que você tem a ensinar"
+              value={editPost.description}
+              onChange={(e) =>
+                setEditPost({ ...editPost, description: e.target.value })
+              }
+              className="form-input mt-1"
+              maxLength={1500}
+              title="Digite até 1500 caracteres"
+            />
+          </div>
+
           <div className="flex justify-center">
             <button
               onClick={handleUpdatePost}
               className="btn text-white px-2 py-1 mt-2 ml-2 rounded hover:bg-green-900"
             >
-              Salvar
+              Salvar Post
             </button>
           </div>
         </div>
