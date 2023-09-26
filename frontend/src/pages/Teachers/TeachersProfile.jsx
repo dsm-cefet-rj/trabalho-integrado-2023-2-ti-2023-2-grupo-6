@@ -131,15 +131,6 @@ const TeachersProfile = () => {
                 </ul>
               </div>
 
-              <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
-                <h3
-                  className={
-                    "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"
-                  }
-                >
-                  Postagens feitas
-                </h3>
-              </div>
               <div className="flex flex-wrap justify-center">
                 {teacherBlogPosts.map((post) => (
                   <BlogItem key={post.id} post={post} />

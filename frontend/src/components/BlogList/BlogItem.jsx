@@ -1,19 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import Tag from "./Tag";
+import db from "../../server/database/db.json";
 
 const BlogItem = ({
-  blog: {
-    id,
-    description,
-    title,
-    createdAt,
-    authorName,
-    authorAvatar,
-    cover,
-    category,
-  },
+  blog: { id, description, title, createdAt, authorId, cover, category },
 }) => {
+  const authorUser = db.users.find((user) => user.id === authorId);
+
   return (
     <Link className="no-underline text-inherit" to={`/blog/${id}`}>
       <div className="flex flex-col">
@@ -24,18 +18,18 @@ const BlogItem = ({
         />
         <Tag label={category} />
         <h3 className=" flex-1 mt-2 mb-4 mx-0">{title}</h3>
-        <p className="relative max-h-[50px] overflow-hidden text-[0.8rem] text-[#a9a9a9] pr-[0.6rem] before:absolute before:right-0 before:bottom-0 before:content-['...']">
+        <p className="relative max-h-[60px] overflow-hidden text-[0.8rem] text-[#a9a9a9] pr-[0.6rem] before:absolute before:right-0 before:bottom-0 before:content-['...']">
           {description}
         </p>
         <footer className="flex items-center justify-between mt-4">
           <div className="flex items-center">
             <img
-              src={authorAvatar}
+              src={authorUser?.profilePicture}
               alt="avatar"
               className="w-10 h-10 object-cover mr-2 rounded-[50%]"
             />
             <div>
-              <h6>{authorName}</h6>
+              <h6>{authorUser?.name}</h6>
               <p className="text-[0.6rem] text-[#a9a9a9] font-semibold">
                 {createdAt}
               </p>

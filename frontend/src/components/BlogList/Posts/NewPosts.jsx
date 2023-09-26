@@ -24,12 +24,15 @@ const MyBlog = () => {
     dispatch(getBlogPosts());
   }, [dispatch]);
 
+  const loggedInProfessorId = parseInt(localStorage.getItem("id"), 10);
+
   const handleCreatePost = () => {
     // Obtém a data atual
     const currentDate = formatarData(new Date());
     const newPostData = {
       ...newPost,
       createdAt: currentDate,
+      authorId: loggedInProfessorId,
     };
 
     dispatch(createBlogPost(newPostData)).then(() => {
@@ -57,6 +60,10 @@ const MyBlog = () => {
       dispatch(getBlogPosts()); // Atualiza a lista após a exclusão
     });
   };
+
+  const filteredPosts = blogPosts.filter(
+    (post) => post.authorId === loggedInProfessorId
+  );
 
   return (
     <div className="container mx-auto p-4">
@@ -152,7 +159,7 @@ const MyBlog = () => {
           </h3>
         </div>
         <ul>
-          {blogPosts.map((post) => (
+          {filteredPosts.map((post) => (
             <li key={post.id} className="mb-4">
               <img
                 src={post.cover}

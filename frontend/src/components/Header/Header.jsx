@@ -10,7 +10,7 @@ import { users } from "../../server/database/db.json";
 const navLinks = [
   { path: "/home", display: "Home" },
   { path: "/teachers", display: "Ache um professor!" },
-  { path: "/working", display: "[Em breve...]" },
+  { path: "/blog", display: "Trilhas de Conhecimento" },
   { path: "/contact", display: "Contatos" },
 ];
 

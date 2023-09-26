@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import db from "../../server/database/db.json";
 
 const Blog = () => {
-  const userRole = localStorage.getItem("id");
+  const localStorageId = Number(localStorage.getItem("id"));
+  const isTeacher = db.users[localStorageId - 1]?.role == "TEACHER";
 
   const [blogs, setBlogs] = useState(blogPosts);
   const [searchKey, setSearchKey] = useState("");
@@ -47,13 +48,21 @@ const Blog = () => {
 
       <div className="max-w-[1140px] w-[95%] mx-auto my-0 px-0 py-4">
         <div className="flex flex-col justify-center">
-          {db.users[userRole].role === "TEACHER" && (
+          {!isTeacher ? (
+            <div className="shadow-2xl mt-[40px] p-4 max-w-[300px] text-center text-primaryColor rounded-lg font-bold">
+              <span className="text-orangeColor">Entre</span> ou{" "}
+              <span className="text-orangeColor">Registre-se</span> como{" "}
+              <span className="text-orangeColor">Professor</span> para adicionar
+              um Post!
+            </div>
+          ) : (
             <Link to="/blog/myBlog" className="flex justify-center">
               <button className="flex justify-center btn w-[250px] h-[50px] rounded-[5px] border-[none] outline-none">
                 Meus Posts
               </button>
             </Link>
           )}
+
           {/* Search Bar */}
           <SearchBar
             value={searchKey}
