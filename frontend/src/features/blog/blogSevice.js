@@ -7,6 +7,10 @@ const getBlogPosts = async () => {
   return await axios.get(API_URL + "/blogPosts");
 };
 
+const getTBlogPostsDetails = async (id) => {
+  return await axios.get(API_URL + `/blogPosts/${id}?_expand=teacher`);
+};
+
 export const createBlogPost = async (blogPost) => {
   return await axios.post(API_URL + "/blogPosts", blogPost);
 };
@@ -33,6 +37,7 @@ export const deleteBlogPost = async (id) => {
 
 const blogService = {
   getBlogPosts,
+  getTBlogPostsDetails,
   createBlogPost,
   updateBlogPost,
   deleteBlogPost,

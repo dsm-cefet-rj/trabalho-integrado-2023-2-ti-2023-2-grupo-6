@@ -4,7 +4,7 @@ import {
   createEntityAdapter,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import blogService from "./blogSevice";
+import blogService from "../blog/blogSevice"; // Corrigido o nome do serviço
 
 const blogAdapter = createEntityAdapter();
 

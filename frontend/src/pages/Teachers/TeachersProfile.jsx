@@ -4,6 +4,9 @@ import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHo
 import { formatarData } from "../../common/functions";
 import EditModal from "../../components/Teacher/EditModal";
 import { useState } from "react";
+import BlogItem from "../../components/BlogList/BlogItem";
+import { useSelector } from "react-redux";
+import { selectAllBlogPosts } from "../../features/blog/blogSlice";
 
 const TeachersProfile = () => {
   const url = window.location.href;
@@ -39,6 +42,11 @@ const TeachersProfile = () => {
   const handleCloseEditModal = () => {
     setIsEditModalOpen(false);
   };
+
+  const blogPosts = useSelector(selectAllBlogPosts);
+  const teacherBlogPosts = blogPosts.filter(
+    (post) => post.authorId === teacherId
+  );
 
   return (
     <section>
@@ -122,6 +130,22 @@ const TeachersProfile = () => {
                   )}
                 </ul>
               </div>
+
+              <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
+                <h3
+                  className={
+                    "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"
+                  }
+                >
+                  Postagens feitas
+                </h3>
+              </div>
+              <div className="flex flex-wrap justify-center">
+                {teacherBlogPosts.map((post) => (
+                  <BlogItem key={post.id} post={post} />
+                ))}
+              </div>
+
               <div className="flex justify-center">
                 <button className="btn" onClick={handleEditClick}>
                   Adicionar dados complementares

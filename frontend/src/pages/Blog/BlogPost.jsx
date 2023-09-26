@@ -14,7 +14,7 @@ const BlogPost = () => {
     if (blog) {
       setBlog(blog);
     }
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -32,11 +32,9 @@ const BlogPost = () => {
             </p>
             <h1 className="heading text-[32px]">{blog.title}</h1>
             <div className="flex justify-center">
-              {blog.subCategory.map((category, i) => (
-                <div key={i} className="m-4">
-                  <Tag label={category} />
-                </div>
-              ))}
+              <div className="m-4">
+                <Tag label={blog.category} />
+              </div>
             </div>
           </header>
           <img src={blog.cover} alt="cover" className="w-full" />
