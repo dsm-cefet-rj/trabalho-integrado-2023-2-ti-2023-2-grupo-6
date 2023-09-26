@@ -33,6 +33,10 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 1. Para o Front: yarn > yarn dev
 2. Para o Servidor Mocado: yarn server
 
+Ou, como forma de facilitar:
+
+1. Para o Front e o Servidor Mocado: cd frontend > yarn > yarn start
+
 ### Requisitos:
 
 Para que a aplicação funcione corretamente, é necessário ter os seguintes programas:
@@ -66,5 +70,5 @@ Logo, temos as seguintes equipes:
 
   - Gabriel Rodrigo
   - Gabriel Padrão
-  - João Pedro
+  - João Pedro - Desistência da Matéria
   - Natan Balthazar
