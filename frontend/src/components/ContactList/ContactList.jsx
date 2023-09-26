@@ -26,14 +26,14 @@ const ContactList = () => {
                 className="flex flex-col sm:flex-row sm:justify-between md:gap-5 mb-[30px] shadow-lg rounded-[5px] p-4 bg-[#cff0b4] "
               >
                 <div className="flex flex-col gap-2 sm:gap-4 ">
-                  <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
+                  <span className="text-irisBlueColor text-[15px] leading-6 font-semibold break-words">
                     Email: {contact.email}
                   </span>
-                  <p className="text-[16px] leading-6 font-medium text-textColor">
+                  <p className="text-[16px] leading-6 font-medium text-textColor break-words">
                     <strong>Assunto:</strong> {contact.assunto}
                   </p>
                 </div>
-                <p className="text-[14px] leading-5 font-medium text-textColor">
+                <p className="text-[14px] leading-5 font-medium text-textColor break-words">
                   <strong>Mensagem:</strong> {contact.mensagem}
                 </p>
               </li>
