@@ -51,6 +51,25 @@ Para que a aplicação funcione corretamente, é necessário ter os seguintes pr
 ```bash
 # Primeiramente, clone o repositório
 git clone https://github.com/dsm-cefet-rj/trabalho-integrado-2023-2-ti-2023-2-grupo-6.git
+
+# Acesse a pasta backend da aplicação
+cd backend/
+
+# Instale as dependências
+npm install
+
+# Rode o servidor
+nodemon index.js
+
+# Em outro terminal acesse a pasta frontend da aplicação
+cd frontend/
+
+# Instale as dependências
+yarn
+
+# Rode a aplicação
+yarn dev
+
 ```
 
 ## 👨‍💻 Gerentes e Desenvolvedores
