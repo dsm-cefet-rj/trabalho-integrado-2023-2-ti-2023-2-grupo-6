@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const cors = require ('cors')
 const appointment = require("./appointmentRoutes");
-const contact = require("./contactRoutes");
+//const contact = require("./contactRoutes");
 const post = require("./postRoutes");
 const student = require("./studentRoutes");
 const teacher = require("./teacherRoutes");
@@ -21,6 +21,6 @@ module.exports = app => {
         post,
         appointment,
         auth,
-        contact
+        
     )
 }
