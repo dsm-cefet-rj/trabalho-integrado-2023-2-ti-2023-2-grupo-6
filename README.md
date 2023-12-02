@@ -80,7 +80,7 @@ Logo, temos as seguintes equipes:
 
 - **Gerentes (GPTI):**
 
-  - Davi Gabriel
+  - Davi Gabriel - Desistência da Matéria
   - Raphael Kenji
   - Sara Neves
   - Walter Henrique
