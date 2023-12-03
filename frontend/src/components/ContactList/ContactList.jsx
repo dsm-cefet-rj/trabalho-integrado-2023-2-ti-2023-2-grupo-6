@@ -30,11 +30,11 @@ const ContactList = () => {
                     Email: {contact.email}
                   </span>
                   <p className="text-[16px] leading-6 font-medium text-textColor break-words">
-                    <strong>Assunto:</strong> {contact.assunto}
+                    <strong>Assunto:</strong> {contact.content}
                   </p>
                 </div>
                 <p className="text-[14px] leading-5 font-medium text-textColor break-words">
-                  <strong>Mensagem:</strong> {contact.mensagem}
+                  <strong>Mensagem:</strong> {contact.message}
                 </p>
               </li>
             ))}

@@ -12,7 +12,7 @@ class ContactController {
             if(!email || !content || !message) return res.status(400).json({msg:"Preencha todos os campos!"})
             console.log(email, content, message)
 
-            if(content.length<10 || message.length) {
+            if(content.length < 10 || message.length < 10) {
                 return res.status(400).json({msg:"Digite uma mensagem de pelo menos 10 caracteres"})
             }
             

@@ -6,23 +6,23 @@ import { toast } from "react-toastify";
 const Contact = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
-  const [assunto, setAssunto] = useState("");
-  const [mensagem, setMensagem] = useState("");
+  const [content, setContent] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const contactData = {
       email,
-      assunto,
-      mensagem,
+      content,
+      message,
     };
 
     try {
       await dispatch(sendContactMessage(contactData));
       setEmail("");
-      setAssunto("");
-      setMensagem("");
+      setContent("");
+      setMessage("");
     } catch (error) {
       toast.error("Erro ao enviar mensagem de contato:", error);
     }
@@ -60,8 +60,8 @@ const Contact = () => {
               id="assunto"
               placeholder="Qual assunto você deseja escrever?"
               className="form-input mt-1"
-              value={assunto}
-              onChange={(e) => setAssunto(e.target.value)}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               required
             />
           </div>
@@ -75,8 +75,8 @@ const Contact = () => {
               id="mensagem"
               placeholder="Como podemos ajudar?"
               className="form-input mt-1"
-              value={mensagem}
-              onChange={(e) => setMensagem(e.target.value)}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               required
             />
           </div>
