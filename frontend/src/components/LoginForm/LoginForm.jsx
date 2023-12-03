@@ -5,10 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../../features/auth/authSlice";
 import Spinner from "../RegisterForm/Spinner/Spinner";
-import axios from "axios"
+import axios from "axios";
 
 const LoginForm = () => {
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -26,7 +25,7 @@ const LoginForm = () => {
   };
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Usar useNavigate
 
   const { user, isError, isSuccess, isLoading, message } = useSelector(
     (state) => state.auth
@@ -37,7 +36,8 @@ const LoginForm = () => {
       toast.error("Dados incorretos, tente novamente!");
     }
     if (isSuccess || user) {
-      navigate("/login");
+      // Navegar para a página principal após o login bem-sucedido
+      navigate("/");
     }
 
     dispatch(reset());
@@ -48,27 +48,28 @@ const LoginForm = () => {
 
     console.log(formData.email, formData.password);
     await authenticate(formData.email, formData.password);
-
-    dispatch(login(formData));
   };
 
-  //Autenticação via login
+  // Autenticação via login
   async function authenticate(email, password) {
     if (!email || !password) {
       console.log("Preencha todos os campos");
       return;
     }
 
-    const res = await axios.post("http://localhost:3300/login", formData)
+    try {
+      const res = await axios.post("http://localhost:3300/login", formData);
 
-    
-
-    if (res.data.status == true){
-      console.log(res.data)
-    } else {
-      return
+      if (res.data.status === true) {
+        console.log(res.data);
+        dispatch(login(formData)); // Disparar a ação de login após autenticação
+      } else {
+        // Tratar caso o login seja mal sucedido
+        toast.error("Erro no login, verifique suas credenciais");
+      }
+    } catch (error) {
+      console.error("Erro na autenticação:", error);
     }
-
   }
 
   if (isLoading) {
