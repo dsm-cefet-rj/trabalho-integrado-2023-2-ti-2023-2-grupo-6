@@ -13,7 +13,7 @@ const TeacherForm = () => {
     email: "",
     password: "",
     profilePicture: "",
-    gender: "",
+    sex: "",
     role: "TEACHER",
   });
 
@@ -136,8 +136,8 @@ const TeacherForm = () => {
           <label className="text-headingColor font-bold text-[16px] leading-7">
             Gênero:
             <select
-              name="gender"
-              value={formData.gender}
+              name="sex"
+              value={formData.sex}
               onChange={handleInputChange}
               className="text-headingColor font-semibold text-[15px] leading-7 px-4
         py-3 focus:outline-none cursor-pointer ml-2"

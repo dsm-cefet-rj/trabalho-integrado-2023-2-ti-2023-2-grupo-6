@@ -7,7 +7,7 @@ import authService from "./authService";
 
 const userAdapter = createEntityAdapter();
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("id"));
 
 const initialState = userAdapter.getInitialState({
   user: user ? user : null,

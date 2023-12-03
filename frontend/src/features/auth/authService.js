@@ -1,41 +1,45 @@
 import axios from "axios";
-import { createTeacher } from "../teacher/teacherService";
 
-const API_URL = "http://localhost:3000/users/";
+let API_URL = "http://localhost:3300";
+
+
 
 const register = async (userData) => {
-  const response = await axios.post(API_URL, userData);
-
-  if (response.data) {
-    const newUser = response.data;
-    if (newUser.role === "TEACHER") {
-      const teacherData = {
-        userId: newUser.id,
-        specialization: "Desenvolvedor",
-        resume: "",
-        description: "",
-        availableHours: [],
-      };
-      await createTeacher(teacherData);
+  userData.sex = userData.sex.toLowerCase()
+  if (userData.role === "TEACHER"){
+      API_URL = "http://localhost:3300/teachers"
+      try {
+        const res = await axios.post(API_URL, userData);
+        console.log(res.data)
+        return res.data;
+      } catch (err){
+        console.log(err)
+      }
+  } else if (userData.role === "STUDENT"){
+    API_URL = "http://localhost:3300/students"
+    try {
+      const res = await axios.post(API_URL, userData);
+      console.log(res.data)
+      return res.data;
+    } catch (err){
+      console.log(err)
     }
-    localStorage.setItem("user", JSON.stringify(newUser));
   }
-
-  return response.data;
-};
+}
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("token");
 };
 
 const login = async (userData) => {
-  const response = await axios.post(API_URL + "login", userData);
+  const response = await axios.post(API_URL + "/login", userData);
 
   if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem("token", JSON.stringify(response.data.token));
+    localStorage.setItem("id", JSON.stringify(response.data.id));
   }
 
-  return response.date;
+  return response.data;
 };
 
 const getUserById = async (id) => {

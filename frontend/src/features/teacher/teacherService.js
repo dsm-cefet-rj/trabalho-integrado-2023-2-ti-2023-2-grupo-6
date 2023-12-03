@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:3300";
 
 const getTeachers = async () => {
-  return await axios.get(API_URL + `/teachers?_expand=user`);
+  return await axios.get(API_URL + `/teachers`);
 };
 
 const getTeachersDetails = async (id) => {
-  return await axios.get(API_URL + `/teachers/${id}?_expand=user`);
+  return await axios.get(API_URL + `/teachers/${id}`);
 };
 
 const updateTeacher = async (id, teacher) => {

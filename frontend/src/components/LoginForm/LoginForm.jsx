@@ -5,9 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../../features/auth/authSlice";
 import Spinner from "../RegisterForm/Spinner/Spinner";
-import db from "../../server/database/db.json";
+import axios from "axios"
 
 const LoginForm = () => {
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -57,17 +58,17 @@ const LoginForm = () => {
       console.log("Preencha todos os campos");
       return;
     }
-    let achou = false;
-    db.users.forEach((e) => {
-      if (e.email.toLowerCase() == email.toLowerCase() && e.password == password) {
-        achou = true;
-        localStorage.setItem("id", e.id);
-        navigate("/teachers");
-      }
-    });
-    if (achou == false) {
-      console.log("Algum dado não está correto, preencha novamente");
+
+    const res = await axios.post("http://localhost:3300/login", formData)
+
+    
+
+    if (res.data.status == true){
+      console.log(res.data)
+    } else {
+      return
     }
+
   }
 
   if (isLoading) {

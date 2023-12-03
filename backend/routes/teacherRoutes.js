@@ -10,5 +10,6 @@ router
   .put('/teachers/', auth, TeacherController.editInfo)
   .post('/teachers/availablehours/', auth, TeacherController.setAvailableHour)
   .delete('/teachers/availablehours/', auth, TeacherController.deleteAvailableHour)
+  .get('/teachers/appointments/:teacherId', auth, TeacherController.getTeacherAppointments)
 
 module.exports = router;

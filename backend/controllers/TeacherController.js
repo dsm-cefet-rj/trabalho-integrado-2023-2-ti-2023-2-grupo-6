@@ -184,6 +184,20 @@ class TeacherController {
         }
     }
 
+    static async getTeacherAppointments(req, res) {
+        const {teacherId} = req.params;
+ 
+        try {
+            const appointments = await Appointment.find({teacher:teacherId});
+ 
+            return res.status(200).json(appointments);
+           
+        } catch (error) {
+            console.error('Erro :', error);
+            return res.status(500).json({ msg: "Erro ao definir horário disponível", status: false });
+        }
+    }
+
 }
 
 module.exports = TeacherController;
