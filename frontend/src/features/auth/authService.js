@@ -1,27 +1,17 @@
 import axios from "axios";
-import { createTeacher } from "../teacher/teacherService";
 
-const API_URL = "http://localhost:3000/users/";
+const API_URL = "http://localhost:3300/";
 
 const register = async (userData) => {
-  const response = await axios.post(API_URL, userData);
-
-  if (response.data) {
-    const newUser = response.data;
-    if (newUser.role === "TEACHER") {
-      const teacherData = {
-        userId: newUser.id,
-        specialization: "Desenvolvedor",
-        resume: "",
-        description: "",
-        availableHours: [],
-      };
-      await createTeacher(teacherData);
-    }
-    localStorage.setItem("user", JSON.stringify(newUser));
+  if (userData.role === "TEACHER") {
+    const response = await axios.post(API_URL + "teachers", userData);
+    console.log(response.data);
+    return response.data;
+  } else if (userData.role === "STUDENT") {
+    const response = await axios.post(API_URL + "students", userData);
+    console.log(response.data);
+    return response.data;
   }
-
-  return response.data;
 };
 
 const logout = () => {
