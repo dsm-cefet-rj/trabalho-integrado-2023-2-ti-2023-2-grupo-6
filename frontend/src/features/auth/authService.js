@@ -15,17 +15,20 @@ const register = async (userData) => {
 };
 
 const logout = () => {
+  localStorage.removeItem("id");
   localStorage.removeItem("user");
+  localStorage.removeItem("token");
 };
 
 const login = async (userData) => {
   const response = await axios.post(API_URL + "login", userData);
 
   if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem("token", (response.data.token));
+    localStorage.setItem("id", (response.data.id));
   }
 
-  return response.date;
+  return response.data;
 };
 
 const getUserById = async (id) => {

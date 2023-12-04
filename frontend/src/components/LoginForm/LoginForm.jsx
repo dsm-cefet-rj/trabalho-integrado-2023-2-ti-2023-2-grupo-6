@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../../features/auth/authSlice";
 import Spinner from "../RegisterForm/Spinner/Spinner";
-import db from "../../server/database/db.json";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +35,7 @@ const LoginForm = () => {
       toast.error("Dados incorretos, tente novamente!");
     }
     if (isSuccess || user) {
-      navigate("/login");
+      navigate("/home");
     }
 
     dispatch(reset());
@@ -45,30 +44,13 @@ const LoginForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData.email, formData.password);
-    await authenticate(formData.email, formData.password);
-
-    dispatch(login(formData));
+    try {
+      // Call the backend login API
+      await dispatch(login(formData));
+    } catch (error) {
+      console.error("Error during login:", error.message);
+    }
   };
-
-  //Autenticação via login
-  async function authenticate(email, password) {
-    if (!email || !password) {
-      console.log("Preencha todos os campos");
-      return;
-    }
-    let achou = false;
-    db.users.forEach((e) => {
-      if (e.email.toLowerCase() == email.toLowerCase() && e.password == password) {
-        achou = true;
-        localStorage.setItem("id", e.id);
-        navigate("/teachers");
-      }
-    });
-    if (achou == false) {
-      console.log("Algum dado não está correto, preencha novamente");
-    }
-  }
 
   if (isLoading) {
     return <Spinner />;

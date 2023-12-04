@@ -7,7 +7,7 @@ import authService from "./authService";
 
 const userAdapter = createEntityAdapter();
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = localStorage.getItem("user");
 
 const initialState = userAdapter.getInitialState({
   user: user ? user : null,
@@ -120,7 +120,8 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.token = action.payload.token;
         state.user = action.payload;
-        localStorage.setItem("user", JSON.stringify(action.payload._doc));
+        localStorage.setItem("user", (action.payload._doc));
+        localStorage.setItem("id", (action.payload.id));
         localStorage.setItem("token", action.payload.token);
       })
       .addCase(login.rejected, (state, action) => {
