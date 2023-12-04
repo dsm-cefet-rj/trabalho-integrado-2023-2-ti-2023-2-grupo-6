@@ -5,7 +5,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
-import { users } from "../../server/database/db.json";
+import axios from "axios"
 
 const navLinks = [
   { path: "/home", display: "Home" },
@@ -44,24 +44,61 @@ const Header = () => {
     });
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("id")) {
-      users.forEach((e) => {
-        if (Number(e.id) == localStorage.getItem("id")) {
-          setProfilePic(e.profilePicture);
-        }
-      });
-    }
+  // useEffect(() => {
+  //   if (localStorage.getItem("id")) {
+  //     users.forEach((e) => {
+  //       if (Number(e.id) == localStorage.getItem("id")) {
+  //         setProfilePic(e.profilePicture);
+  //       }
+  //     });
+  //   }
 
-    // Ativar o cabeçalho menor quando montado e limpar quando desmontado
-    handleStickyHeader();
-    return () => window.removeEventListener("scroll", handleStickyHeader);
+  //   // Ativar o cabeçalho menor quando montado e limpar quando desmontado
+  //   handleStickyHeader();
+  //   return () => window.removeEventListener("scroll", handleStickyHeader);
+  // });
+
+  const [profilePic, setProfilePic] = useState();
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const id = localStorage.getItem('id');
+        const role = localStorage.getItem('role');
+
+        if (!id || !role) {
+          // Lógica para lidar com id ou role ausentes no localStorage
+          return;
+        }
+
+        let url;
+        if (role === 'TEACHER') {
+          url = `http://localhost:3300/teachers/${id}`;
+        } else if (role === 'STUDENT') {
+          url = `http://localhost:3300/students/${id}`;
+        }
+
+        const response = await axios.get(url);
+        const userProfile = response.data;
+        console.log(userProfile.profilePicture);
+
+        // Se a resposta contiver a URL da imagem de perfil, defina no state
+        if (userProfile && userProfile.profilePicture) {
+          setProfilePic(userProfile.profilePicture);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar perfil do usuário:', error);
+        // Lógica para lidar com erros na requisição
+      }
+    };
+
+    fetchUserProfile();
   });
 
   // Função para alternar o menu móvel
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
-  const [profilePic, setProfilePic] = useState();
+  
   return (
     <header className="header flex items-center " ref={headerRef}>
       <div className="container">

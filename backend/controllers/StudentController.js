@@ -38,14 +38,14 @@ class StudentController {
     }
 
     static async createStudent(req, res) {
-        const { name, email, password, sex } = req.body;
+        const { name, email, password, sex, profilePicture } = req.body;
 
         try {
             if (!UserService.isValidEmail(email)) {
                 return res.status(400).json({ error: 'Email inválido' });
             }
 
-            if (!name || !email || !password || !sex) {
+            if (!name || !email || !password || !sex ) {
                 return res.status(400).json({ error: 'Preencha todos os campos!', status: false });
             }
 
@@ -65,6 +65,7 @@ class StudentController {
                 email,
                 password: hash,
                 sex,
+                profilePicture,
             });
 
             const savedStudent = await newStudent.save();

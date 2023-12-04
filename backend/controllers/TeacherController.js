@@ -39,7 +39,7 @@ class TeacherController {
     }
 
     static async createTeacher(req, res) {
-        const { name, email, password, sex } = req.body;
+        const { name, email, password, sex, profilePicture } = req.body;
 
         try {
 
@@ -64,6 +64,7 @@ class TeacherController {
                 email: email,
                 password: hash,
                 sex: sex,
+                profilePicture
             });
 
             const savedTeacher = await newTeacher.save();
