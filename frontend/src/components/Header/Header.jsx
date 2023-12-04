@@ -15,6 +15,8 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const userId = localStorage.getItem("id");
+  const userRole = localStorage.getItem("role");
   const headerRef = useRef(null);
   const menuRef = useRef(null);
 
@@ -24,7 +26,6 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    localStorage.removeItem("id");
     setProfilePic("");
     navigate("/login");
   };
@@ -107,7 +108,13 @@ const Header = () => {
 
             {localStorage.getItem("id") ? (
               <div className="flex items-center gap-5">
-                <Link to={`/users/profile/${localStorage.getItem("id")}`}>
+                <Link
+                  to={
+                    userRole === "STUDENT"
+                      ? `/students/${userId}`
+                      : `/teachers/profile/${userId}`
+                  }
+                >
                   <figure className="max-w-[40px] max-h-[40px] ">
                     <img
                       src={profilePic}

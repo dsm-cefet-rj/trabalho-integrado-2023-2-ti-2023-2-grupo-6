@@ -3,15 +3,11 @@ import axios from "axios";
 const API_URL = "http://localhost:3300";
 
 const getTeachers = async () => {
-  return await axios.get(API_URL + `/teachers?_expand=user`);
+  return await axios.get(API_URL + `/teachers`);
 };
 
 const getTeachersDetails = async (id) => {
-  return await axios.get(API_URL + `/teachers/${id}?_expand=user`);
-};
-
-const updateTeacher = async (id, teacher) => {
-  return await axios.patch(API_URL + `/teachers/${id}`, teacher);
+  return await axios.get(API_URL + `/teachers/${id}`);
 };
 
 const updateTeacherDetails = async (teacher) => {
@@ -34,39 +30,31 @@ export const createTeacher = async (teacher) => {
   return await axios.post(API_URL + `/teachers`, teacher);
 };
 
-const updateAvailableHours = async (id, newAvailability) => {
-  const response = await axios.get(API_URL + `/teachers/${id}`);
-
-  if (response.data) {
-    const teacherData = {
-      ...response.data,
-    };
-
-    if (!teacherData.availableHours.includes(newAvailability)) {
-      teacherData.availableHours.push(newAvailability);
-      await updateTeacher(id, teacherData);
-    } else {
-      throw new Error("Horário já existe na lista de disponibilidade.");
+const updateAvailableHours = {
+  setAvailableHour: async (teacherId, schedule) => {
+    try {
+      const response = await axios.post(`${API_URL}/teachers/availablehours/${teacherId}`, { schedule });
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.msg || 'Erro ao definir horário disponível');
     }
-  }
-};
+  },
 
-const createFullTeacher = async (teacher) => {
-  return await axios.post(API_URL + `/teachers/full`, teacher);
-};
-
-const deleteTeacher = async (id) => {
-  return await axios.delete(API_URL + `/teachers/${id}`);
+  deleteAvailableHour: async (teacherId, schedule) => {
+    try {
+      const response = await axios.delete(`${API_URL}/teachers/availablehours/${teacherId}`, { data: { schedule } });
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.msg || 'Erro ao eliminar horário disponível');
+    }
+  },
 };
 
 const teacherService = {
   getTeachers,
   getTeachersDetails,
-  updateTeacher,
   updateTeacherDetails,
   updateAvailableHours,
-  createFullTeacher,
-  deleteTeacher,
 };
 
 export default teacherService;
