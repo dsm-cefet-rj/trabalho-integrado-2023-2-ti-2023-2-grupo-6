@@ -30,24 +30,13 @@ export const createTeacher = async (teacher) => {
   return await axios.post(API_URL + `/teachers`, teacher);
 };
 
-const updateAvailableHours = {
-  setAvailableHour: async (teacherId, schedule) => {
-    try {
-      const response = await axios.post(`${API_URL}/teachers/availablehours/${teacherId}`, { schedule });
-      return response.data;
-    } catch (error) {
-      throw new Error(error.response.data.msg || 'Erro ao definir horário disponível');
-    }
-  },
-
-  deleteAvailableHour: async (teacherId, schedule) => {
-    try {
-      const response = await axios.delete(`${API_URL}/teachers/availablehours/${teacherId}`, { data: { schedule } });
-      return response.data;
-    } catch (error) {
-      throw new Error(error.response.data.msg || 'Erro ao eliminar horário disponível');
-    }
-  },
+const updateAvailableHours = async (teacherId, schedule) => {
+  try {
+    const response = await axios.post(`${API_URL}/teachers/availablehours/${teacherId}`, { schedule });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.msg || 'Erro ao definir horário disponível');
+  }
 };
 
 const teacherService = {

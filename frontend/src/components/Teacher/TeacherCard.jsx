@@ -10,6 +10,7 @@ const TeacherCard = ({ teacher }) => {
   const teacherData = useSelector((state) =>
     selectTeacherById(state, teacher.id)
   );
+  console.log(teacherData);
 
   if (!teacherData) {
     // Trate o caso em que o professor não foi encontrado

@@ -7,11 +7,10 @@ import {
 import { Link, useParams } from "react-router-dom";
 import AppointmentPainel from "./AppointmentPainel";
 import Tag from "../../components/BlogList/Tag";
-import db from "../../server/database/db.json";
 
 const TeacherDetails = () => {
-  const localStorageId = Number(localStorage.getItem("id"));
-  const isTeacher = db.users[localStorageId - 1]?.role == "TEACHER";
+  const localStorageRole = localStorage.getItem("role");
+  const isTeacher = localStorageRole == "TEACHER";
 
   const { id } = useParams();
 

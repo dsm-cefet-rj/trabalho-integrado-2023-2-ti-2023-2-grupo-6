@@ -4,11 +4,10 @@ import EmptyList from "../../components/BlogList/EmptyList";
 import { blogPosts } from "../../server/database/db.json";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import db from "../../server/database/db.json";
 
 const Blog = () => {
-  const localStorageId = Number(localStorage.getItem("id"));
-  const isTeacher = db.users[localStorageId - 1]?.role == "TEACHER";
+  const localStorageRole = localStorage.getItem("role");
+  const isTeacher = localStorageRole == "TEACHER";
 
   const [blogs, setBlogs] = useState(blogPosts);
   const [searchKey, setSearchKey] = useState("");

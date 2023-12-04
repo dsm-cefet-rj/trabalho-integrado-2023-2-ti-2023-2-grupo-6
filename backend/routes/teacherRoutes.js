@@ -8,7 +8,7 @@ router
   .get('/teachers/:teacherId', TeacherController.getTeacher)
   .post('/teachers', TeacherController.createTeacher)
   .put('/teachers/', auth, TeacherController.editInfo)
-  .post('/teachers/availablehours/:teacherId', auth, TeacherController.setAvailableHour)
+  .post('/teachers/availablehours/:teacherId', TeacherController.setAvailableHour)
   .delete('/teachers/availablehours/:teacherId', auth, TeacherController.deleteAvailableHour)
 
 module.exports = router;
