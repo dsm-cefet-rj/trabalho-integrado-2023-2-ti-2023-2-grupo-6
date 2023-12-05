@@ -5,7 +5,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
-import { users } from "../../server/database/db.json";
+import axios from "axios";
 
 const navLinks = [
   { path: "/home", display: "Home" },
@@ -15,6 +15,8 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const userId = localStorage.getItem("id");
+  const userRole = localStorage.getItem("role");
   const headerRef = useRef(null);
   const menuRef = useRef(null);
 
@@ -24,43 +26,49 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    localStorage.removeItem("id");
     setProfilePic("");
     navigate("/login");
   };
 
-  // Função para tornar o cabeçalho menor
-  const handleStickyHeader = () => {
-    window.addEventListener("scroll", () => {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        headerRef.current.classList.add("sticky_header");
-      } else {
-        headerRef.current.classList.remove("sticky_header");
-      }
-    });
-  };
+  const [profilePic, setProfilePic] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem("id")) {
-      users.forEach((e) => {
-        if (Number(e.id) == localStorage.getItem("id")) {
-          setProfilePic(e.profilePicture);
-        }
-      });
-    }
+    const fetchUserProfile = async () => {
+      try {
+        const id = localStorage.getItem("id");
+        const role = localStorage.getItem("role");
 
-    // Ativar o cabeçalho menor quando montado e limpar quando desmontado
-    handleStickyHeader();
-    return () => window.removeEventListener("scroll", handleStickyHeader);
+        if (!id || !role) {
+          // Lógica para lidar com id ou role ausentes no localStorage
+          return;
+        }
+
+        let url;
+        if (role === "TEACHER") {
+          url = `http://localhost:3300/teachers/${id}`;
+        } else if (role === "STUDENT") {
+          url = `http://localhost:3300/students/${id}`;
+        }
+
+        const response = await axios.get(url);
+        const userProfile = response.data;
+
+        // Se a resposta contiver a URL da imagem de perfil, defina no state
+        if (userProfile && userProfile.profilePicture) {
+          setProfilePic(userProfile.profilePicture);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar perfil do usuário:", error);
+        // Lógica para lidar com erros na requisição
+      }
+    };
+
+    fetchUserProfile();
   });
 
   // Função para alternar o menu móvel
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
-  const [profilePic, setProfilePic] = useState();
   return (
     <header className="header flex items-center " ref={headerRef}>
       <div className="container">
@@ -107,7 +115,13 @@ const Header = () => {
 
             {localStorage.getItem("id") ? (
               <div className="flex items-center gap-5">
-                <Link to={`/users/profile/${localStorage.getItem("id")}`}>
+                <Link
+                  to={
+                    userRole === "STUDENT"
+                      ? `/students/${userId}`
+                      : `/teachers/profile/${userId}`
+                  }
+                >
                   <figure className="max-w-[40px] max-h-[40px] ">
                     <img
                       src={profilePic}

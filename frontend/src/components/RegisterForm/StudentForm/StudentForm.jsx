@@ -13,7 +13,7 @@ const StudentForm = () => {
     email: "",
     password: "",
     profilePicture: "",
-    gender: "",
+    sex: "",
     role: "STUDENT",
   });
 
@@ -59,7 +59,7 @@ const StudentForm = () => {
   return (
     <>
       <h3 className="text-headingColor text-[26px] leading-9 font-bold mb-10 text-center">
-        Bem-Vindo, <span className="text-primaryColor">Professor!</span>
+        Bem-Vindo, <span className="text-primaryColor">Aluno!</span>
       </h3>
       <form onSubmit={onSubmit}>
         <div className="mb-5">
@@ -136,8 +136,8 @@ const StudentForm = () => {
           <label className="text-headingColor font-bold text-[16px] leading-7">
             Gênero:
             <select
-              name="gender"
-              value={formData.gender}
+              name="sex"
+              value={formData.sex}
               onChange={handleInputChange}
               className="text-headingColor font-semibold text-[15px] leading-7 px-4
         py-3 focus:outline-none cursor-pointer ml-2"

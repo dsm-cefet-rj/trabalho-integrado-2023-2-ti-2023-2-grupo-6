@@ -1,64 +1,60 @@
-import { useState } from "react";
-import db from "../../server/database/db.json";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { formatarData } from "../../common/functions";
-import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { createAppointment } from "../../features/appointment/appointmentSlice";
+import { getAvailableHoursByTeacher } from "../../features/teacher/teacherSlice";
 
 const AppointmentPainel = () => {
-  const teacherId =
-    Number(window.location.href.charAt(window.location.href.length - 1)) - 1;
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const teacherId = id;
+  const studentId = localStorage.getItem("id");
 
   const [formData, setFormData] = useState({
-    horario: "",
+    selectedHour: "",
   });
 
-  const teacherIdForAppointments = teacherId + 1
+  const availableHours = useSelector(
+    (state) => state?.teacher?.availableHours || []
+  );
 
-  const studentId = localStorage.getItem('id')
+  console.log(availableHours);
 
-  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAvailableHoursByTeacher(teacherId));
+  }, [dispatch, teacherId]);
 
-  let horaOcupada = false
+  const fetchTeacherData = async () => {
+    try {
+      await dispatch(
+        createAppointment({
+          teacherId,
+          studentId,
+          schedule: formData.selectedHour,
+        })
+      );
 
-  const handleSubmit = (event) => {
+      toast.success("Horário marcado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao criar compromisso:", error);
+      toast.error("Erro ao marcar o horário. Tente novamente mais tarde.");
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const selectedDate = formData.horario;
+    const selectedHour = formData.selectedHour;
 
-    console.log(db.appointments.length)
-
-    if (selectedDate == "") {
-      toast.error("Selecione uma data")
-      return
+    if (!selectedHour) {
+      toast.error("Selecione uma hora");
+      return;
     }
 
-    db.appointments.forEach((ap) => {
-      if (ap.date === selectedDate && ap.teacherId == teacherIdForAppointments) {
-        horaOcupada = true
-      }
-    })
-
-    if (horaOcupada){
-      toast.error("Horário acabou de ser selecionado!")
-    }
-
-    if (!studentId){
-      toast.error("É preciso estar logado para marcar uma aula!")
-    }
-    
-    if (studentId && !horaOcupada) {
-      dispatch(
-        createAppointment({
-          studentId: Number(studentId),
-          teacherId: teacherIdForAppointments,
-          date: selectedDate,
-          id: db.appointments.length + 1,
-        })
-      )
-      toast.success("Horário marcado com Sucesso!")
-    }
+    await fetchTeacherData();
   };
 
   const handleChange = (event) => {
@@ -81,7 +77,7 @@ const AppointmentPainel = () => {
         </p>
 
         <ul className="mt-3 flex flex-col items-center">
-          {db.teachers[teacherId].availableHours.map((e) => (
+          {availableHours.map((e) => (
             <li className="flex justify-between mb-2" key={e}>
               {formatarData(e)}
             </li>
@@ -94,11 +90,14 @@ const AppointmentPainel = () => {
             Seu horário:
             <select
               onChange={handleChange}
-              value={formData.horario}
-              name="horario"
+              value={formData.selectedHour}
+              name="selectedHour"
               className="text-headingColor font-semibold text-[12px] leading-7 px-4 py-3 focus:outline-none cursor-pointer ml-2 border-primaryColor"
             >
-              {db.teachers[teacherId].availableHours.map((e) => (
+              <option value="" selected disabled hidden>
+                Escolha um horário
+              </option>
+              {availableHours.map((e) => (
                 <option value={e} key={e}>
                   {formatarData(e)}
                 </option>

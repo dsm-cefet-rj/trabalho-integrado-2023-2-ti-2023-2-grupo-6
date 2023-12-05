@@ -1,40 +1,23 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:3300";
 
-const getStudentAppointments = async (id) => {
+const getAppointments = async () => {
   return await axios.get(
     API_URL +
-      `/appointments?userId=${id}&_expand=teachers&_expand=user&_expand=location`
+    `/appointments`
   );
 };
 
-const getTeacherAppointments = async (id) => {
-  return await axios.get(
-    API_URL + `/appointments?teacherId=${id}&_expand=teachers&_expand=location`
-  );
+const createAppointment = async (teacherId, schedule, studentId) => {
+  return await axios.post(API_URL + `/appointments/${teacherId}/${studentId}`, { schedule });
 };
 
-const createAppointment = async (appointment) => {
-  return await axios.post(API_URL + "/appointments", appointment);
-};
-
-const deleteAppointment = async (id, token) => {
-  return await axios.delete(API_URL + `/appointments/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-};
-
-const updateAppointment = async (id, appointment) => {
-  return await axios.put(API_URL + `/appointments/${id}`, appointment);
-};
 
 const appointmentService = {
-  getStudentAppointments,
-  getTeacherAppointments,
+  getAppointments,
   createAppointment,
-  deleteAppointment,
-  updateAppointment,
+
 };
 
 export default appointmentService;

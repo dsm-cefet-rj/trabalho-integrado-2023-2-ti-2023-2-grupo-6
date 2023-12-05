@@ -1,11 +1,21 @@
 import SearchBar from "../../components/SearchBar/index";
 import TeacherList from "../../components/Teacher/TeacherList";
-import { teachers } from "../../server/database/db.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getTeachers,
+  selectAllTeachers,
+} from "../../features/teacher/teacherSlice";
 import EmptyList from "../../components/BlogList/EmptyList";
 
 const Teachers = () => {
-  const [teacherList, setTeacherList] = useState(teachers);
+  const dispatch = useDispatch();
+  const teachers = useSelector(selectAllTeachers);
+
+  useEffect(() => {
+    dispatch(getTeachers());
+  }, [dispatch]);
+
   const [searchKey, setSearchKey] = useState("");
 
   // Search submit
@@ -14,20 +24,16 @@ const Teachers = () => {
     handleSearchResults();
   };
 
-  // Search for teacher by specialization
   const handleSearchResults = () => {
     const filteredTeachers = teachers.filter((teacher) =>
       teacher.specialization
         .toLowerCase()
         .includes(searchKey.toLowerCase().trim())
     );
-    setTeacherList(filteredTeachers);
     console.log(filteredTeachers);
   };
 
-  // Clear search and show all teachers
   const handleClearSearch = () => {
-    setTeacherList(teachers);
     setSearchKey("");
   };
 
@@ -52,11 +58,7 @@ const Teachers = () => {
           formSubmit={handleSearchBar}
           handleSearchKey={(e) => setSearchKey(e.target.value)}
         />
-        {teacherList.length === 0 ? (
-          <EmptyList />
-        ) : (
-          <TeacherList teachers={teacherList} />
-        )}
+        {teachers.length === 0 ? <EmptyList /> : <TeacherList />}
       </div>
     </>
   );

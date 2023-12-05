@@ -5,43 +5,42 @@ import { updateAvailableHours } from "../../features/teacher/teacherSlice";
 import { formatarData } from "../../common/functions";
 
 const TeachersAvailableHours = () => {
-  const [formData, setFormData] = useState({ availableHours: [] });
+  const [formData, setFormData] = useState({ availableHours: "" });
   const dispatch = useDispatch();
 
-  // Armazena o ID do professor no localStorage com a chave 'id'
   const id = localStorage.getItem("id");
 
-  function SaveNewHour(e) {
+  const SaveNewHour = async (e) => {
     e.preventDefault();
-    if (!formData.availableHours.toString().trim()) {
+    if (!formData.availableHours.trim()) {
       toast.error("Por favor, insira um horário válido.");
       return;
     }
-    if (id) {
-      dispatch(
+
+    try {
+      await dispatch(
         updateAvailableHours({
           id: id,
           availability: [formData.availableHours],
         })
-      )
-        .then(() => {
-          toast.success(
-            `Horário disponibilizado com sucesso para ${formatarData(
-              formData.availableHours
-            )}`
-          );
-          setFormData({ availableHours: "" });
-        })
-        .catch((error) => {
-          toast.error("Erro ao disponibilizar horário: " + error.message);
-        });
-    } else {
-      console.error("ID do professor não encontrado no localStorage.");
+      );
+
+      toast.success(
+        `Horário disponibilizado com sucesso para ${formatarData(
+          formData.availableHours
+        )}`
+      );
+      setFormData({ availableHours: "" });
+    } catch (error) {
+      toast.error("Erro ao disponibilizar horário: " + error.message);
     }
-  }
+  };
 
   const handleChange = (e) => {
-    setFormData({ availableHours: e.target.value });
+    setFormData((prevData) => ({
+      ...prevData,
+      availableHours: e.target.value,
+    }));
   };
 
   return (
@@ -54,16 +53,16 @@ const TeachersAvailableHours = () => {
           <input
             onChange={handleChange}
             value={formData.availableHours}
-            className="border text-[16px] "
+            className="border text-[16px]"
             type="datetime-local"
           ></input>
           <button
             type="submit"
-            className=" btn my-2 flex justify-center items-center w-full text-[14px]  rounded-md hover:bg-green-900"
+            className="btn my-2 flex justify-center items-center w-full text-[14px] rounded-md hover:bg-green-900"
           >
             Disponibilizar
           </button>
-          <p className=" text-[10px] font-bold text-red-700">
+          <p className="text-[10px] font-bold text-red-700">
             Observação: A data só será salva apenas uma vez.
           </p>
         </form>

@@ -1,28 +1,37 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getTeachersDetails } from "../../features/teacher/teacherSlice";
+import db from "../../server/database/db.json";
 import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
+import { formatarData } from "../../common/functions";
+import BlogItem from "../../components/BlogList/BlogItem";
+import { useSelector } from "react-redux";
+import { selectAllBlogPosts } from "../../features/blog/blogSlice";
 
-const TeacherProfile = () => {
-  const teacherId = localStorage.getItem("id");
-  const dispatch = useDispatch();
+const TeachersProfile = () => {
+  const url = window.location.href;
+  const partesDaURL = url.split("/");
+  const numeroStr = partesDaURL.pop();
+  const teacherId = parseInt(numeroStr) - 1;
 
-  useEffect(() => {
-    dispatch(getTeachersDetails(teacherId));
-  }, [dispatch, teacherId]);
+  const teacherIdForAppointments = teacherId + 1;
 
-  const { selectedTeacher, status, isError } = useSelector(
-    (state) => state.teacher
+  const studentIdToNameMap = {};
+  db.users.forEach((user) => {
+    if (user.role === "STUDENT") {
+      studentIdToNameMap[user.id] = user.name;
+    }
+  });
+
+  const studentIdToEmailMap = {};
+  db.users.forEach((user) => {
+    if (user.role === "STUDENT") {
+      studentIdToEmailMap[user.id] = user.email;
+    }
+  });
+
+  const blogPosts = useSelector(selectAllBlogPosts);
+  const teacherBlogPosts = blogPosts.filter(
+    (post) => post.authorId === teacherId
   );
-
-  if (status === "loading") {
-    return <p>Carregando...</p>;
-  }
-
-  if (isError) {
-    return <p>Ocorreu um erro ao carregar os dados do estudante: {isError}</p>;
-  }
 
   return (
     <section>
@@ -33,13 +42,13 @@ const TeacherProfile = () => {
         <span> &#8592;</span> <span>Voltar</span>
       </Link>
       <div className="max-w-[1200px] px-5 mx-auto">
-        <div className="max-w-[1000px] items-center">
+        <div className="max-w-[1000px] items-center ">
           <div className="md:col-span-2">
             <div className="flex items-center gap-5 justify-between">
               <div className="flex">
                 <figure className="max-w-[300px] max-h-[300px]">
                   <img
-                    src={selectedTeacher?.profilePicture}
+                    src={db.users[teacherId].profilePicture}
                     alt=""
                     className="w-[200px] h-[200px] object-cover mb-2 rounded-full shadow-2xl"
                   />
@@ -49,25 +58,30 @@ const TeacherProfile = () => {
                 <div className="flex justify-between items-center gap-10">
                   <div className="ml-8 items-center">
                     <h3 className="text-headingColor text-[22px] leading-9 font-bold">
-                      {selectedTeacher?.name}
+                      {db.users[teacherId].name}
                     </h3>
                     <h2 className="pt-9 pb-1">
                       <strong className="text-headingColor">Email:</strong>{" "}
-                      {selectedTeacher?.email}{" "}
+                      {db.users[teacherId].email}{" "}
                     </h2>
                     <h2>
                       <strong className="text-headingColor">Gênero:</strong>{" "}
-                      {selectedTeacher?.sex}
+                      {db.users[teacherId].gender}
                     </h2>
                   </div>
                 </div>
               </div>
 
-              <TeachersAvailableHours />
+              {Number(localStorage.getItem("id")) ==
+              Number(teacherIdForAppointments) ? (
+                <TeachersAvailableHours />
+              ) : (
+                <div></div>
+              )}
             </div>
 
             <div className="flex flex-col">
-              <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
+              <div className="mt-[30px] border-b border-solid border-green-900">
                 <h3
                   className={
                     "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"
@@ -76,7 +90,7 @@ const TeacherProfile = () => {
                   Agenda de Aulas Marcadas
                 </h3>
               </div>
-              {/* <div>
+              <div>
                 <ul className="pt-4 md:p-5">
                   {db.appointments.map((appointment) =>
                     appointment.teacherId === teacherIdForAppointments ? (
@@ -101,7 +115,13 @@ const TeacherProfile = () => {
                     ) : null
                   )}
                 </ul>
-              </div> */}
+              </div>
+
+              <div className="flex flex-wrap justify-center">
+                {teacherBlogPosts.map((post) => (
+                  <BlogItem key={post.id} post={post} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -110,4 +130,4 @@ const TeacherProfile = () => {
   );
 };
 
-export default TeacherProfile;
+export default TeachersProfile;

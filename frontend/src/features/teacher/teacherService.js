@@ -1,72 +1,36 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:3300";
 
 const getTeachers = async () => {
-  return await axios.get(API_URL + `/teachers?_expand=user`);
+  return await axios.get(API_URL + `/teachers`);
 };
 
 const getTeachersDetails = async (id) => {
-  return await axios.get(API_URL + `/teachers/${id}?_expand=user`);
+  return await axios.get(API_URL + `/teachers/${id}`);
 };
 
-const updateTeacher = async (id, teacher) => {
-  return await axios.patch(API_URL + `/teachers/${id}`, teacher);
-};
-
-const updateTeacherDetails = async (teacher) => {
-  const { id, specialization, resume, description } = teacher;
-
-  if (!id) {
-    throw new Error("ID do professor não especificado.");
-  }
-
-  const updatedTeacher = {
-    specialization,
-    resume,
-    description,
-  };
-
-  return await axios.patch(API_URL + `/teachers/${id}`, updatedTeacher);
-};
-
-export const createTeacher = async (teacher) => {
-  return await axios.post(API_URL + `/teachers`, teacher);
-};
-
-const updateAvailableHours = async (id, newAvailability) => {
-  const response = await axios.get(API_URL + `/teachers/${id}`);
-
-  if (response.data) {
-    const teacherData = {
-      ...response.data,
-    };
-
-    if (!teacherData.availableHours.includes(newAvailability)) {
-      teacherData.availableHours.push(newAvailability);
-      await updateTeacher(id, teacherData);
-    } else {
-      throw new Error("Horário já existe na lista de disponibilidade.");
-    }
+const updateAvailableHours = async (teacherId, schedule) => {
+  try {
+    const response = await axios.post(`${API_URL}/teachers/availablehours/${teacherId}`, { schedule });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.msg || 'Erro ao definir horário disponível');
   }
 };
 
-const createFullTeacher = async (teacher) => {
-  return await axios.post(API_URL + `/teachers/full`, teacher);
-};
-
-const deleteTeacher = async (id) => {
-  return await axios.delete(API_URL + `/teachers/${id}`);
+const getAvailableHoursByTeacher = async (teacherId) => {
+  return await axios.get(
+    API_URL +
+    `/availableHours/${teacherId}`
+  );
 };
 
 const teacherService = {
   getTeachers,
   getTeachersDetails,
-  updateTeacher,
-  updateTeacherDetails,
   updateAvailableHours,
-  createFullTeacher,
-  deleteTeacher,
+  getAvailableHoursByTeacher,
 };
 
 export default teacherService;

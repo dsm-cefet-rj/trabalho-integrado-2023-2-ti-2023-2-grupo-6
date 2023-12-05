@@ -7,7 +7,7 @@ import authService from "./authService";
 
 const userAdapter = createEntityAdapter();
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = localStorage.getItem("user");
 
 const initialState = userAdapter.getInitialState({
   user: user ? user : null,
@@ -54,23 +54,6 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   }
 });
 
-export const getUsers = createAsyncThunk("user/getUsers", async () => {
-  const response = await getUsers();
-
-  return response.data;
-});
-
-export const updateUser = createAsyncThunk("user/updateUser", async (user) => {
-  const response = await updateUser(user);
-
-  return response.data;
-});
-
-export const deleteUser = createAsyncThunk("user/deleteUser", async (id) => {
-  const response = await deleteUser(id);
-
-  return response.data;
-});
 
 export const authSlice = createSlice({
   name: "auth",
@@ -120,7 +103,8 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.token = action.payload.token;
         state.user = action.payload;
-        localStorage.setItem("user", JSON.stringify(action.payload._doc));
+        localStorage.setItem("user", (action.payload._doc));
+        localStorage.setItem("id", (action.payload.id));
         localStorage.setItem("token", action.payload.token);
       })
       .addCase(login.rejected, (state, action) => {
@@ -132,40 +116,6 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
       })
-      .addCase(getUsers.pending, (state) => {
-        state.message = "loading";
-      })
-      .addCase(getUsers.fulfilled, (state, action) => {
-        state.message = "loaded";
-        userAdapter.setAll(state, action.payload);
-      })
-      .addCase(getUsers.rejected, (state, action) => {
-        state.message = "error";
-        state.isError = action.error.message;
-      })
-      .addCase(updateUser.pending, (state) => {
-        state.message = "loading";
-      })
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.message = "saved";
-        userAdapter.upsertOne(state, action.payload);
-      })
-      .addCase(updateUser.rejected, (state, action) => {
-        state.message = "error";
-        state.isError = action.error.message;
-      })
-
-      .addCase(deleteUser.pending, (state) => {
-        state.message = "loading";
-      })
-      .addCase(deleteUser.fulfilled, (state, action) => {
-        state.message = "deleted";
-        userAdapter.removeOne(state, action.payload);
-      })
-      .addCase(deleteUser.rejected, (state, action) => {
-        state.message = "error";
-        state.isError = action.error.message;
-      });
   },
 });
 

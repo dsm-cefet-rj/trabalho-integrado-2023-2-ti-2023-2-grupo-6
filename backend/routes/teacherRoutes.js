@@ -4,11 +4,12 @@ const auth = require("../middlewares/auth")
 const TeacherController = require('../controllers/TeacherController.js');
 
 router
-  .get('/teachers', auth,TeacherController.getTeachers) 
-  .get('/teachers/:teacherId',TeacherController.getTeacher)
+  .get('/teachers', TeacherController.getTeachers)
+  .get('/teachers/:teacherId', TeacherController.getTeacher)
+  .get('/availableHours/:teacherId', TeacherController.getAvailableHours)
   .post('/teachers', TeacherController.createTeacher)
   .put('/teachers/', auth, TeacherController.editInfo)
-  .post('/teachers/availablehours/', auth, TeacherController.setAvailableHour)
-  .delete('/teachers/availablehours/', auth, TeacherController.deleteAvailableHour)
+  .post('/teachers/availablehours/:teacherId', TeacherController.setAvailableHour)
+  .delete('/teachers/availablehours/:teacherId', auth, TeacherController.deleteAvailableHour)
 
 module.exports = router;

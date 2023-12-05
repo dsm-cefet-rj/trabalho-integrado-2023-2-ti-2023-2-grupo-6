@@ -1,32 +1,27 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import db from "../../server/database/db.json";
-import TeachersProfile from "../Teachers/TeachersProfile";
-import { formatarData } from "../../common/functions";
-const StudentsProfile = () => {
-  const url = window.location.href;
-  const partesDaURL = url.split("/");
-  const numeroStr = partesDaURL.pop();
-  const userId = parseInt(numeroStr) - 1;
+import { useDispatch, useSelector } from "react-redux";
+import { getStudentsDetails } from "../../features/student/studentSlice";
 
-  if (db.users[userId].role == "TEACHER") {
-    return <TeachersProfile />;
+const StudentsProfile = () => {
+  const studentId = localStorage.getItem("id");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getStudentsDetails(studentId));
+  }, [dispatch, studentId]);
+
+  const { selectedStudent, status, isError } = useSelector(
+    (state) => state.student
+  );
+
+  if (status === "loading") {
+    return <p>Carregando...</p>;
   }
 
-  const teacherIdToNameMap = {};
-  db.users.forEach((user) => {
-    if (user.role === "TEACHER") {
-      teacherIdToNameMap[user.id] = user.name;
-    }
-  });
-
-  const teacherIdToEmailMap = {};
-  db.users.forEach((user) => {
-    if (user.role === "TEACHER") {
-      teacherIdToEmailMap[user.id] = user.email;
-    }
-  });
-
-  const studentId = localStorage.getItem("id");
+  if (isError) {
+    return <p>Ocorreu um erro ao carregar os dados do estudante: {isError}</p>;
+  }
 
   return (
     <section>
@@ -42,7 +37,7 @@ const StudentsProfile = () => {
             <div className="flex items-center gap-5">
               <figure className="max-w-[300px] max-h-[300px]">
                 <img
-                  src={db.users[userId].profilePicture}
+                  src={selectedStudent?.profilePicture}
                   alt=""
                   className="w-[200px] h-[200px] object-cover mb-2 rounded-full shadow-2xl"
                 />
@@ -51,15 +46,15 @@ const StudentsProfile = () => {
 
               <div className=" ml-8 mb-6 ">
                 <h3 className="text-headingColor text-[26px] leading-9 mt-3 font-bold mb-5">
-                  {db.users[userId].name}
+                  {selectedStudent?.name}
                 </h3>
                 <h2 className="pt-9 pb-1">
                   <strong className="text-headingColor">Email:</strong>{" "}
-                  {db.users[userId].email}
+                  {selectedStudent?.email}
                 </h2>
                 <h2>
                   <strong className="text-headingColor">Gênero:</strong>{" "}
-                  {db.users[userId].gender}
+                  {selectedStudent?.sex}
                 </h2>
               </div>
             </div>
@@ -73,7 +68,7 @@ const StudentsProfile = () => {
                   Aulas Marcadas
                 </h3>
               </div>
-              <div>
+              {/* <div>
                 <ul className="pt-4 md:p-5">
                   {db.appointments.map((appointment) =>
                     appointment.studentId == studentId ? (
@@ -98,10 +93,9 @@ const StudentsProfile = () => {
                     ) : null
                   )}
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
-          <div></div>
         </div>
       </div>
     </section>
