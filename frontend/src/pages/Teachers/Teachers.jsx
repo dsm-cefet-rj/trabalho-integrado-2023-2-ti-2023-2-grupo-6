@@ -61,6 +61,7 @@ const Teachers = () => {
           formSubmit={handleSearchBar}
           handleSearchKey={(e) => setSearchKey(e.target.value)}
         />
+        <TeacherList />
         {teachers.length === 0 ? <EmptyList /> : <TeacherList />}
       </div>
     </>

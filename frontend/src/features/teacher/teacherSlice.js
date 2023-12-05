@@ -135,7 +135,10 @@ export const teacherSlice = createSlice({
   },
 });
 
-export const { selectAll: selectAllTeachers, selectById: selectTeacherById } =
+export const selectTeacherById = (state, teacherId) =>
+  selectAllTeachers(state).find((teacher) => teacher._id === teacherId);
+
+export const { selectAll: selectAllTeachers } =
   teacherAdapter.getSelectors((state) => state?.teacher);
 
 export const { setMessage } = teacherSlice.actions;

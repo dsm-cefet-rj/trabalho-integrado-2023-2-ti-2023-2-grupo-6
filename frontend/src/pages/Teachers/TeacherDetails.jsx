@@ -1,25 +1,33 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getTeachersDetails,
-  selectTeacherById,
-} from "../../features/teacher/teacherSlice";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getTeachersDetails } from "../../features/teacher/teacherSlice";
 import { Link, useParams } from "react-router-dom";
 import AppointmentPainel from "./AppointmentPainel";
 import Tag from "../../components/BlogList/Tag";
 
 const TeacherDetails = () => {
   const localStorageRole = localStorage.getItem("role");
-  const isTeacher = localStorageRole == "TEACHER";
+  const isTeacher = localStorageRole === "TEACHER";
 
   const { id } = useParams();
-
   const dispatch = useDispatch();
-  const selectedTeacher = useSelector((state) => selectTeacherById(state, id));
+
+  const [selectedTeacher, setSelectedTeacher] = useState(null);
+
+  console.log("Dados do professor:", selectedTeacher);
 
   useEffect(() => {
-    if (id && !selectedTeacher) {
-      dispatch(getTeachersDetails(id));
+    const fetchData = async () => {
+      try {
+        const teacherDetails = await dispatch(getTeachersDetails(id));
+        setSelectedTeacher(teacherDetails);
+      } catch (error) {
+        console.error("Error fetching teacher details:", error);
+      }
+    };
+
+    if (!selectedTeacher) {
+      fetchData();
     }
   }, [dispatch, id, selectedTeacher]);
 
@@ -41,7 +49,7 @@ const TeacherDetails = () => {
             <div className="flex items-center gap-5">
               <figure className="max-w-[300px] max-h-[300px]">
                 <img
-                  src={selectedTeacher.user.profilePicture}
+                  src={selectedTeacher?.payload.profilePicture}
                   alt=""
                   className="w-full h-[200px] object-cover mb-2 rounded-[20px]"
                 />
@@ -49,12 +57,12 @@ const TeacherDetails = () => {
 
               <div>
                 <h3 className="text-headingColor text-[22px] leading-9 mt-3 font-bold">
-                  {selectedTeacher.user.name}
+                  {selectedTeacher?.payload.name}
                 </h3>
-                <Tag label={selectedTeacher.specialization} />
+                <Tag label={selectedTeacher?.payload.specialization} />
 
                 <p className="text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px] break-words">
-                  {selectedTeacher.resume}
+                  {selectedTeacher?.payload.resume}
                 </p>
               </div>
             </div>
@@ -65,11 +73,11 @@ const TeacherDetails = () => {
                     "py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold"
                   }
                 >
-                  Descubra mais sobre {selectedTeacher.user.name}
+                  Descubra mais sobre {selectedTeacher?.payload.name}
                 </h3>
               </div>
               <p className="text__para text-[14px] leading-6 break-words">
-                {selectedTeacher.description}
+                {selectedTeacher?.payload.description}
               </p>
 
               <div className="mt-[30px] border-b border-solid border-[#0066ff34]">
