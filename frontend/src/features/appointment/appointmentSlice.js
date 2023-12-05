@@ -28,6 +28,14 @@ export const createAppointment = createAsyncThunk(
   }
 );
 
+export const getAppointmentsById = createAsyncThunk(
+  "appointments/getAppointmentsById",
+  async ({ id }) => {
+    const response = await appointmentService.getAppointmentsById(id);
+    return response.data;
+  }
+);
+
 
 export const appointmentSlice = createSlice({
   name: "appointment",
@@ -58,6 +66,17 @@ export const appointmentSlice = createSlice({
         appointmentAdapter.addOne(state, action.payload);
       })
       .addCase(createAppointment.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
+      .addCase(getAppointmentsById.pending, (state) => {
+        state.message = "loading";
+      })
+      .addCase(getAppointmentsById.fulfilled, (state, action) => {
+        state.message = "loaded";
+        state.appointmentDetails = action.payload;
+      })
+      .addCase(getAppointmentsById.rejected, (state, action) => {
         state.message = "error";
         state.isError = action.error.message;
       });

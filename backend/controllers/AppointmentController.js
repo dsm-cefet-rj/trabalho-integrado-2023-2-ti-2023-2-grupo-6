@@ -18,20 +18,37 @@ class AppointmentController {
     }
 
     static async getAppointmentsById(req, res) {
-        const { teacherId } = req.params;
+        const { id } = req.params;
         try {
-            const appointments = await Appointment.find({ teacher: teacherId });
 
-            if (!appointments || appointments.length === 0) {
-                return res.status(200).json({ msg: "Esse professor não tem consultas marcadas" });
+            const teacher = await Teacher.findById({ _id: id });
+            const student = await Student.findById({ _id: id });
+
+            if (teacher) {
+                const appointments = await Appointment.find({ teacher: id });
+                if (appointments.length === 0) {
+                    return res.status(200).json({ msg: "Não possui consultas marcadas" });
+                }
+                return res.status(200).json(appointments);
             }
 
-            return res.status(200).json(appointments);
+            else if (student) {
+                const appointments = await Appointment.find({ student: id });
+
+                if (appointments.length === 0) {
+                    return res.status(200).json({ msg: "Não possui consultas marcadas" });
+                }
+
+                return res.status(200).json(appointments);
+            }
+
         } catch (error) {
             console.error('Erro ao tentar obter consultas', error);
             res.status(500).json({ msg: 'Erro no servidor', status: false });
         }
     }
+
+
 
 
     static async createAppointment(req, res) {

@@ -1,11 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getStudentsDetails } from "../../features/student/studentSlice";
+import { getAppointmentsById } from "../../features/appointment/appointmentSlice";
+import { formatarData } from "../../common/functions";
 
 const StudentsProfile = () => {
   const studentId = localStorage.getItem("id");
   const dispatch = useDispatch();
+
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const appointmentsDetails = await dispatch(
+          getAppointmentsById(studentId)
+        );
+        console.log("Response from API:", appointmentsDetails); // Ajuste para exibir response.data
+        setAppointments(appointmentsDetails);
+      } catch (error) {
+        console.error("Error fetching appointments:", error.message);
+      }
+    };
+
+    if (!appointments) {
+      fetchAppointments();
+    }
+  }, [dispatch, studentId]);
 
   useEffect(() => {
     dispatch(getStudentsDetails(studentId));
@@ -22,7 +44,6 @@ const StudentsProfile = () => {
   if (isError) {
     return <p>Ocorreu um erro ao carregar os dados do estudante: {isError}</p>;
   }
-
   return (
     <section>
       <Link
@@ -68,32 +89,39 @@ const StudentsProfile = () => {
                   Aulas Marcadas
                 </h3>
               </div>
-              {/* <div>
+              <div>
                 <ul className="pt-4 md:p-5">
-                  {db.appointments.map((appointment) =>
-                    appointment.studentId == studentId ? (
-                      <li
-                        key={appointment.id}
-                        className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
-                      >
-                        <div>
-                          <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                            Data - Horário: {formatarData(appointment.date)}
-                          </span>
-                          <p className="text-[15px] leading-6 font-medium text-textColor">
-                            <strong>Professor: </strong>{" "}
-                            {teacherIdToNameMap[appointment.teacherId]}
-                          </p>
-                        </div>
-                        <p className="text-[15px] leading-5 font-medium text-textColor">
-                          <strong>Email - Professor: </strong>{" "}
-                          {teacherIdToEmailMap[appointment.teacherId]}
-                        </p>
-                      </li>
-                    ) : null
-                  )}
+                  {appointments.map((appointment) => (
+                    <li
+                      key={appointment.id}
+                      className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
+                    >
+                      <div>
+                        <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
+                          Data - Horário: {formatarData(appointment.date)}
+                        </span>
+                      </div>
+                      {/* Adicione outros detalhes do compromisso conforme necessário */}
+                    </li>
+                  ))}
                 </ul>
-              </div> */}
+              </div>
+              <div>
+                <ul className="pt-4 md:p-5">
+                  {appointments.map((appointment) => (
+                    <li
+                      key={appointments._id}
+                      className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
+                    >
+                      <div>
+                        <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
+                          Data - Horário: {formatarData(appointment.date)}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -6,6 +6,6 @@ const auth = require("../middlewares/auth")
 router
   .get('/appointments', AppointmentsController.getAppointments)
   .post('/appointments/:teacherId/:studentId', AppointmentsController.createAppointment)
-  .get('/appointments/:teacherId', AppointmentsController.getAppointmentsById)
+  .get('/appointments/:id', AppointmentsController.getAppointmentsById)
 
 module.exports = router;
