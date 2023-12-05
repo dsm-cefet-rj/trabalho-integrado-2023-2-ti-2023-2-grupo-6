@@ -24,9 +24,7 @@ const Teachers = () => {
     handleSearchResults();
   };
 
-  // Search for teacher by specialization
   const handleSearchResults = () => {
-    // Use Redux state directly for filtering
     const filteredTeachers = teachers.filter((teacher) =>
       teacher.specialization
         .toLowerCase()
@@ -35,7 +33,6 @@ const Teachers = () => {
     console.log(filteredTeachers);
   };
 
-  // Clear search and show all teachers
   const handleClearSearch = () => {
     setSearchKey("");
   };
@@ -61,7 +58,6 @@ const Teachers = () => {
           formSubmit={handleSearchBar}
           handleSearchKey={(e) => setSearchKey(e.target.value)}
         />
-        <TeacherList />
         {teachers.length === 0 ? <EmptyList /> : <TeacherList />}
       </div>
     </>

@@ -5,13 +5,11 @@ import { selectTeacherById } from "../../features/teacher/teacherSlice";
 import { useSelector } from "react-redux";
 
 const TeacherCard = ({ teacher }) => {
-  // Use useSelector para obter os dados do professor do estado do Redux
   const teacherData = useSelector((state) =>
     selectTeacherById(state, teacher._id)
   );
 
   if (!teacherData) {
-    // Trate o caso em que o professor não foi encontrado
     return null;
   }
 
