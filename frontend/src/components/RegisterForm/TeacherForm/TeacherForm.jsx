@@ -12,8 +12,11 @@ const TeacherForm = () => {
     name: "",
     email: "",
     password: "",
-    profilePicture: "",
     sex: "",
+    profilePicture: "",
+    description: "",
+    resume: "",
+    specialization: "",
     role: "TEACHER",
   });
 
@@ -151,6 +154,56 @@ const TeacherForm = () => {
               <option value="Outro">Prefiro Não dizer</option>
             </select>
           </label>
+        </div>
+
+        <h3 className="text-headingColor text-[26px] leading-9 font-bold mb-10 text-center">
+          Informações Adicionais de{" "}
+          <span className="text-primaryColor">Professor!</span>
+        </h3>
+
+        <div className="mb-5">
+          <input
+            type="text"
+            placeholder="Digite sua Especialização"
+            name="specialization"
+            value={formData.specialization}
+            onChange={handleInputChange}
+            className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
+  focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
+  rounded-md cursor-pointer"
+            required
+            autoComplete="specialization"
+          />
+        </div>
+
+        <div className="mb-5">
+          <input
+            type="text"
+            placeholder="Digite um resumo sobre você"
+            name="resume"
+            value={formData.resume}
+            onChange={handleInputChange}
+            className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
+  focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
+  rounded-md cursor-pointer"
+            required
+            autoComplete="resume"
+          />
+        </div>
+
+        <div className="mb-5">
+          <input
+            type="text"
+            placeholder="De uma descrição ao seu Perfil"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
+  focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
+  rounded-md cursor-pointer"
+            required
+            autoComplete="description"
+          />
         </div>
 
         {/* Submit button */}

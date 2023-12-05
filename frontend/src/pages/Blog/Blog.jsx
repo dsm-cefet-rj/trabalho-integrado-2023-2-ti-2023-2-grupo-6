@@ -34,7 +34,9 @@ const Blog = () => {
     <>
       <section>
         <div className="px-4 mx-auto max-w-screen-md mt-[50px] h-[100%]">
-          <h2 className="heading text-center">Trilhas de Conhecimento</h2>
+          <h2 className="heading text-center">
+            [Em construção] Trilhas de Conhecimento
+          </h2>
           <p className="text-center font-light text__para">
             O lugar ideal que irá te ajudar a alcançar resultados excelentes no
             campo que mais importa para você!

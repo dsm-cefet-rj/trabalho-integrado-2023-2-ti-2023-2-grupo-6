@@ -30,34 +30,6 @@ const Header = () => {
     navigate("/login");
   };
 
-  // Função para tornar o cabeçalho menor
-  const handleStickyHeader = () => {
-    window.addEventListener("scroll", () => {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        headerRef.current.classList.add("sticky_header");
-      } else {
-        headerRef.current.classList.remove("sticky_header");
-      }
-    });
-  };
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("id")) {
-  //     users.forEach((e) => {
-  //       if (Number(e.id) == localStorage.getItem("id")) {
-  //         setProfilePic(e.profilePicture);
-  //       }
-  //     });
-  //   }
-
-  //   // Ativar o cabeçalho menor quando montado e limpar quando desmontado
-  //   handleStickyHeader();
-  //   return () => window.removeEventListener("scroll", handleStickyHeader);
-  // });
-
   const [profilePic, setProfilePic] = useState();
 
   useEffect(() => {
