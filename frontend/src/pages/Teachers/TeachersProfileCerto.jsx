@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import db from "../../server/database/db.json";
 import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
 import { formatarData } from "../../common/functions";
-import EditModal from "../../components/Teacher/EditModal";
-import { useState } from "react";
 import BlogItem from "../../components/BlogList/BlogItem";
 import { useSelector } from "react-redux";
 import { selectAllBlogPosts } from "../../features/blog/blogSlice";
@@ -29,16 +27,6 @@ const TeachersProfile = () => {
       studentIdToEmailMap[user.id] = user.email;
     }
   });
-
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
-  const handleEditClick = () => {
-    setIsEditModalOpen(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setIsEditModalOpen(false);
-  };
 
   const blogPosts = useSelector(selectAllBlogPosts);
   const teacherBlogPosts = blogPosts.filter(
@@ -133,18 +121,6 @@ const TeachersProfile = () => {
                 {teacherBlogPosts.map((post) => (
                   <BlogItem key={post.id} post={post} />
                 ))}
-              </div>
-
-              <div className="flex justify-center">
-                <button className="btn" onClick={handleEditClick}>
-                  Adicionar dados complementares
-                </button>
-                {isEditModalOpen && (
-                  <EditModal
-                    teacher={db.users[teacherId]}
-                    onClose={handleCloseEditModal}
-                  />
-                )}
               </div>
             </div>
           </div>

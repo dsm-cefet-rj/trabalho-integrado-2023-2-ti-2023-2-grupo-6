@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getTeachersDetails } from "../../features/teacher/teacherSlice";
 import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
-// import EditModal from "../../components/Teacher/EditModal";
 
 const TeacherProfile = () => {
   const teacherId = localStorage.getItem("id");
@@ -102,18 +101,6 @@ const TeacherProfile = () => {
                     ) : null
                   )}
                 </ul>
-              </div> */}
-              {/* 
-              <div className="flex justify-center">
-                <button className="btn" onClick={handleEditClick}>
-                  Adicionar dados complementares
-                </button>
-                {isEditModalOpen && (
-                  <EditModal
-                    teacher={selectedTeacher?.users[teacherId]}
-                    onClose={handleCloseEditModal}
-                  />
-                )}
               </div> */}
             </div>
           </div>

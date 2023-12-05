@@ -10,26 +10,6 @@ const getTeachersDetails = async (id) => {
   return await axios.get(API_URL + `/teachers/${id}`);
 };
 
-const updateTeacherDetails = async (teacher) => {
-  const { id, specialization, resume, description } = teacher;
-
-  if (!id) {
-    throw new Error("ID do professor não especificado.");
-  }
-
-  const updatedTeacher = {
-    specialization,
-    resume,
-    description,
-  };
-
-  return await axios.patch(API_URL + `/teachers/${id}`, updatedTeacher);
-};
-
-export const createTeacher = async (teacher) => {
-  return await axios.post(API_URL + `/teachers`, teacher);
-};
-
 const updateAvailableHours = async (teacherId, schedule) => {
   try {
     const response = await axios.post(`${API_URL}/teachers/availablehours/${teacherId}`, { schedule });
@@ -49,7 +29,6 @@ const getAvailableHoursByTeacher = async (teacherId) => {
 const teacherService = {
   getTeachers,
   getTeachersDetails,
-  updateTeacherDetails,
   updateAvailableHours,
   getAvailableHoursByTeacher,
 };
