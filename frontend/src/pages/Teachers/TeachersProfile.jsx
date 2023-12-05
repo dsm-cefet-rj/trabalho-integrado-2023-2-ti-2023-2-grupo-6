@@ -76,32 +76,21 @@ const TeacherProfile = () => {
                   Agenda de Aulas Marcadas
                 </h3>
               </div>
-              {/* <div>
+              <div>
                 <ul className="pt-4 md:p-5">
-                  {db.appointments.map((appointment) =>
-                    appointment.teacherId === teacherIdForAppointments ? (
-                      <li
-                        key={appointment.id}
-                        className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
-                      >
-                        <div>
-                          <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                            Data - Horário: {formatarData(appointment.date)}
-                          </span>
-                          <p className="text-[15px] leading-6 font-medium text-textColor">
-                            <strong>Aluno: </strong>
-                            {studentIdToNameMap[appointment.studentId]}
-                          </p>
-                        </div>
-                        <p className="text-[15px] leading-5 font-medium text-textColor">
-                          <strong>Email - Aluno: </strong>
-                          {studentIdToEmailMap[appointment.studentId]}
-                        </p>
-                      </li>
-                    ) : null
-                  )}
+                  <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                    <div>
+                      <span className="text-irisBlueColor text-[15px] leading-6 font-semibold"></span>
+                      <p className="text-[15px] leading-6 font-medium text-textColor">
+                        <strong>Aluno: </strong>
+                      </p>
+                    </div>
+                    <p className="text-[15px] leading-5 font-medium text-textColor">
+                      <strong>Email - Aluno: </strong>
+                    </p>
+                  </li>
                 </ul>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

@@ -68,32 +68,23 @@ const StudentsProfile = () => {
                   Aulas Marcadas
                 </h3>
               </div>
-              {/* <div>
+              <div>
                 <ul className="pt-4 md:p-5">
-                  {db.appointments.map((appointment) =>
-                    appointment.studentId == studentId ? (
-                      <li
-                        key={appointment.id}
-                        className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
-                      >
-                        <div>
-                          <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                            Data - Horário: {formatarData(appointment.date)}
-                          </span>
-                          <p className="text-[15px] leading-6 font-medium text-textColor">
-                            <strong>Professor: </strong>{" "}
-                            {teacherIdToNameMap[appointment.teacherId]}
-                          </p>
-                        </div>
-                        <p className="text-[15px] leading-5 font-medium text-textColor">
-                          <strong>Email - Professor: </strong>{" "}
-                          {teacherIdToEmailMap[appointment.teacherId]}
-                        </p>
-                      </li>
-                    ) : null
-                  )}
+                  <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                    <div>
+                      <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
+                        Data - Horário:
+                      </span>
+                      <p className="text-[15px] leading-6 font-medium text-textColor">
+                        <strong>Professor: </strong>{" "}
+                      </p>
+                    </div>
+                    <p className="text-[15px] leading-5 font-medium text-textColor">
+                      <strong>Email - Professor: </strong>{" "}
+                    </p>
+                  </li>
                 </ul>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

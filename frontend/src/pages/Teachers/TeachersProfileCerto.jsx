@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import db from "../../server/database/db.json";
 import TeachersAvailableHours from "../../components/Teacher/TeachersAvailableHours";
-import { formatarData } from "../../common/functions";
 import BlogItem from "../../components/BlogList/BlogItem";
 import { useSelector } from "react-redux";
 import { selectAllBlogPosts } from "../../features/blog/blogSlice";
@@ -92,28 +91,17 @@ const TeachersProfile = () => {
               </div>
               <div>
                 <ul className="pt-4 md:p-5">
-                  {db.appointments.map((appointment) =>
-                    appointment.teacherId === teacherIdForAppointments ? (
-                      <li
-                        key={appointment.id}
-                        className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]"
-                      >
-                        <div>
-                          <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                            Data - Horário: {formatarData(appointment.date)}
-                          </span>
-                          <p className="text-[15px] leading-6 font-medium text-textColor">
-                            <strong>Aluno: </strong>
-                            {studentIdToNameMap[appointment.studentId]}
-                          </p>
-                        </div>
-                        <p className="text-[15px] leading-5 font-medium text-textColor">
-                          <strong>Email - Aluno: </strong>
-                          {studentIdToEmailMap[appointment.studentId]}
-                        </p>
-                      </li>
-                    ) : null
-                  )}
+                  <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                    <div>
+                      <span className="text-irisBlueColor text-[15px] leading-6 font-semibold"></span>
+                      <p className="text-[15px] leading-6 font-medium text-textColor">
+                        <strong>Aluno: </strong>
+                      </p>
+                    </div>
+                    <p className="text-[15px] leading-5 font-medium text-textColor">
+                      <strong>Email - Aluno: </strong>
+                    </p>
+                  </li>
                 </ul>
               </div>
 
