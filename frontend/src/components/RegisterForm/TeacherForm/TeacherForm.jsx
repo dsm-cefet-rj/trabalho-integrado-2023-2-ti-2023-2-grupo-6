@@ -191,14 +191,15 @@ const TeacherForm = () => {
           />
         </div>
 
-        <div className="mb-5">
-          <input
+        <div className="mb-5 sm:col-span-2">
+          <textarea
+            rows="4"
             type="text"
             placeholder="De uma descrição ao seu Perfil"
             name="description"
             value={formData.description}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
+            className=" form-input mt-1 w-full px-4 py-3 border-b border-solid border-[#103d0561] focus:outline-none
   focus:border-b-primaryColor text-[14px] leading-[2.25] text-headingColor placeholder:text-textColor
   rounded-md cursor-pointer"
             required

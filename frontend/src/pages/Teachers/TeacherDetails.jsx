@@ -8,6 +8,7 @@ import Tag from "../../components/BlogList/Tag";
 const TeacherDetails = () => {
   const localStorageRole = localStorage.getItem("role");
   const isTeacher = localStorageRole === "TEACHER";
+  const isStudent = localStorageRole === "STUDENT";
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -161,7 +162,7 @@ const TeacherDetails = () => {
             </div>
           </div>
           <div>
-            {!isTeacher ? (
+            {!isTeacher && isStudent ? (
               <AppointmentPainel />
             ) : (
               <div className="shadow-2xl mt-[40px] p-4 max-w-[300px] text-center text-primaryColor rounded-lg font-bold">

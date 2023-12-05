@@ -51,21 +51,21 @@ const Contact = () => {
               required
             />
           </div>
-          <div>
+          <div title="Mínimo 10 caracteres">
             <label htmlFor="assunto" className="form__label">
               Digite o Assunto
             </label>
             <input
               type="text"
               id="assunto"
-              placeholder="Qual assunto você deseja escrever?"
+              placeholder="Qual assunto você deseja escrever? Escreva no mínimo 10 caracteres."
               className="form-input mt-1"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               required
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-2" title="Mínimo 10 caracteres">
             <label htmlFor="mensagem" className="form__label">
               Digite sua Mensagem
             </label>
@@ -73,7 +73,7 @@ const Contact = () => {
               rows="6"
               type="text"
               id="mensagem"
-              placeholder="Como podemos ajudar?"
+              placeholder="Como podemos ajudar? Escreva no mínimo 10 caracteres."
               className="form-input mt-1"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
