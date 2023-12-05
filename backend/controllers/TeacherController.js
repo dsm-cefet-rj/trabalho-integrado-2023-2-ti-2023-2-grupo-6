@@ -38,6 +38,22 @@ class TeacherController {
         }
     }
 
+    static async getAvailableHours(req, res) {
+        const { teacherId } = req.params;
+
+        try {
+            const teacher = await Teacher.findOne({ _id: teacherId })
+
+            if (!teacher) return res.status(404).json({ msg: "Professor(a) não encontrado" })
+
+            return res.status(200).json(teacher.availableHours);
+
+        } catch (error) {
+            console.error('Erro ao tentar obter o professor(a):', error);
+            res.status(500).json({ msg: 'Erro no servidor', status: false });
+        }
+    }
+
     static async createTeacher(req, res) {
         const { name, email, password, sex, profilePicture, description, resume, specialization } = req.body;
 

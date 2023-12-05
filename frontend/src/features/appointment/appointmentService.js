@@ -9,14 +9,15 @@ const getAppointments = async () => {
   );
 };
 
-const createAppointment = async (appointment) => {
-  return await axios.post(API_URL + "/appointments", appointment);
+const createAppointment = async (teacherId, schedule, studentId) => {
+  return await axios.post(API_URL + `/appointments/${teacherId}/${studentId}`, { schedule });
 };
 
 
 const appointmentService = {
   getAppointments,
   createAppointment,
+
 };
 
 export default appointmentService;

@@ -57,6 +57,14 @@ export const updateAvailableHours = createAsyncThunk(
   }
 );
 
+export const getAvailableHoursByTeacher = createAsyncThunk(
+  "appointments/getAvailableHoursByTeacher",
+  async (id) => {
+    const response = await teacherService.getAvailableHoursByTeacher(id);
+    return response.data;
+  }
+);
+
 export const teacherSlice = createSlice({
   name: "teacher",
   initialState: initialState,
@@ -131,7 +139,18 @@ export const teacherSlice = createSlice({
       .addCase(updateAvailableHours.rejected, (state, action) => {
         state.message = "error";
         state.isError = action.error.message;
-      });
+      })
+      .addCase(getAvailableHoursByTeacher.pending, (state) => {
+        state.message = "loading";
+      })
+      .addCase(getAvailableHoursByTeacher.fulfilled, (state, action) => {
+        state.message = "loaded";
+        state.availableHours = action.payload;
+      })
+      .addCase(getAvailableHoursByTeacher.rejected, (state, action) => {
+        state.message = "error";
+        state.isError = action.error.message;
+      })
   },
 });
 

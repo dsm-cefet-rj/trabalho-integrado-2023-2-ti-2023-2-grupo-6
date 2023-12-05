@@ -39,11 +39,19 @@ const updateAvailableHours = async (teacherId, schedule) => {
   }
 };
 
+const getAvailableHoursByTeacher = async (teacherId) => {
+  return await axios.get(
+    API_URL +
+    `/availableHours/${teacherId}`
+  );
+};
+
 const teacherService = {
   getTeachers,
   getTeachersDetails,
   updateTeacherDetails,
   updateAvailableHours,
+  getAvailableHoursByTeacher,
 };
 
 export default teacherService;

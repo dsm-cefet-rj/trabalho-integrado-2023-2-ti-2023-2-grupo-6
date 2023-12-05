@@ -12,25 +12,22 @@ const initialState = appointmentAdapter.getInitialState({
   isError: null,
 });
 
-
 export const getAppointments = createAsyncThunk(
-  "appointment/",
-  async (id) => {
-    const response = await appointmentService.getAppointments(id);
-
+  "appointments/getAppointments",
+  async () => {
+    const response = await appointmentService.getAppointments();
     return response.data;
   }
 );
-
 
 export const createAppointment = createAsyncThunk(
-  "appointment/createAppointment",
-  async (appointment) => {
-    const response = await appointmentService.createAppointment(appointment);
-
+  "appointments/createAppointment",
+  async ({ teacherId, schedule, studentId }) => {
+    const response = await appointmentService.createAppointment(teacherId, schedule, studentId);
     return response.data;
   }
 );
+
 
 export const appointmentSlice = createSlice({
   name: "appointment",
@@ -42,35 +39,28 @@ export const appointmentSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-
-
       .addCase(getAppointments.pending, (state) => {
         state.message = "loading";
       })
-
       .addCase(getAppointments.fulfilled, (state, action) => {
         state.message = "loaded";
         appointmentAdapter.setAll(state, action.payload);
       })
-
       .addCase(getAppointments.rejected, (state, action) => {
         state.message = "error";
         state.isError = action.error.message;
       })
-
       .addCase(createAppointment.pending, (state) => {
         state.message = "loading";
       })
-
       .addCase(createAppointment.fulfilled, (state, action) => {
         state.message = "saved";
         appointmentAdapter.addOne(state, action.payload);
       })
-
       .addCase(createAppointment.rejected, (state, action) => {
         state.message = "error";
         state.isError = action.error.message;
-      })
+      });
   },
 });
 

@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser');
-const cors = require ('cors')
+const cors = require('cors')
 const appointment = require("./appointmentRoutes");
 const contact = require("./contactRoutes");
 const post = require("./postRoutes");
@@ -10,18 +10,18 @@ const auth = require("./authRoutes.js");
 
 module.exports = app => {
 
-    app.get('/', (req,res)=> {
-        res.status(200).json({msg:'E-stud'});
+    app.get('/', (req, res) => {
+        res.status(200).json({ msg: 'E-stud' });
     })
-    .use(
-        bodyParser.json(),
-        cors(),
-        teacher,
-        student,
-        post,
-        appointment,
-        auth,
-        contact
-        
-    )
+        .use(
+            bodyParser.json(),
+            cors(),
+            teacher,
+            student,
+            post,
+            appointment,
+            auth,
+            contact
+
+        )
 }
